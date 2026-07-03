@@ -1,6 +1,6 @@
 # Database Schema
 
-SmartCam AI utilizes SQLite for local embedded storage. The database file is located at `database/smartcam.db`.
+QualiVision AI utilizes SQLite for local embedded storage. The database file is located at `database/smartcam.db`.
 
 ## Entity Relationship Diagram
 

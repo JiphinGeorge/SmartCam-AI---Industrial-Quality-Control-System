@@ -2,7 +2,7 @@
 
 ## Overview
 
-The SmartCam AI predictor engine relies on a state-of-the-art convolutional neural network trained on a dataset of industrial items (e.g., tomatoes) to perform binary or multi-class classification, paired with anomaly detection for Out-Of-Distribution (OOD) objects.
+The QualiVision AI predictor engine relies on a state-of-the-art convolutional neural network trained on a dataset of industrial items (e.g., tomatoes) to perform binary or multi-class classification, paired with anomaly detection for Out-Of-Distribution (OOD) objects.
 
 ## Base Architecture
 - **Model**: `EfficientNetV2B0`

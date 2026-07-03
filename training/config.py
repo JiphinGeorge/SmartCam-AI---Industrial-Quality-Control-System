@@ -1,5 +1,5 @@
 """
-SmartCam AI — Training Configuration
+QualiVision AI — Training Configuration
 ======================================
 Central configuration for all training parameters.
 """

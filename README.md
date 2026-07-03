@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="./app/static/images/avatar.png" alt="SmartCam AI Logo" width="200"/>
-  <h1>SmartCam AI</h1>
+  <img src="./app/static/images/avatar.png" alt="QualiVision AI Logo" width="200"/>
+  <h1>QualiVision AI</h1>
   <p><strong>Industrial Quality Control System Powered by Deep Learning</strong></p>
 
   <p>
@@ -16,9 +16,9 @@
 
 ## 📖 Overview
 
-SmartCam AI is an enterprise-grade, real-time computer vision system tailored for **industrial quality control**. Designed for deployment on factory floors, it provides live camera feeds, WebSocket-powered telemetry, AI-driven anomaly detection (using EfficientNetV2B0), and highly visual Grad-CAM explanations for its predictions. 
+QualiVision AI is an enterprise-grade, real-time computer vision system tailored for **industrial quality control**. Designed for deployment on factory floors, it provides live camera feeds, WebSocket-powered telemetry, AI-driven anomaly detection (using EfficientNetV2B0), and highly visual Grad-CAM explanations for its predictions. 
 
-Whether you are identifying defective machinery parts or sorting agricultural produce, SmartCam AI provides a robust, scalable, and fully audited interface to monitor production quality.
+Whether you are identifying defective machinery parts or sorting agricultural produce, QualiVision AI provides a robust, scalable, and fully audited interface to monitor production quality.
 
 ---
 
@@ -74,7 +74,7 @@ Whether you are identifying defective machinery parts or sorting agricultural pr
 
 ## 🏗️ System Architecture
 
-SmartCam AI utilizes a robust Model-View-Controller (MVC) architecture powered by Flask Blueprints and Socket.IO.
+QualiVision AI utilizes a robust Model-View-Controller (MVC) architecture powered by Flask Blueprints and Socket.IO.
 
 ```mermaid
 graph TD
@@ -125,7 +125,7 @@ graph TD
 
 ## 🧠 AI Pipeline & Prediction
 
-SmartCam AI utilizes Transfer Learning on an **EfficientNetV2B0** backbone. 
+QualiVision AI utilizes Transfer Learning on an **EfficientNetV2B0** backbone. 
 When a frame is captured from the camera or uploaded manually:
 1. **Preprocessing**: The image is resized to `224x224` and normalized.
 2. **Inference**: The model returns a Softmax probability distribution.
@@ -210,7 +210,7 @@ This repository also includes detailed technical documentation generated during 
 ## 👨‍💻 Project Credits
 
 **Project Title:**
-SmartCam AI – Industrial Quality Control System
+QualiVision AI – Industrial Quality Control System
 
 **Developer:**
 Jiphin George

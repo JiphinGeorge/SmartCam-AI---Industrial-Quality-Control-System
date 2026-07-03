@@ -1,6 +1,6 @@
 # API Reference
 
-This document outlines the exposed HTTP endpoints in the SmartCam AI application. 
+This document outlines the exposed HTTP endpoints in the QualiVision AI application. 
 All endpoints are protected by `Flask-Login` and `Flask-Limiter` unless otherwise noted.
 
 ## Overview

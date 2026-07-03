@@ -1,4 +1,4 @@
-# SmartCam AI - Release Checklist
+# QualiVision AI - Release Checklist
 
 | Component | Status | Notes |
 |-----------|--------|-------|

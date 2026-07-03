@@ -70,7 +70,7 @@ def export():
 def export_pdf():
     from app.services.pdf_generator import PdfGeneratorService
     pdf_path = PdfGeneratorService.generate_daily_report()
-    return send_file(pdf_path, as_attachment=True, download_name=f"SmartCam_Report_{datetime.now().strftime('%Y%m%d')}.pdf")
+    return send_file(pdf_path, as_attachment=True, download_name=f"QualiVision_Report_{datetime.now().strftime('%Y%m%d')}.pdf")
 
 @api_bp.route('/api/predict', methods=['POST'])
 def predict():

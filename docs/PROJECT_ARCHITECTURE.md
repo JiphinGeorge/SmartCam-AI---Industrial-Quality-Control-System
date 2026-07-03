@@ -1,6 +1,6 @@
-# SmartCam AI - High Level Architecture
+# QualiVision AI - High Level Architecture
 
-This document contains detailed architectural diagrams for the SmartCam AI Industrial QC System.
+This document contains detailed architectural diagrams for the QualiVision AI Industrial QC System.
 
 ## 1. High Level Architecture
 
@@ -9,7 +9,7 @@ graph TD
     User((Industrial Operator)) -->|HTTPS| WebBrowser[Web Browser]
     WebBrowser -->|HTTPS / WSS| FlaskServer[Flask Web Server]
     
-    subgraph SmartCam AI Application Node
+    subgraph QualiVision AI Application Node
         FlaskServer --> APIRouter[API Router / Blueprints]
         FlaskServer --> SocketRouter[WebSocket Event Loop]
         

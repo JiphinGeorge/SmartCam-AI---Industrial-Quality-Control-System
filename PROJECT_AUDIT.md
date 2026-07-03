@@ -1,4 +1,4 @@
-# SmartCam AI - Final Project Audit
+# QualiVision AI - Final Project Audit
 
 | Category | Score | Details |
 |----------|-------|---------|

@@ -1,4 +1,4 @@
-# SmartCam AI - Developer TODO
+# QualiVision AI - Developer TODO
 
 ## Critical
 - [ ] **Fix Large Image Upload Timeout**: Add frontend Javascript validation to reject images over 5MB before passing them to the Flask backend to prevent memory spikes in TensorFlow. (Ref: QA-004)

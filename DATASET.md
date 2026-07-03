@@ -1,4 +1,4 @@
-# SmartCam AI — Dataset Documentation
+# QualiVision AI — Dataset Documentation
 
 ## Dataset Source
 
@@ -141,4 +141,4 @@ All outputs saved to `reports/`.
 
 ---
 
-*Dataset version: 1.0 | Prepared by SmartCam AI Pipeline*
+*Dataset version: 1.0 | Prepared by QualiVision AI Pipeline*

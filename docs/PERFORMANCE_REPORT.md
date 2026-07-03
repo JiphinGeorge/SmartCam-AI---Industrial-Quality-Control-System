@@ -1,4 +1,4 @@
-# SmartCam AI - Performance & Stress Test Report
+# QualiVision AI - Performance & Stress Test Report
 
 ## 1. Concurrency & Load Metrics
 - **Total Requests Sent**: 360

@@ -1,5 +1,5 @@
 """
-SmartCam AI — Training Utilities
+QualiVision AI — Training Utilities
 ==================================
 Shared utility functions for dataset loading, data augmentation,
 Grad-CAM visualization, plotting, and metric computation.
@@ -22,7 +22,7 @@ from training.config import (
     REPORTS_DIR,
 )
 
-# Chart colors — SmartCam AI industrial theme
+# Chart colors — QualiVision AI industrial theme
 CHART_COLORS = {
     "Fresh":      "#16c784",
     "Rotten":     "#ff4d4f",

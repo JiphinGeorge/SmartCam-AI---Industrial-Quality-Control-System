@@ -1,5 +1,5 @@
 """
-SmartCam AI — Model Training Script
+QualiVision AI — Model Training Script
 ======================================
 Two-phase transfer learning pipeline using EfficientNetV2B0:
   Phase 1: Train classifier head with frozen backbone (10 epochs)
@@ -120,7 +120,7 @@ def build_model(base_model, augmentation_layer, preprocess_fn):
     outputs = tf.keras.layers.Dense(1, activation="sigmoid", name="output",
                                      dtype="float32")(x)  # float32 for mixed precision
 
-    model = tf.keras.Model(inputs, outputs, name="SmartCam_AI")
+    model = tf.keras.Model(inputs, outputs, name="QualiVision_AI")
     return model
 
 
@@ -159,7 +159,7 @@ def main():
     start_time = time.time()
 
     print("=" * 65)
-    print("  SmartCam AI — Model Training Pipeline")
+    print("  QualiVision AI — Model Training Pipeline")
     print("  " + "-" * 61)
     print(f"  Version: {PROJECT_VERSION} | Model: {MODEL_VERSION}")
     print(f"  Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -322,7 +322,7 @@ def main():
     model_size_mb = BEST_MODEL_KERAS.stat().st_size / (1024 * 1024) if BEST_MODEL_KERAS.exists() else 0
 
     summary = {
-        "project": "SmartCam AI",
+        "project": "QualiVision AI",
         "project_version": PROJECT_VERSION,
         "model_version": MODEL_VERSION,
         "model": actual_model_name,

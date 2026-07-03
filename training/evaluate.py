@@ -1,5 +1,5 @@
 """
-SmartCam AI — Model Evaluation Script
+QualiVision AI — Model Evaluation Script
 ========================================
 Comprehensive evaluation on the test set with:
   - Confusion matrix (raw + normalized)
@@ -63,7 +63,7 @@ def find_last_conv_layer(model):
 
 def main():
     print("=" * 65)
-    print("  SmartCam AI — Model Evaluation")
+    print("  QualiVision AI — Model Evaluation")
     print("=" * 65)
 
     # -- Load Model --
@@ -163,7 +163,7 @@ def main():
 
     report_path = REPORTS_DIR / "classification_report.txt"
     with open(report_path, "w") as f:
-        f.write(f"SmartCam AI — Classification Report\n")
+        f.write(f"QualiVision AI — Classification Report\n")
         f.write(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
         f.write(f"Model: {MODEL_VERSION}\n")
         f.write(f"Threshold: {optimal_threshold:.4f}\n")

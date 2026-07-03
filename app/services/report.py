@@ -86,7 +86,7 @@ class ReportService:
         elements = []
         styles = getSampleStyleSheet()
 
-        elements.append(Paragraph(f"SmartCam AI - {timeframe.capitalize()} Report", styles['Title']))
+        elements.append(Paragraph(f"QualiVision AI - {timeframe.capitalize()} Report", styles['Title']))
         elements.append(Spacer(1, 12))
         elements.append(Paragraph(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", styles['Normal']))
         elements.append(Spacer(1, 24))

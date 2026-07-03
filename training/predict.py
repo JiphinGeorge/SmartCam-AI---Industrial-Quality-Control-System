@@ -1,5 +1,5 @@
 """
-SmartCam AI — Prediction Script
+QualiVision AI — Prediction Script
 =================================
 Standalone inference for testing individual images, folders,
 or camera input against the trained model.
@@ -163,14 +163,14 @@ def predict_folder(model, folder_path, threshold):
 def predict_camera():
     """Placeholder for camera prediction mode."""
     print("\n  📷 Camera mode")
-    print("  This feature will be available in the SmartCam AI web application.")
+    print("  This feature will be available in the QualiVision AI web application.")
     print("  Use the Flask app's /inspection route for live camera capture.")
     print("  For now, use --image or --folder modes.")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="SmartCam AI — Tomato Quality Prediction",
+        description="QualiVision AI — Tomato Quality Prediction",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -192,7 +192,7 @@ Examples:
         sys.exit(0)
 
     print("=" * 55)
-    print("  SmartCam AI — Prediction")
+    print("  QualiVision AI — Prediction")
     print("=" * 55)
 
     model = load_model()

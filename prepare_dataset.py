@@ -1,5 +1,5 @@
 """
-SmartCam AI -- Dataset Preparation Script
+QualiVision AI -- Dataset Preparation Script
 =========================================
 Reorganizes the raw 7-class tomato dataset into a clean binary
 classification dataset (Fresh / Rotten) with stratified splits.
@@ -114,7 +114,7 @@ def convert_to_rgb(src: Path, dst: Path):
 
 def main():
     print("=" * 60)
-    print("  SmartCam AI -- Dataset Preparation")
+    print("  QualiVision AI -- Dataset Preparation")
     print("=" * 60)
 
     # ── Step 1: Backup original dataset ──
