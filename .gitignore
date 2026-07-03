@@ -22,6 +22,11 @@ dataset_original/
 *.mp4
 *.avi
 
+# But keep documentation and static assets!
+!docs/screenshots/*.png
+!app/static/images/*.png
+!app/static/images/*.jpg
+
 # Exclude specific test files explicitly just in case
 test_fresh.jpg
 test_random.jpg
