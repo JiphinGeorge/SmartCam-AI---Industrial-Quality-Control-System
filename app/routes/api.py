@@ -17,6 +17,7 @@ from app.services.gradcam import GradCamService
 
 api_bp = Blueprint('api', __name__)
 
+
 @api_bp.route('/health', methods=['GET'])
 def health():
     return jsonify({
@@ -175,7 +176,7 @@ def generate_video_stream():
 def video_feed():
     return Response(generate_video_stream(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@api_bp.route('/history', methods=['GET'])
+@api_bp.route('/api/history', methods=['GET'])
 def get_history():
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 10))
@@ -200,7 +201,7 @@ def get_history():
                 
     return jsonify(data)
 
-@api_bp.route('/analytics', methods=['GET'])
+@api_bp.route('/api/analytics', methods=['GET'])
 def get_analytics():
     from app.services.analytics import AnalyticsService
     data = AnalyticsService.get_timeseries_data()
