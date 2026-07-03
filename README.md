@@ -64,20 +64,34 @@ graph TD
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Production Deployment)
 
-### 1. Setup Environment
+We highly recommend deploying SmartCam AI using our provided Docker containerization setup. This ensures the application runs within a robust Gunicorn WSGI server behind an Nginx reverse proxy.
+
+### 1. Requirements
+Ensure you have installed:
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### 2. Deploy the Stack
+```bash
+docker-compose up --build -d
+```
+
+*This command will build the image, start a Redis instance (for background tasks), Nginx (on port 80/443), and the Flask application itself. Wait approximately 1-2 minutes for the initial build.*
+
+### 3. Access the Dashboard
+Navigate to `http://localhost` (or the IP address of your server).
+
+### Local Development Setup
+If you are developing or modifying the UI:
 ```bash
 python -m venv venv310
 venv310\Scripts\activate
 pip install -r requirements.txt
-```
-
-### 2. Run the Application Server
-```bash
 python app.py
 ```
-*The server will start on `http://127.0.0.1:5000`.*
+*The local development server will start on `http://127.0.0.1:5000`.*
 
 ---
 
