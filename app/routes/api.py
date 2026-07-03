@@ -300,7 +300,6 @@ def handle_settings():
         return jsonify({'status': 'success'})
 
 @api_bp.route('/api/reports/download', methods=['GET'])
-@login_required
 def download_report():
     from flask import Response
     from app.services.report import ReportService
