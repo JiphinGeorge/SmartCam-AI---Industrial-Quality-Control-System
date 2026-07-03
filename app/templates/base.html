@@ -193,34 +193,10 @@
           },
         }
     </script>
-<style>
+    <style>
         /* Custom glow effects for cyber-industrial aesthetic */
-        .glow-primary { box-shadow: 0 0 15px rgba(190, 199, 218, 0.2); }
-        .glow-secondary { box-shadow: 0 0 15px rgba(173, 198, 255, 0.2); }
-        
-        /* Glassmorphism utility */
-        .glass-panel {
-            background: rgba(17, 28, 45, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Scrollbar styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #081424; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2a3547; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #45474c; 
-        }
+        .glow-primary { box-shadow: 0 0 15px color-mix(in srgb, var(--color-primary) 20%, transparent); }
+        .glow-secondary { box-shadow: 0 0 15px color-mix(in srgb, var(--color-secondary) 20%, transparent); }
     </style>
 
     <style>
