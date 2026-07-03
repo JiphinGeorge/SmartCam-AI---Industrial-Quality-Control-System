@@ -15,25 +15,25 @@
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'live' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('live_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'live' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('live.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'live' else "" }}>videocam</span>
                 <span class="font-label-md text-label-md">Live Monitor</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'inspection' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('inspection_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'inspection' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('inspection.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'inspection' else "" }}>center_focus_strong</span>
                 <span class="font-label-md text-label-md">Inspection</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'history' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('history_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'history' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('history.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'history' else "" }}>history</span>
                 <span class="font-label-md text-label-md">History</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'analytics' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('analytics_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'analytics' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('analytics.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'analytics' else "" }}>insights</span>
                 <span class="font-label-md text-label-md">Analytics</span>
             </a>
@@ -41,25 +41,25 @@
 
         {% if current_user.role in ['Administrator', 'Manager'] %}
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'reports' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('reports_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'reports' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('reports.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'reports' else "" }}>description</span>
                 <span class="font-label-md text-label-md">Reports</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'dataset' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('dataset_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'dataset' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('dataset.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'dataset' else "" }}>dataset</span>
                 <span class="font-label-md text-label-md">Dataset</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'models' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('models_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'models' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('models.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'models' else "" }}>model_training</span>
                 <span class="font-label-md text-label-md">Models</span>
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'settings' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('settings_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'settings' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('settings.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'settings' else "" }}>settings</span>
                 <span class="font-label-md text-label-md">Settings</span>
             </a>
@@ -67,7 +67,7 @@
         {% endif %}
 
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'help' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('knowledge_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'help' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('knowledge.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'help' else "" }}>help</span>
                 <span class="font-label-md text-label-md">Help</span>
             </a>
