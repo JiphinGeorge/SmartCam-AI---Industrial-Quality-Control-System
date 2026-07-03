@@ -14,15 +14,15 @@
     ],
     "duplicate_routes": [],
     "unused_templates": [
-        "admin_backup.html",
         "404.html",
-        "500.html",
-        "index_backup.html",
-        "components/sidebar.html",
-        "components/topbar.html",
         "about_backup.html",
+        "admin_backup.html",
+        "index_backup.html",
+        "components/topbar.html",
+        "500.html",
         "animated_inspection.html",
-        "403.html"
+        "403.html",
+        "components/sidebar.html"
     ],
     "unused_css": [],
     "unused_js": [
