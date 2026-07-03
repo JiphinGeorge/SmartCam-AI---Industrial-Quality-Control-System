@@ -2,8 +2,11 @@
 <nav class="hidden md:flex bg-surface-container-lowest dark:bg-surface-container-lowest border-r border-white/10 shadow-xl fixed left-0 top-0 h-full w-[280px] flex-col py-sm px-xs z-50">
     <!-- Header -->
     <div class="px-md py-lg border-b border-white/5 mb-sm flex flex-col items-start">
-        <h1 class="font-display-lg text-display-lg font-bold text-primary tracking-tight">SmartCam AI</h1>
-        <p class="font-label-sm text-label-sm text-on-surface-variant mt-xs tracking-widest uppercase">Core Intelligence</p>
+        <div class="flex items-center gap-3 mb-2">
+            <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="QualiVision Logo" class="w-8 h-8 rounded-lg object-cover">
+            <h1 class="font-display-lg text-[24px] font-bold text-primary tracking-tight">QualiVision</h1>
+        </div>
+        <p class="font-label-sm text-label-sm text-on-surface-variant tracking-widest uppercase">Core Intelligence</p>
     </div>
 
     <!-- Navigation Links -->
