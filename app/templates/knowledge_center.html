@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% set active_page = 'help' %}
-{% block title %}Knowledge Center - SmartCam AI{% endblock %}
-{% block body_class %}flex bg-background min-h-screen text-on-surface{% endblock %}
+{% block title %}Knowledge Center - SmartCam AI{% block scripts %}
+<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
+{% endblock %}
+{% endblock %}
+{% block body_class %}flex bg-background min-h-screen text-on-surface{% block scripts %}
+<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
+{% endblock %}
+{% endblock %}
 
 {% block content %}
 <!-- Main Wrapper -->
@@ -17,7 +23,7 @@
 <p class="font-body-lg text-body-lg text-on-surface-variant mb-md">Search documentation, tutorials, and troubleshooting guides.</p>
 <div class="relative w-full">
 <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant">search</span>
-<input class="w-full input-industrial rounded-lg py-sm pl-[48px] pr-sm font-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Search for 'camera calibration'..." type="text"/>
+<input id="faq-search" class="w-full input-industrial rounded-lg py-sm pl-[48px] pr-sm font-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Search for 'camera calibration'..." type="text"/>
 </div>
 </div>
 <!-- System Health Indicator -->
@@ -57,6 +63,7 @@
 <!-- FAQ Accordion -->
 <div class="flex flex-col gap-sm">
 <h2 class="font-headline-lg text-[24px] text-on-surface mb-sm">Frequently Asked Questions</h2>
+<div class="faq-item">
 <!-- Accordion Item 1 -->
 <div class="industrial-card overflow-hidden">
 <button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
@@ -69,6 +76,7 @@
                                 </div>
 </div>
 </div>
+<div class="faq-item">
 <!-- Accordion Item 2 -->
 <div class="industrial-card overflow-hidden">
 <button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
@@ -81,6 +89,7 @@
                                 </div>
 </div>
 </div>
+<div class="faq-item">
 <!-- Accordion Item 3 -->
 <div class="industrial-card overflow-hidden">
 <button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
@@ -91,6 +100,7 @@
 <div class="accordion-inner p-md font-body-md text-on-surface-variant leading-relaxed">
                                     Yes, navigate to the <strong>Reports</strong> section. You can batch export up to 30 days of telemetry data in CSV, JSON, or Parquet formats. For larger datasets, please use the REST API endpoints detailed in our developer documentation.
                                 </div>
+</div>
 </div>
 </div>
 </div>
@@ -170,4 +180,7 @@
 </div>
 </footer>
 </div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
+{% endblock %}
 {% endblock %}
