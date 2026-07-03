@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% set active_page = 'dataset' %}
-{% block title %}Dataset Repository - SmartCam AI{% endblock %}
-{% block body_class %}bg-background text-on-background font-body-md min-h-screen flex overflow-hidden selection:bg-primary selection:text-on-primary{% endblock %}
+{% block title %}Dataset Repository - SmartCam AI{% block scripts %}
+<script src="{{ url_for('static', filename='js/dataset.js') }}"></script>
+{% endblock %}
+{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md min-h-screen flex overflow-hidden selection:bg-primary selection:text-on-primary{% block scripts %}
+<script src="{{ url_for('static', filename='js/dataset.js') }}"></script>
+{% endblock %}
+{% endblock %}
 
 {% block content %}
 <!-- Main Content Wrapper -->
@@ -40,7 +46,7 @@
 </div>
 <div class="mt-lg">
 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Fresh Images</p>
-<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">12,402</h3>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface" id="ds-fresh">--</h3>
 </div>
 </div>
 <div class="glass-panel rounded-xl p-md flex flex-col justify-between">
@@ -51,7 +57,7 @@
 </div>
 <div class="mt-lg">
 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Rotten Images</p>
-<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">8,319</h3>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface" id="ds-rotten">--</h3>
 </div>
 </div>
 <div class="glass-panel rounded-xl p-md flex flex-col justify-between">
@@ -62,7 +68,7 @@
 </div>
 <div class="mt-lg">
 <p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Total Size</p>
-<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">4.2 <span class="text-headline-md text-on-surface-variant">GB</span></h3>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface" id="ds-size">-- <span class="text-headline-md text-on-surface-variant">MB</span></h3>
 </div>
 </div>
 <!-- Donut Chart / Split Visual -->
@@ -75,13 +81,13 @@
 <!-- CSS Donut Representation -->
 <div class="w-24 h-24 rounded-full border-8 border-surface-container relative flex items-center justify-center" style="background: conic-gradient(from 0deg, #3B82F6 0% 80%, #8B5CF6 80% 100%); border-radius: 50%;">
 <div class="w-16 h-16 bg-surface-container-low rounded-full flex flex-col items-center justify-center">
-<span class="font-label-sm text-label-sm font-bold text-on-surface">80/20</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface" id="ds-split">--/--</span>
 </div>
 </div>
 </div>
 <div class="flex justify-between font-mono-data text-mono-data text-xs relative z-10 mt-auto">
-<span class="flex items-center gap-1 text-primary"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Train (80%)</span>
-<span class="flex items-center gap-1 text-tertiary"><div class="w-2 h-2 rounded-full bg-purple-500"></div> Val (20%)</span>
+<span class="flex items-center gap-1 text-primary"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Train (<span id="ds-train-pct">--</span>%)</span>
+<span class="flex items-center gap-1 text-tertiary"><div class="w-2 h-2 rounded-full bg-purple-500"></div> Val (<span id="ds-test-pct">--</span>%)</span>
 </div>
 </div>
 </section>
@@ -178,4 +184,7 @@
 </ul>
 </footer>
 </div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dataset.js') }}"></script>
+{% endblock %}
 {% endblock %}

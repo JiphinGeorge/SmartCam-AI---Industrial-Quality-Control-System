@@ -206,3 +206,45 @@ def get_analytics():
     data['stats'] = AnalyticsService.get_dashboard_stats()
     return jsonify(data)
 
+@api_bp.route('/dataset_stats', methods=['GET'])
+def get_dataset_stats():
+    import os
+    dataset_dir = "dataset"
+    try:
+        fresh_train = len(os.listdir(os.path.join(dataset_dir, 'train', 'fresh')))
+        rotten_train = len(os.listdir(os.path.join(dataset_dir, 'train', 'rotten')))
+        fresh_test = len(os.listdir(os.path.join(dataset_dir, 'test', 'fresh')))
+        rotten_test = len(os.listdir(os.path.join(dataset_dir, 'test', 'rotten')))
+        
+        total_fresh = fresh_train + fresh_test
+        total_rotten = rotten_train + rotten_test
+        total = total_fresh + total_rotten
+        
+        # Calculate size (rough estimate)
+        def get_size(start_path = '.'):
+            total_size = 0
+            for dirpath, dirnames, filenames in os.walk(start_path):
+                for f in filenames:
+                    fp = os.path.join(dirpath, f)
+                    if not os.path.islink(fp):
+                        total_size += os.path.getsize(fp)
+            return total_size
+            
+        size_bytes = get_size(dataset_dir)
+        size_mb = size_bytes / (1024 * 1024)
+        
+        train_pct = round((fresh_train + rotten_train) / total * 100) if total > 0 else 80
+        test_pct = 100 - train_pct
+        
+        return jsonify({
+            'total_fresh': total_fresh,
+            'total_rotten': total_rotten,
+            'total_images': total,
+            'size_mb': round(size_mb, 1),
+            'split_train': train_pct,
+            'split_test': test_pct
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
