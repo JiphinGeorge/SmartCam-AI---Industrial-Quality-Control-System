@@ -45,10 +45,10 @@ async def run():
         
         # 2. Authenticate
         await page.fill('input[name="username"]', 'admin')
-        await page.fill('input[name="password"]', 'password')
-        await page.click('button[type="submit"]')
-        await page.goto(f"{BASE_URL}/dashboard")
-        await wait_and_clear(page)
+        await page.fill('input[name="password"]', 'admin123')
+        
+        async with page.expect_navigation():
+            await page.click('button[type="submit"]')
         
         # 3. Dashboard
         await capture_state(page, "2_dashboard_populated.png", 1920, 1080)
