@@ -1,0 +1,35 @@
+{
+    "api_endpoints": [
+        "/api/system_status",
+        "/api/stats",
+        "/api/export",
+        "/api/report/pdf",
+        "/api/predict",
+        "/api/history",
+        "/api/analytics",
+        "/api/dataset_stats",
+        "/api/model_stats",
+        "/api/settings",
+        "/api/reports/download"
+    ],
+    "duplicate_routes": [],
+    "unused_templates": [
+        "admin_backup.html",
+        "404.html",
+        "500.html",
+        "index_backup.html",
+        "components/sidebar.html",
+        "components/topbar.html",
+        "about_backup.html",
+        "animated_inspection.html",
+        "403.html"
+    ],
+    "unused_css": [],
+    "unused_js": [
+        "js/dataset.js",
+        "js/knowledge.js",
+        "js/models.js",
+        "js/settings.js"
+    ],
+    "unused_images": []
+}
