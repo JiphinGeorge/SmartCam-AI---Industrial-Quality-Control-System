@@ -1,0 +1,113 @@
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const res = await fetch('/api/analytics');
+        const data = await res.json();
+        
+        renderWeeklyTrend(data.weekly);
+        renderQualityPie(data.quality);
+        renderHourlyVolume(data.hourly);
+    } catch (err) {
+        console.error("Failed to load analytics data", err);
+    }
+});
+
+// Common Chart.js theme defaults
+Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+function renderWeeklyTrend(weeklyData) {
+    const ctx = document.getElementById('weeklyTrendChart');
+    if (!ctx) return;
+    
+    // Sort chronologically
+    weeklyData.sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: weeklyData.map(d => d.date),
+            datasets: [{
+                label: 'Inspections',
+                data: weeklyData.map(d => d.count),
+                borderColor: '#3B82F6',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+}
+
+function renderQualityPie(qualityData) {
+    const ctx = document.getElementById('qualityPieChart');
+    if (!ctx) return;
+    
+    const pass = qualityData['PASS'] || qualityData['Fresh'] || 0;
+    const fail = qualityData['FAIL'] || qualityData['Rotten'] || 0;
+    const review = qualityData['REVIEW'] || qualityData['Unknown'] || 0;
+    
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Pass', 'Fail', 'Review'],
+            datasets: [{
+                data: [pass, fail, review],
+                backgroundColor: ['#10B981', '#EF4444', '#F59E0B'],
+                borderWidth: 0,
+                cutout: '75%'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { position: 'bottom', labels: { color: 'rgba(255,255,255,0.7)' } }
+            }
+        }
+    });
+}
+
+function renderHourlyVolume(hourlyData) {
+    const ctx = document.getElementById('hourlyVolumeChart');
+    if (!ctx) return;
+    
+    // Labels 00 to 23
+    const labels = Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0'));
+    const data = labels.map(hr => hourlyData[hr] || 0);
+    
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Volume',
+                data: data,
+                backgroundColor: '#6366f1',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+}
