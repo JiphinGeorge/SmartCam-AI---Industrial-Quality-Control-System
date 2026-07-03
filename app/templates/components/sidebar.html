@@ -9,7 +9,7 @@
     <!-- Navigation Links -->
     <ul class="flex-1 space-y-1 mt-sm overflow-y-auto">
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'dashboard' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('dashboard_bp.index') }}">
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'dashboard' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('dashboard.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'dashboard' else "" }}>dashboard</span>
                 <span class="font-label-md text-label-md">Dashboard</span>
             </a>

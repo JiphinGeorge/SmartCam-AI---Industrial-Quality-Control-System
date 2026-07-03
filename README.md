@@ -20,6 +20,45 @@ SmartCam AI is an enterprise-grade industrial quality control dashboard that cap
 
 ---
 
+## 📸 Application Gallery
+
+### 1. Dashboard & Monitoring
+| Executive Dashboard | Live Monitoring Hub |
+|:---:|:---:|
+| ![Dashboard](docs/screenshots/02-dashboard.png) | ![Live Monitoring](docs/screenshots/03-live-monitoring.png) |
+
+### 2. Deep Learning Inspection
+| Batch Inspection Module | Dataset Repository |
+|:---:|:---:|
+| ![Inspection](docs/screenshots/04-inspection.png) | ![Dataset](docs/screenshots/10-dataset.png) |
+
+### 3. Analytics & Reporting
+| Performance Analytics | Intelligent Reports |
+|:---:|:---:|
+| ![Analytics](docs/screenshots/07-analytics.png) | ![Reports](docs/screenshots/09-reports.png) |
+
+### 4. Management & History
+| Inspection History | Model Management |
+|:---:|:---:|
+| ![History](docs/screenshots/08-history.png) | ![Model Manager](docs/screenshots/11-model-manager.png) |
+
+### 5. Enterprise Features
+| System Settings | Knowledge Center |
+|:---:|:---:|
+| ![Settings](docs/screenshots/12-settings.png) | ![Knowledge](docs/screenshots/13-knowledge-center.png) |
+
+### 6. Administration
+| Notifications Center | System Logs |
+|:---:|:---:|
+| ![Notifications](docs/screenshots/18-notifications.png) | ![Logs](docs/screenshots/19-logs.png) |
+
+### 7. Responsive Design
+| Dark Mode | Light Mode | Mobile View |
+|:---:|:---:|:---:|
+| ![Dark](docs/screenshots/14-dark-mode.png) | ![Light](docs/screenshots/15-light-mode.png) | ![Mobile](docs/screenshots/16-mobile-view.png) |
+
+---
+
 ## 🏗️ System Architecture
 
 ### Component Architecture

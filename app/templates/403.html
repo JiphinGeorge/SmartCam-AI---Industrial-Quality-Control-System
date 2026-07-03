@@ -12,7 +12,7 @@
     <h2 class="font-headline-md text-[24px] text-on-surface-variant mb-md">Access Forbidden</h2>
     <p class="font-body-md text-outline-variant max-w-md mx-auto mb-lg">Your current role ({{ current_user.role if current_user.is_authenticated else 'Guest' }}) does not have permission to view this system panel.</p>
     
-    <a href="{{ url_for('dashboard_bp.index') }}" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md px-lg py-sm rounded-lg hover:bg-blue-600 transition-colors glow-primary">
+    <a href="{{ url_for('dashboard.index') }}" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md px-lg py-sm rounded-lg hover:bg-blue-600 transition-colors glow-primary">
         <span class="material-symbols-outlined">arrow_back</span> Return to Dashboard
     </a>
 </div>

@@ -1,0 +1,41 @@
+{
+    "console_errors": [
+        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
+        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
+        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
+        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)"
+    ],
+    "http_errors": [
+        {
+            "url": "http://localhost:5000/login",
+            "status": 500
+        },
+        {
+            "url": "http://localhost:5000/dashboard",
+            "status": 500
+        },
+        {
+            "url": "http://localhost:5000/notifications",
+            "status": 500
+        },
+        {
+            "url": "http://localhost:5000/logs",
+            "status": 500
+        }
+    ],
+    "pages_visited": [
+        "/login",
+        "/dashboard",
+        "/live",
+        "/inspection",
+        "/analytics",
+        "/history",
+        "/reports",
+        "/dataset",
+        "/models",
+        "/settings",
+        "/knowledge",
+        "/notifications",
+        "/logs"
+    ]
+}
