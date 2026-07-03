@@ -6,10 +6,10 @@
         <h2 class="font-headline-md text-headline-md font-black text-on-surface">QualiVision</h2>
     </div>
 <!-- Search Bar -->
-<div class="hidden md:flex items-center bg-surface-container-highest/50 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-primary focus-within:glow-primary transition-all w-64 max-w-sm">
+<form action="/history" method="GET" class="hidden md:flex items-center bg-surface-container-highest/50 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-primary focus-within:glow-primary transition-all w-64 max-w-sm">
 <span class="material-symbols-outlined text-outline-variant mr-2 text-sm">search</span>
-<input class="bg-transparent border-none text-label-sm font-label-sm text-on-surface focus:outline-none focus:ring-0 w-full placeholder:text-on-surface-variant" placeholder="Search telemetry..." type="text"/>
-</div>
+<input name="q" class="bg-transparent border-none text-label-sm font-label-sm text-on-surface focus:outline-none focus:ring-0 w-full placeholder:text-on-surface-variant" placeholder="Search telemetry..." type="text" value="{{ request.args.get('q', '') }}"/>
+</form>
 </div>
 <!-- Trailing Actions -->
 <div class="flex items-center gap-md">
