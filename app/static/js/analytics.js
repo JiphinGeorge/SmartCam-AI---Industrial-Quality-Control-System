@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderWeeklyTrend(data.weekly);
         renderQualityPie(data.quality);
         renderHourlyVolume(data.hourly);
+        
+        if (data.stats) {
+            updateKPIs(data.stats, data.quality);
+        }
     } catch (err) {
         console.error("Failed to load analytics data", err);
     }
@@ -14,6 +18,22 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Common Chart.js theme defaults
 Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
 Chart.defaults.font.family = "'Inter', sans-serif";
+
+function updateKPIs(stats, quality) {
+    const elTotal = document.getElementById('kpi-total');
+    const elConf = document.getElementById('kpi-confidence');
+    const elRej = document.getElementById('kpi-rejection');
+    
+    if (elTotal) elTotal.textContent = stats.total_today.toLocaleString();
+    if (elConf) elConf.textContent = stats.avg_confidence.toFixed(1) + '%';
+    
+    if (elRej) {
+        const total = stats.total_today;
+        const rejectCount = stats.rotten_count || 0;
+        const rejRate = total > 0 ? ((rejectCount / total) * 100).toFixed(1) : '0.0';
+        elRej.textContent = rejRate + '%';
+    }
+}
 
 function renderWeeklyTrend(weeklyData) {
     const ctx = document.getElementById('weeklyTrendChart');
