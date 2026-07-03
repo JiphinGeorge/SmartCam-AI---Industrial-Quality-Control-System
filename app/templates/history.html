@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% set active_page = 'history' %}
-{% block title %}Inspection History Log - SmartCam AI{% endblock %}
-{% block body_class %}font-body-md text-body-md bg-background antialiased h-screen overflow-hidden flex{% endblock %}
+{% block title %}Inspection History Log - SmartCam AI{% block scripts %}
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+{% endblock %}
+{% block body_class %}font-body-md text-body-md bg-background antialiased h-screen overflow-hidden flex{% block scripts %}
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
+{% endblock %}
 
 {% block content %}
 <!-- Main Content Canvas -->
@@ -57,190 +61,7 @@
 </div>
 <!-- Table Body -->
 <div class="flex-1 overflow-y-auto">
-<!-- Row 1 (Fresh) -->
-<div class="grid grid-cols-12 gap-4 px-md py-sm border-b border-white/5 items-center table-row-hover transition-all duration-200 bg-white/[0.02]">
-<div class="col-span-2 font-mono-data text-mono-data text-on-surface">
-                                2024-05-20<br/>
-<span class="text-on-surface-variant text-[12px]">14:23:45.102Z</span>
-</div>
-<div class="col-span-1">
-<div class="w-12 h-12 rounded bg-surface-dim border border-white/10 overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="A macro photograph of a perfectly fresh, vibrant red apple on a steel industrial conveyor belt. High key lighting, sharp focus on the fruit's texture against the blurred metallic background. Cyber-industrial setting, deep shadow contrast, cool clinical lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAS4Dem2R2HPeGj4yMvX2Txj_8IBo8QqoHk0avPUWmEy4ZTuWaCdknSHEc8LtfXj9sxF3uOEtXGqKpfHMRGlu3OpioxmrhAnf9PqHfaKh3cO9sNX5jtcgOXBYAu_ZXcHvpIBIv3EKPdPlREWw_u5C2UqGKzl5lEglqcyG1BzFmV0ghZa5nZHrLyp5vUDekkMZP7zSrcfwc1FnjYEPX1iQHvJdV0VWzG_4AdxQHLsdBrk23vZXJ_rMcdA"/>
-<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
-<span class="material-symbols-outlined text-white text-[20px]">zoom_in</span>
-</div>
-</div>
-</div>
-<div class="col-span-2 flex items-center">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-                                    Fresh
-                                </div>
-</div>
-<div class="col-span-2 flex items-center gap-2">
-<span class="font-mono-data text-mono-data text-on-surface font-semibold w-10">99.8%</span>
-<div class="flex-1 h-1.5 bg-surface-dim rounded-full overflow-hidden">
-<div class="h-full bg-emerald-500 w-[99.8%] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-</div>
-</div>
-<div class="col-span-2 flex flex-col justify-center">
-<span class="font-mono-data text-[12px] text-on-surface-variant">INF: 12ms</span>
-<span class="font-mono-data text-[12px] text-on-surface-variant">OP: OP-442-A</span>
-</div>
-<div class="col-span-1 flex items-center">
-<span class="material-symbols-outlined text-outline-variant text-[20px]" title="Stored">cloud_done</span>
-</div>
-<div class="col-span-2 flex items-center justify-end gap-2 opacity-50 hover:opacity-100 transition-opacity">
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download CSV">
-<span class="material-symbols-outlined text-[18px]">data_table</span>
-</button>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download PDF">
-<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-</button>
-<div class="w-[1px] h-4 bg-white/10 mx-1"></div>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</div>
-<!-- Row 2 (Rotten) -->
-<div class="grid grid-cols-12 gap-4 px-md py-sm border-b border-white/5 items-center table-row-hover transition-all duration-200">
-<div class="col-span-2 font-mono-data text-mono-data text-on-surface">
-                                2024-05-20<br/>
-<span class="text-on-surface-variant text-[12px]">14:23:42.881Z</span>
-</div>
-<div class="col-span-1">
-<div class="w-12 h-12 rounded bg-surface-dim border border-error/30 overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="A macro photograph of a bruised, slightly decaying apple with dark spots on a steel industrial conveyor belt. High key lighting highlighting the defects, sharp focus on the imperfections. Cyber-industrial setting, deep shadow contrast, cool clinical lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXqaHX8TKjsuTA4xdzAsGepKgkFg23GMLVy-R56KGtvlIhv5lTKR6Kia49dgIvZv4voJd8Ejgv9D5KOKMqNsj6d5zpzKd9CYhnm3KzdgCUwgU9oTo-6slC1-GBc8VVXz0cmIsKX3-Wfqdi3UImy4lTufsNoSn7VU_aQnseD49Xc35KtSn-ZEfjlw_H48aAi6kuWnHE-2h1eggg5qojyZ2bP6j67DbUirLMG-AO79k5SAPO2b1mFu3_nQ"/>
-<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
-<span class="material-symbols-outlined text-white text-[20px]">zoom_in</span>
-</div>
-</div>
-</div>
-<div class="col-span-2 flex items-center">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/20 border border-error/30 text-error font-label-sm text-label-sm shadow-[0_0_10px_rgba(255,180,171,0.1)]">
-<span class="material-symbols-outlined text-[14px]">warning</span>
-                                    Rotten
-                                </div>
-</div>
-<div class="col-span-2 flex items-center gap-2">
-<span class="font-mono-data text-mono-data text-on-surface font-semibold w-10">94.2%</span>
-<div class="flex-1 h-1.5 bg-surface-dim rounded-full overflow-hidden">
-<div class="h-full bg-error w-[94.2%] shadow-[0_0_8px_rgba(255,180,171,0.5)]"></div>
-</div>
-</div>
-<div class="col-span-2 flex flex-col justify-center">
-<span class="font-mono-data text-[12px] text-on-surface-variant">INF: 14ms</span>
-<span class="font-mono-data text-[12px] text-on-surface-variant">OP: OP-442-A</span>
-</div>
-<div class="col-span-1 flex items-center">
-<span class="material-symbols-outlined text-secondary-container text-[20px]" title="Exported to MES">sync_saved_locally</span>
-</div>
-<div class="col-span-2 flex items-center justify-end gap-2 opacity-50 hover:opacity-100 transition-opacity">
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download CSV">
-<span class="material-symbols-outlined text-[18px]">data_table</span>
-</button>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download PDF">
-<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-</button>
-<div class="w-[1px] h-4 bg-white/10 mx-1"></div>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</div>
-<!-- Row 3 (Fresh) -->
-<div class="grid grid-cols-12 gap-4 px-md py-sm border-b border-white/5 items-center table-row-hover transition-all duration-200 bg-white/[0.02]">
-<div class="col-span-2 font-mono-data text-mono-data text-on-surface">
-                                2024-05-20<br/>
-<span class="text-on-surface-variant text-[12px]">14:23:40.055Z</span>
-</div>
-<div class="col-span-1">
-<div class="w-12 h-12 rounded bg-surface-dim border border-white/10 overflow-hidden relative group">
-<div class="w-full h-full bg-surface-container flex items-center justify-center">
-<span class="material-symbols-outlined text-outline-variant text-[24px]">image_not_supported</span>
-</div>
-</div>
-</div>
-<div class="col-span-2 flex items-center">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-                                    Fresh
-                                </div>
-</div>
-<div class="col-span-2 flex items-center gap-2">
-<span class="font-mono-data text-mono-data text-on-surface font-semibold w-10">98.1%</span>
-<div class="flex-1 h-1.5 bg-surface-dim rounded-full overflow-hidden">
-<div class="h-full bg-emerald-500 w-[98.1%] shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
-</div>
-</div>
-<div class="col-span-2 flex flex-col justify-center">
-<span class="font-mono-data text-[12px] text-on-surface-variant">INF: 11ms</span>
-<span class="font-mono-data text-[12px] text-on-surface-variant">OP: OP-442-B</span>
-</div>
-<div class="col-span-1 flex items-center">
-<span class="material-symbols-outlined text-outline-variant text-[20px]" title="Stored">cloud_done</span>
-</div>
-<div class="col-span-2 flex items-center justify-end gap-2 opacity-50 hover:opacity-100 transition-opacity">
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download CSV">
-<span class="material-symbols-outlined text-[18px]">data_table</span>
-</button>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download PDF">
-<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-</button>
-<div class="w-[1px] h-4 bg-white/10 mx-1"></div>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</div>
-<!-- Row 4 (Uncertain) -->
-<div class="grid grid-cols-12 gap-4 px-md py-sm border-b border-white/5 items-center table-row-hover transition-all duration-200">
-<div class="col-span-2 font-mono-data text-mono-data text-on-surface">
-                                2024-05-20<br/>
-<span class="text-on-surface-variant text-[12px]">14:23:37.420Z</span>
-</div>
-<div class="col-span-1">
-<div class="w-12 h-12 rounded bg-surface-dim border border-tertiary/30 overflow-hidden relative group">
-<img class="w-full h-full object-cover" data-alt="A macro photograph of an apple partially obscured by a stray leaf on a steel industrial conveyor belt, causing an occlusion. High key lighting, sharp focus on the leaf and partial fruit. Cyber-industrial setting, deep shadow contrast, cool clinical lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWu45FzVCWRb1dX-Jr0KaV4iEzuMfPNIHw8OxbJVDy2CX8CX2fNIIJtdybChA9Iob6mrVPmyAmiV9mSCiBMTwGLq6YHiPnQBsE42MYucZrsxF06TZTpof2N1vf5Sq2seADqluvLecLcmXu2V08mvtjDw1ywROb5jkMkUvnf9cZs0xXiiuY6K4K_Ld0H-WUIb-Lbgwc1hqsDx8Hsfgm95nBlT2JHD_2Qq4dI-omrWPgsqrbgXCMzbsGSA"/>
-<div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
-<span class="material-symbols-outlined text-white text-[20px]">zoom_in</span>
-</div>
-</div>
-</div>
-<div class="col-span-2 flex items-center">
-<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-tertiary/10 border border-tertiary/20 text-tertiary font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[14px]">help</span>
-                                    Review Req.
-                                </div>
-</div>
-<div class="col-span-2 flex items-center gap-2">
-<span class="font-mono-data text-mono-data text-on-surface font-semibold w-10 text-tertiary">45.0%</span>
-<div class="flex-1 h-1.5 bg-surface-dim rounded-full overflow-hidden">
-<div class="h-full bg-tertiary w-[45.0%] shadow-[0_0_8px_rgba(208,188,255,0.5)]"></div>
-</div>
-</div>
-<div class="col-span-2 flex flex-col justify-center">
-<span class="font-mono-data text-[12px] text-on-surface-variant">INF: 18ms</span>
-<span class="font-mono-data text-[12px] text-on-surface-variant">OP: OP-442-B</span>
-</div>
-<div class="col-span-1 flex items-center">
-<span class="material-symbols-outlined text-tertiary animate-pulse text-[20px]" title="Pending Operator Action">assignment_late</span>
-</div>
-<div class="col-span-2 flex items-center justify-end gap-2 opacity-50 hover:opacity-100 transition-opacity">
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download CSV">
-<span class="material-symbols-outlined text-[18px]">data_table</span>
-</button>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-primary hover:bg-white/5 transition-colors" title="Download PDF">
-<span class="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-</button>
-<div class="w-[1px] h-4 bg-white/10 mx-1"></div>
-<button class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</div>
-</div>
+<div id="history-container" class="flex-1 overflow-y-auto"></div>
 <!-- Pagination Footer -->
 <div class="border-t border-white/10 bg-surface-container/30 px-md py-sm flex items-center justify-between shrink-0">
 <div class="font-label-sm text-label-sm text-on-surface-variant">
@@ -273,4 +94,6 @@
 </div>
 </footer>
 </div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/history.js') }}"></script>
 {% endblock %}

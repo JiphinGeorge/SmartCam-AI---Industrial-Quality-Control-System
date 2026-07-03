@@ -173,3 +173,15 @@ def generate_video_stream():
 @api_bp.route('/video_feed')
 def video_feed():
     return Response(generate_video_stream(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@api_bp.route('/history', methods=['GET'])
+def get_history():
+    page = int(request.args.get('page', 1))
+    limit = int(request.args.get('limit', 10))
+    status = request.args.get('status')
+    if status == 'All':
+        status = None
+    sort_by = request.args.get('sort_by', 'timestamp DESC')
+    
+    data = DatabaseService.get_history(page, limit, status, sort_by)
+    return jsonify(data)
