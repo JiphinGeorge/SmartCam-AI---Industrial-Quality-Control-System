@@ -159,6 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Tensor
+        if (data.tensor_data) {
+            const tensorBlock = document.getElementById('tensor-data');
+            if (tensorBlock) {
+                tensorBlock.textContent = JSON.stringify(data.tensor_data, null, 2);
+            }
+        }
+
         // Alert
         const alertBox = document.getElementById('alert-box');
         if (data.status === 'FAIL') {

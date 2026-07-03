@@ -79,7 +79,18 @@ class PredictorService:
             "status": status,
             "explanation": explanation,
             "time_preprocess": time_preprocess,
-            "time_inference": time_inference
+            "time_inference": time_inference,
+            "probabilities": {
+                "Fresh": fresh_prob,
+                "Rotten": rotten_prob
+            },
+            "tensor_data": {
+                "model_version": "v2.1",
+                "tensor_shape": [1, 224, 224, 3],
+                "latency_ms": time_inference,
+                "raw_logits": [round(fresh_prob, 3), round(rotten_prob, 3)],
+                "activations": "softmax" if len(prediction_scores[0]) > 1 else "sigmoid"
+            }
         }
         
         logger.info(f"Prediction: {prediction} ({confidence:.1f}%) [Prep: {time_preprocess}ms, Inf: {time_inference}ms]")
