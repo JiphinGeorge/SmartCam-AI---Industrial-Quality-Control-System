@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% set active_page = 'studio' %}
+{% block title %}Animated Inspection Studio - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md min-h-screen selection:bg-primary selection:text-on-primary{% endblock %}
+
+{% block content %}
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Main Content -->
+<main class="p-sm md:p-xl md:ml-[280px] w-full md:w-[calc(100%-280px)] max-w-7xl mx-auto space-y-gutter">
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-sm border-b border-white/10 pb-sm animate-entrance stagger-2">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Inspection Studio</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Real-time defect detection and quality assurance.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center justify-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors duration-300 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">videocam</span> Camera Feed
+                </button>
+<button class="flex items-center justify-center gap-xs px-md py-sm bg-secondary-container border border-secondary-container rounded-lg text-on-secondary-container hover:opacity-90 transition-opacity duration-300 shadow-[0_0_15px_rgba(5,102,217,0.3)] font-label-md text-label-md font-bold animate-breathe">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span> Capture Frame
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Input Area (Left/Top) -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Drag & Drop Upload / Active Preview -->
+<div class="bg-surface-container-low rounded-[20px] border border-white/10 overflow-hidden flex flex-col relative h-[500px] interactive-card animate-entrance stagger-3">
+<div class="px-md py-sm border-b border-white/5 flex justify-between items-center bg-surface/50 backdrop-blur-md absolute top-0 w-full z-10">
+<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[18px] text-primary">upload_file</span> Input Source</span>
+<div class="flex items-center gap-xs">
+<span class="bg-surface-container px-xs py-base rounded text-on-surface-variant font-mono-data text-mono-data text-[10px]">1920x1080</span>
+<span class="bg-surface-container px-xs py-base rounded text-on-surface-variant font-mono-data text-mono-data text-[10px]">2.4MB</span>
+</div>
+</div>
+<!-- The Canvas -->
+<div class="relative w-full h-full bg-surface-dim flex items-center justify-center overflow-hidden">
+<!-- Image Preview -->
+<div class="w-full h-full bg-cover bg-center absolute inset-0 opacity-80 mix-blend-luminosity" data-alt="A high-resolution, top-down industrial macro shot of a slightly bruised, deep red tomato resting on a dark metallic conveyor belt. The lighting is harsh and directional, typical of a machine vision inspection station, casting sharp shadows. A faint, precise grid pattern is projected onto the surface of the tomato. The scene is hyper-detailed, technical, and slightly moody, fitting a dark-mode AI telemetry interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmGJK6Nsad0FxMuC_1s8yw_RTudZI5Wxj97mJev4k_eUkhPd4zljOUnAJ46Zo39icDiST65NjPqO7jO6F0DA_6HbTkYRckDYCjnn0bfx_U5iBMrO8a8pi6TJ55p0y67wiwvIJ725o6rX5iY-o42IQ4I-tCn9YsyPefRBZf5hAPC3skBbNxkmm9v-3MBqznuPdmPH4nfifOh0Fy6yNI1RHt8g3C_MumHB8_05C53EFTLxRwrGj95MZQ3A')"></div>
+<!-- Scanning Overlay -->
+<div class="absolute inset-0 bg-primary/5 mix-blend-overlay"></div>
+<div class="absolute w-full h-[2px] bg-secondary shadow-[0_0_10px_rgba(173,198,255,0.8)] scan-line top-0 z-20"></div>
+<!-- Bounding Box (Simulated AI Detection) -->
+<div class="absolute top-[30%] left-[40%] w-[120px] h-[120px] border-2 border-error border-dashed rounded-sm bg-error/10 z-20 flex flex-col">
+<div class="bg-error text-on-error font-mono-data text-[10px] px-1 py-0.5 inline-block self-start -mt-5">DEFECT_01: 94%</div>
+</div>
+</div>
+<div class="px-md py-sm border-t border-white/5 bg-surface-container-low flex justify-between items-center z-10 absolute bottom-0 w-full">
+<span class="font-mono-data text-mono-data text-on-surface-variant text-[12px]">Source: Local Upload</span>
+<span class="font-mono-data text-mono-data text-on-surface-variant text-[12px]">Processing Time: 124ms</span>
+</div>
+</div>
+<!-- Industrial Alerts (Conditional/Rotten) -->
+<div class="bg-error-container/20 border border-error/50 rounded-[20px] p-md flex items-start gap-md alert-active relative overflow-hidden interactive-card animate-entrance stagger-4">
+<div class="absolute inset-0 bg-gradient-to-r from-error/5 to-transparent pointer-events-none"></div>
+<div class="w-12 h-12 rounded-full bg-error/20 flex items-center justify-center shrink-0 border border-error/30">
+<span class="material-symbols-outlined text-error text-[24px]">warning</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-bold text-error">Defect Detected: Grade C (Rotten)</h3>
+<p class="font-body-md text-body-md text-on-surface mt-xs opacity-90">Immediate routing required. Item fails structural integrity checks.</p>
+<div class="mt-sm flex gap-sm">
+<button class="px-sm py-xs bg-error text-on-error rounded font-label-sm text-label-sm font-bold hover:bg-error/80 transition-colors duration-300">Acknowledge</button>
+<button class="px-sm py-xs bg-transparent border border-error/50 text-error rounded font-label-sm text-label-sm hover:bg-error/10 transition-colors duration-300">View Routing</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Analysis Sidebar (Right) -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Prediction Card (Gauge) -->
+<div class="bg-surface-container-low rounded-[20px] border border-white/10 p-md flex flex-col items-center justify-center text-center relative overflow-hidden shadow-lg interactive-card animate-entrance stagger-3">
+<div class="absolute inset-0 bg-gradient-to-b from-error/5 to-transparent pointer-events-none"></div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md self-start w-full text-left border-b border-white/5 pb-xs">Primary Classification</h3>
+<div class="relative w-full py-md">
+<svg class="circular-chart" viewbox="0 0 36 36">
+<path class="circle-bg" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+<path class="circle" d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831" stroke="#ffb4ab" stroke-dasharray="94, 100"></path>
+<text class="percentage font-mono-data text-error" x="18" y="20.35">94%</text>
+</svg>
+<div class="absolute bottom-2 w-full text-center">
+<span class="font-headline-md text-headline-md font-bold text-error shadow-sm">ROTTEN TOMATO</span>
+</div>
+</div>
+</div>
+<!-- Analysis Bars & Insights -->
+<div class="bg-surface-container-low rounded-[20px] border border-white/10 flex flex-col flex-1 interactive-card animate-entrance stagger-4">
+<div class="px-md py-sm border-b border-white/5">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">psychology</span> Inference Details</h3>
+</div>
+<div class="p-md flex flex-col gap-md">
+<!-- Insight -->
+<div class="bg-tertiary-container/30 border border-tertiary/20 rounded-lg p-sm flex items-start gap-sm">
+<div class="w-2 h-2 rounded-full bg-tertiary mt-1.5 insight-dot shrink-0"></div>
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px]">Surface texture irregularities and severe discoloration indicate structural breakdown. High probability of internal decay.</p>
+</div>
+<!-- Class probabilities -->
+<div class="space-y-sm mt-sm">
+<h4 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Confidence Matrix</h4>
+<!-- Bar 1 -->
+<div>
+<div class="flex justify-between font-mono-data text-[12px] mb-1">
+<span class="text-error">Rotten Tomato</span>
+<span class="text-error">0.942</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-error h-1.5 rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)]" style="width: 94.2%"></div>
+</div>
+</div>
+<!-- Bar 2 -->
+<div>
+<div class="flex justify-between font-mono-data text-[12px] mb-1">
+<span class="text-on-surface-variant">Bruised Tomato</span>
+<span class="text-on-surface-variant">0.045</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-outline h-1.5 rounded-full" style="width: 4.5%"></div>
+</div>
+</div>
+<!-- Bar 3 -->
+<div>
+<div class="flex justify-between font-mono-data text-[12px] mb-1">
+<span class="text-on-surface-variant">Fresh Tomato</span>
+<span class="text-on-surface-variant">0.013</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+<div class="bg-outline h-1.5 rounded-full" style="width: 1.3%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dev Info Metadata -->
+<div class="bg-surface-container-low rounded-[20px] border border-white/10 flex flex-col interactive-card animate-entrance stagger-5">
+<div class="px-md py-sm border-b border-white/5 flex justify-between items-center">
+<h3 class="font-label-sm text-label-sm text-outline-variant font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">terminal</span> Tensor Data</h3>
+<button class="text-[10px] text-primary hover:underline font-mono-data transition-colors duration-300">COPY</button>
+</div>
+<div class="p-sm bg-background/50 rounded-b-[20px] overflow-x-auto">
+<pre class="font-mono-data text-mono-data text-[10px] text-on-surface-variant opacity-80 leading-relaxed">{
+  "model_version": "v2.15.4-efficientdet",
+  "tensor_shape": [1, 224, 224, 3],
+  "latency_ms": 42.8,
+  "raw_logits": [
+    -4.213,
+     8.452,
+    -1.102
+  ],
+  "activations": "softmax"
+}
+                        </pre>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex justify-between items-center w-full px-lg py-sm mt-xl bg-surface-container-low border-t border-white/5 md:ml-[280px] md:w-[calc(100%-280px)] z-30 relative animate-entrance stagger-5">
+<p class="font-label-sm text-label-sm font-bold text-outline-variant">2024 SmartCam AI. TF v2.15 | Engine: Active</p>
+<div class="flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-300 text-[14px]" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-300 text-[14px]" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors duration-300 text-[14px]" href="#">Terms</a>
+</div>
+</footer>
+{% endblock %}

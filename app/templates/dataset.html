@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% set active_page = 'dataset' %}
+{% block title %}Dataset Repository - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md min-h-screen flex overflow-hidden selection:bg-primary selection:text-on-primary{% endblock %}
+
+{% block content %}
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-0 md:ml-[280px] flex flex-col h-screen w-full md:w-[calc(100%-280px)] overflow-hidden">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-md md:p-lg lg:p-xl space-y-xl bg-gradient-to-br from-background to-surface-dim">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-on-surface">Dataset Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage and curate image datasets for model training.</p>
+</div>
+<div class="flex flex-wrap items-center gap-sm">
+<button class="flex items-center gap-xs px-4 py-2 rounded-lg border border-outline-variant text-on-surface hover:bg-surface-variant transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">mop</span> Clean Dataset
+                    </button>
+<button class="flex items-center gap-xs px-4 py-2 rounded-lg bg-surface-container-highest border border-outline-variant text-error hover:bg-error/10 transition-colors font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">delete</span> Delete Selection
+                    </button>
+<button class="flex items-center gap-xs px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container hover:bg-secondary-container/90 transition-colors font-label-md text-label-md font-semibold shadow-lg shadow-secondary-container/20">
+<span class="material-symbols-outlined text-[18px]">download</span> Export for Labeling
+                    </button>
+</div>
+</div>
+<!-- Overview Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-md">
+<!-- Stat Cards -->
+<div class="glass-panel rounded-xl p-md flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-surface-variant/50 text-secondary">
+<span class="material-symbols-outlined">image</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary/10 px-2 py-1 rounded-full">+124 today</span>
+</div>
+<div class="mt-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Fresh Images</p>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">12,402</h3>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-surface-variant/50 text-error">
+<span class="material-symbols-outlined">broken_image</span>
+</div>
+</div>
+<div class="mt-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Rotten Images</p>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">8,319</h3>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div class="p-2 rounded-lg bg-surface-variant/50 text-primary">
+<span class="material-symbols-outlined">hard_drive_2</span>
+</div>
+</div>
+<div class="mt-lg">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider">Total Size</p>
+<h3 class="font-display-lg text-headline-lg md:text-display-lg text-on-surface">4.2 <span class="text-headline-md text-on-surface-variant">GB</span></h3>
+</div>
+</div>
+<!-- Donut Chart / Split Visual -->
+<div class="glass-panel rounded-xl p-md lg:col-span-1 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/20 to-transparent opacity-50"></div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase tracking-wider relative z-10">Training Split</p>
+</div>
+<div class="flex-1 flex items-center justify-center relative z-10 py-sm">
+<!-- CSS Donut Representation -->
+<div class="w-24 h-24 rounded-full border-8 border-surface-container relative flex items-center justify-center" style="background: conic-gradient(from 0deg, #3B82F6 0% 80%, #8B5CF6 80% 100%); border-radius: 50%;">
+<div class="w-16 h-16 bg-surface-container-low rounded-full flex flex-col items-center justify-center">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">80/20</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between font-mono-data text-mono-data text-xs relative z-10 mt-auto">
+<span class="flex items-center gap-1 text-primary"><div class="w-2 h-2 rounded-full bg-blue-500"></div> Train (80%)</span>
+<span class="flex items-center gap-1 text-tertiary"><div class="w-2 h-2 rounded-full bg-purple-500"></div> Val (20%)</span>
+</div>
+</div>
+</section>
+<!-- Bottom Section: Upload & Preview Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md h-auto lg:h-[500px]">
+<!-- Upload Area -->
+<div class="glass-panel rounded-xl lg:col-span-1 border-2 border-dashed border-outline-variant hover:border-primary/50 transition-colors flex flex-col items-center justify-center p-xl text-center group cursor-pointer relative overflow-hidden bg-surface-container/50">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="p-4 rounded-full bg-surface-variant/80 text-primary mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">cloud_upload</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Upload Dataset</h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Drag and drop zip files or folders here, or click to browse.</p>
+<div class="mt-lg pt-md border-t border-white/5 w-full">
+<span class="font-mono-data text-mono-data text-on-surface-variant text-xs">Supported: JPG, PNG, COCO JSON</span>
+</div>
+</div>
+<!-- Image Grid Preview -->
+<div class="glass-panel rounded-xl lg:col-span-2 flex flex-col h-full overflow-hidden">
+<div class="p-md border-b border-white/10 flex justify-between items-center bg-surface/50">
+<h4 class="font-headline-lg text-headline-lg-mobile md:text-body-lg font-semibold text-on-surface">Recent Additions Preview</h4>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-2 py-1 bg-surface-container rounded">Filtered: Fresh</span>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-variant"><span class="material-symbols-outlined text-[18px]">filter_list</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-md">
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-sm">
+<!-- Grid Items (Repeated) -->
+<div class="group relative rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-300" data-alt="A highly detailed close-up of a perfectly ripe, flawless red apple on a sleek, dark industrial conveyor belt. Studio lighting, cyber-industrial minimalistic setting, cool blue and stark white light highlights. Moody, precise, high tech factory environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCFN0J_rT2rBziVak5op5BKvb4i2LYS_KGhqmljUeARAg2NuzGmAspgFMzh28W0F7lLMEdVy-eCA8isnBWvKYWf2rISECW0d_0kamXw8crZRrkx2X7yODOAT2f3D9OSL-bMzUitLUeZpx5OMcvW01KTc7O3NJHdN9GWm4GNBT9rSYHA7Hbd-VsjqD_z57rWOZN-YfzJwZFxDHHI5dXZh1ivV4kooSikckpfwhlx5IoUJnGZwCOYuVqBLA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-2 left-2 right-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-mono-data text-[10px] text-on-surface bg-surface/80 backdrop-blur px-1 rounded border border-white/10">ID-0421</span>
+<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></span>
+</div>
+<div class="absolute top-2 left-2">
+<input class="rounded bg-surface/50 border-white/20 text-primary focus:ring-primary/50 opacity-0 group-hover:opacity-100 transition-opacity" type="checkbox"/>
+</div>
+</div>
+<div class="group relative rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-300" data-alt="A detailed shot of a slightly bruised, yellowish apple under harsh, cold LED inspection lighting in a dark factory setting. The background is a sleek, black metallic surface. High contrast, technical, quality control visual style." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfDen4LrIz9ZwZVxAyy5tRH20wjeDEjTgtHDJsgc2vsNNMfhRgsXlUrGS54r5k4Yh_82-kyH8whSqWSqgdEi6a77mVcnJ_eIbZGNX_HA1LD7SiLWfvkkCISWNQy01jwPrbK80k1djL2ORmnZ73X6mPQzxuc0Xs4jwRE1KaI16il85aFFUx8cSaBQg71ERoSd8XtSOrcWHmq7ZEJ0eQip4xQMmR0llA__Eq0O5JNRmmv-88OD-dTHAHoA')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-2 left-2 right-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-mono-data text-[10px] text-on-surface bg-surface/80 backdrop-blur px-1 rounded border border-white/10">ID-0422</span>
+<span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></span>
+</div>
+</div>
+<div class="group relative rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-300" data-alt="Close up of a pristine green pear on a dark grey industrial scale. The environment is dark and moody with sharp, precise lighting highlighting the texture of the fruit. Cyber-industrial aesthetic, data-driven inspection theme." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCba-IgWNAESM-KoFwxUBPDmBq40VviVyKdPTiHImMpw3J30q4o1RotYjHEGB9vKD_dFt6G-TjZBY3q5KknAj8IaHegOpvaFZ8KoD9LE-vhgZYgIPgiO1Ome9bwMueLb6lI0iNNjMPfd8AvCb1lTbxEAmjv1naJVsx5rWk9K3nReLrIzBghfglKJbrm7SsydFO_lrK_B8K9B7Ic9ST7wcx-ZS55HtrZFtQufV_KX7WfucKR9_4twDdI9g')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-2 left-2 right-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-mono-data text-[10px] text-on-surface bg-surface/80 backdrop-blur px-1 rounded border border-white/10">ID-0423</span>
+<span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.8)]"></span>
+</div>
+</div>
+<div class="group relative rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity group-hover:scale-105 duration-300" data-alt="A severely decayed orange on a stark black conveyor belt. The image is captured with clinical precision, utilizing high-contrast lighting to emphasize the rot against the dark, high-tech industrial background. Moody, quality assurance context." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOWGgQKlaBTaX5tc8fv2Y4MoUVJ7FqEnO04lep4VWrqlhQH-KsFQ1FGIH9qG8AYcuxdEnY4QNKg8hgKV3ca77hSBHthCeldkH2k-DkBW2l8qoDUDkX6TBKs4zoIutxHsW7z_KGhVlom6r0Skeef5r4KLQwNBDWsSjxatBo9_-9F_IH2UvFKFkmCVzq_hOFThedftu85INeXZv-l1jviAbIAT_IcD8EV_6ZyKhBQfpm_UmymSSpYVAUaQ')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-2 left-2 right-2 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="font-mono-data text-[10px] text-on-surface bg-surface/80 backdrop-blur px-1 rounded border border-white/10">ID-0424</span>
+<span class="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></span>
+</div>
+</div>
+<!-- Dummy grid items for visual density -->
+<div class="rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square flex items-center justify-center relative">
+<span class="material-symbols-outlined text-outline-variant text-[32px] opacity-50">image</span>
+<div class="absolute inset-0 bg-stripes-surface-variant opacity-20"></div>
+</div>
+<div class="rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square flex items-center justify-center relative">
+<span class="material-symbols-outlined text-outline-variant text-[32px] opacity-50">image</span>
+</div>
+<div class="rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square flex items-center justify-center relative">
+<span class="material-symbols-outlined text-outline-variant text-[32px] opacity-50">image</span>
+</div>
+<div class="rounded-lg overflow-hidden border border-white/5 bg-surface-container aspect-square flex items-center justify-center relative">
+<span class="material-symbols-outlined text-outline-variant text-[32px] opacity-50">image</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex justify-between items-center w-full px-lg py-sm bg-surface-container-low border-t border-white/5">
+<div class="flex items-center gap-md">
+<span class="text-label-sm font-label-sm font-bold text-outline-variant">SmartCam AI</span>
+<span class="font-body-md text-body-md text-on-surface-variant hidden md:inline">2024 SmartCam AI. TF v2.15 | Engine: Active</span>
+</div>
+<ul class="flex gap-md font-mono-data text-mono-data">
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors active:opacity-70" href="#">Support</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors active:opacity-70" href="#">Privacy</a></li>
+<li><a class="text-on-surface-variant hover:text-on-surface transition-colors active:opacity-70" href="#">Terms</a></li>
+</ul>
+</footer>
+</div>
+{% endblock %}

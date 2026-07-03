@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% set active_page = 'settings' %}
+{% block title %}System Configuration - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen font-body-md text-body-md flex antialiased selection:bg-primary-container selection:text-primary{% endblock %}
+
+{% block content %}
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 md:ml-[280px]">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Canvas -->
+<div class="flex-1 p-md lg:p-xl overflow-y-auto w-full max-w-[1200px] mx-auto">
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-semibold text-on-surface">Configuration</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Manage system preferences, alerts, and operational parameters.</p>
+</div>
+<!-- Bento Grid Layout for Settings -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- General Settings (Span 8) -->
+<section class="lg:col-span-8 bg-surface-container-low rounded-xl p-md border border-white/10 shadow-lg flex flex-col">
+<div class="flex items-center gap-sm mb-md border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span>
+<h3 class="font-headline-md text-headline-md font-semibold">General</h3>
+</div>
+<div class="space-y-md flex-1">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Factory Name</label>
+<input class="bg-primary-container border border-white/10 rounded-lg px-sm py-sm text-on-surface focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-body-md text-body-md w-full max-w-md shadow-inner" type="text" value="Munich Assembly Line A"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Timezone</label>
+<select class="bg-primary-container border border-white/10 rounded-lg px-sm py-sm text-on-surface focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-body-md text-body-md w-full max-w-md shadow-inner appearance-none">
+<option>UTC+01:00 (Europe/Berlin)</option>
+<option>UTC+00:00 (GMT)</option>
+<option>UTC-05:00 (EST)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Appearance (Span 4) -->
+<section class="lg:col-span-4 bg-surface-container-low rounded-xl p-md border border-white/10 shadow-lg flex flex-col">
+<div class="flex items-center gap-sm mb-md border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-primary" data-icon="palette">palette</span>
+<h3 class="font-headline-md text-headline-md font-semibold">Appearance</h3>
+</div>
+<div class="flex flex-col gap-md">
+<div class="font-label-md text-label-md text-on-surface-variant">Theme Preference</div>
+<label class="flex items-center justify-between cursor-pointer p-sm rounded-lg bg-surface hover:bg-surface-variant/50 transition-colors border border-white/5">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="dark_mode">dark_mode</span>
+<span class="font-body-md text-body-md">Dark Mode (Forced)</span>
+</div>
+<div class="relative">
+<input checked="" class="sr-only" disabled="" type="checkbox"/>
+<div class="block bg-blue-500 w-10 h-6 rounded-full opacity-50 cursor-not-allowed"></div>
+<div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform translate-x-4"></div>
+</div>
+</label>
+<p class="font-label-sm text-label-sm text-outline-variant mt-[-8px]">System locked to Dark Mode for optimal telemetry contrast.</p>
+</div>
+</section>
+<!-- Notifications (Span 6) -->
+<section class="lg:col-span-6 bg-surface-container-low rounded-xl p-md border border-white/10 shadow-lg flex flex-col">
+<div class="flex items-center gap-sm mb-md border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<h3 class="font-headline-md text-headline-md font-semibold">Notifications</h3>
+</div>
+<div class="space-y-sm">
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface border border-white/5">
+<div>
+<div class="font-label-md text-label-md text-on-surface">Critical Defect Alerts</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Push notifications for severe anomalies.</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<div class="relative">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="block bg-surface-container-highest w-10 h-6 rounded-full toggle-label transition-colors"></div>
+<div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform toggle-dot"></div>
+</div>
+</label>
+</div>
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface border border-white/5">
+<div>
+<div class="font-label-md text-label-md text-on-surface">Email Digest</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Daily summary of system performance.</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<div class="relative">
+<input class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="block bg-surface-container-highest w-10 h-6 rounded-full toggle-label transition-colors"></div>
+<div class="dot absolute left-1 top-1 bg-outline-variant w-4 h-4 rounded-full transition transform toggle-dot"></div>
+</div>
+</label>
+</div>
+</div>
+</section>
+<!-- Audio Alerts (Span 6) -->
+<section class="lg:col-span-6 bg-surface-container-low rounded-xl p-md border border-white/10 shadow-lg flex flex-col">
+<div class="flex items-center gap-sm mb-md border-b border-white/5 pb-sm">
+<span class="material-symbols-outlined text-primary" data-icon="volume_up">volume_up</span>
+<h3 class="font-headline-md text-headline-md font-semibold">Audio Alerts</h3>
+</div>
+<div class="space-y-md">
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant">Alarm Volume</label>
+<span class="font-mono-data text-mono-data text-primary">85%</span>
+</div>
+<input class="w-full h-2 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-blue-500" max="100" min="0" type="range" value="85"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Alert Tone</label>
+<select class="bg-primary-container border border-white/10 rounded-lg px-sm py-sm text-on-surface focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-body-md text-body-md w-full shadow-inner appearance-none">
+<option>Klaxon (Industrial)</option>
+<option>Chime (Subtle)</option>
+<option>Beep (Standard)</option>
+</select>
+</div>
+</div>
+</section>
+<!-- About / Engine Status (Span 12) -->
+<section class="lg:col-span-12 glass-panel rounded-xl p-md flex flex-col md:flex-row items-center justify-between gap-md mt-sm">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="memory">memory</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md font-semibold">SmartCam AI Engine</h3>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-xs">Version: TF v2.15.4-prod | Build: 8829A</p>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Engine Status</span>
+<div class="flex items-center gap-xs mt-1">
+<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+<span class="font-label-md text-label-md font-bold text-green-400">OPTIMAL</span>
+</div>
+</div>
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface border border-white/10 px-md py-sm rounded-lg font-label-md text-label-md transition-colors">Check Updates</button>
+</div>
+</section>
+</div> <!-- End Bento Grid -->
+<div class="mt-xl flex justify-end gap-sm border-t border-white/5 pt-md">
+<button class="px-md py-sm rounded-lg font-label-md text-label-md border border-white/10 hover:bg-surface-variant/50 transition-colors">Discard Changes</button>
+<button class="px-md py-sm rounded-lg font-label-md text-label-md bg-blue-500 text-white hover:bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all">Save Configuration</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-white/5 flex justify-between items-center w-full px-lg py-sm mt-auto">
+<div class="text-label-sm font-label-sm font-bold text-outline-variant">2024 SmartCam AI. TF v2.15 | Engine: Active</div>
+<ul class="flex gap-md">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Support</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a></li>
+</ul>
+</footer>
+</main>
+<script>
+        // Simple script for custom toggle switch visual behavior based on checked state
+        document.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
+            const updateToggle = () => {
+                const dot = checkbox.parentElement.querySelector('.toggle-dot');
+                const bg = checkbox.parentElement.querySelector('.toggle-label');
+                if(checkbox.checked) {
+                    dot.classList.add('translate-x-4');
+                    dot.classList.remove('bg-outline-variant');
+                    dot.classList.add('bg-white');
+                    bg.classList.add('bg-blue-500');
+                    bg.classList.remove('bg-surface-container-highest');
+                } else {
+                    dot.classList.remove('translate-x-4');
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-outline-variant');
+                    bg.classList.remove('bg-blue-500');
+                    bg.classList.add('bg-surface-container-highest');
+                }
+            };
+            
+            // Init
+            updateToggle();
+            
+            // Listen
+            checkbox.addEventListener('change', updateToggle);
+        });
+    </script>
+{% endblock %}

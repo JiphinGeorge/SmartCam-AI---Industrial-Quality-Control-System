@@ -1,0 +1,31 @@
+<!-- TopAppBar (Shared Component) -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-white/5 shadow-md flex justify-between items-center w-full px-md h-xl sticky top-0 z-40">
+<div class="flex items-center flex-1">
+<h2 class="font-headline-md text-headline-md font-black text-on-surface md:hidden mr-md">SmartCam AI</h2>
+<!-- Search Bar -->
+<div class="hidden md:flex items-center bg-surface-container-highest/50 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-primary focus-within:glow-primary transition-all w-64 max-w-sm">
+<span class="material-symbols-outlined text-outline-variant mr-2 text-sm">search</span>
+<input class="bg-transparent border-none text-label-sm font-label-sm text-on-surface focus:outline-none focus:ring-0 w-full placeholder:text-on-surface-variant" placeholder="Search telemetry..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-md">
+<div class="hidden md:flex flex-col items-end mr-sm">
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Factory Online
+                    </span>
+<span class="font-mono-data text-mono-data text-on-surface-variant text-xs opacity-70">UTC 12:45</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant hover:text-primary transition-all p-1 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button onclick="document.documentElement.classList.toggle('dark')" class="text-on-surface-variant hover:text-primary transition-all p-1 rounded-full hover:bg-surface-variant/50 hidden md:block">
+<span class="material-symbols-outlined">contrast</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-all p-1 rounded-full hover:bg-surface-variant/50">
+<img alt="User profile" class="w-8 h-8 rounded-full border border-white/10 object-cover" data-alt="A futuristic, minimalist user profile avatar showing a stylized wireframe face with neon blue accents on a dark navy background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA"/>
+</button>
+</div>
+</div>
+</header>

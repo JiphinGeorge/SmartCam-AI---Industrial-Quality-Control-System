@@ -1,0 +1,58 @@
+# Environments
+venv310/
+venv/
+env/
+ENV/
+.env
+.venv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Datasets and Media
+dataset/
+dataset_old_*/
+dataset_original/
+*.jpg
+*.jpeg
+*.png
+*.mp4
+*.avi
+
+# Exclude specific test files explicitly just in case
+test_fresh.jpg
+test_random.jpg
+test_rotten.jpg
+
+# Models (Keras/H5 models are often too large for GitHub without Git LFS)
+models/*.keras
+models/*.h5
+models/*.pb
+models/variables/
+models/assets/
+# Let's keep training_summary.json and labels.txt in models/ if they exist!
+!models/*.json
+!models/*.txt
+
+# Output and Logs
+logs/
+reports/
+exports/
+app/static/inspection_history/
+
+# Databases
+*.sqlite3
+*.db
+database/*.db
+
+# IDEs and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary Scripts
+stitch_screens/

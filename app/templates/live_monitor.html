@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% set active_page = 'live' %}
+{% block title %}Live Monitoring Hub - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-md antialiased overflow-hidden flex{% endblock %}
+
+{% block content %}
+<!-- Main Content Canvas -->
+<div class="flex-1 ml-[280px] flex flex-col h-screen relative bg-surface">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Main Dashboard Area -->
+<main class="flex-1 p-gutter overflow-y-auto flex flex-col gap-gutter">
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-12 gap-gutter flex-1">
+<!-- Left Column: Camera Feeds (8 cols) -->
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-gutter h-full">
+<!-- 2x2 Grid for Cameras -->
+<div class="grid grid-cols-2 gap-md flex-1">
+<!-- Camera 01 -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 overflow-hidden flex flex-col relative group">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low to-transparent z-10 pointer-events-none opacity-50"></div>
+<!-- Header Overlay -->
+<div class="absolute top-0 left-0 w-full p-sm z-20 flex justify-between items-start">
+<div class="bg-surface/80 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container">videocam</span>
+<span class="font-label-sm text-label-sm">Cam 01 - Main Inlet</span>
+</div>
+<div class="bg-surface/80 backdrop-blur-md px-2 py-1 rounded-md border border-white/10 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary-container animate-pulse-dot"></span>
+<span class="font-mono-data text-[10px] text-secondary-container">60 FPS</span>
+</div>
+</div>
+<!-- Video Feed Placeholder -->
+<div class="relative w-full h-full min-h-[250px] bg-surface-dim">
+<img class="absolute inset-0 w-full h-full object-cover opacity-70" data-alt="A highly detailed industrial macro shot of fresh, bright red tomatoes moving along a sleek, stainless steel conveyor belt inside a modern, high-tech food processing facility. The lighting is cinematic, utilizing cool blue LED ambient tones contrasted against the vibrant red of the produce. The aesthetic is cyber-industrial minimalism, feeling clean, precise, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHi_NmrjlfCAjmijsS_aUEaJjSe9VbFk1hBq8n3hYObqlALMe-lDqx3h9BlaZCd9k3dCQ3Iyi5kI7bABPRDSz4JtATmdj6q_bOIdKKAn4dIu35d1pLnb0lC9iJFpMSbNAKZYH_DqkZDuJWKIaZP1xBsNC61HEkE6eVPwOadTRnMkwuEgGkDxSV9zhI6U7tbaBWgOjvD0Yxd4kAHBewsKnx40jv4KGjrs0vs8NG-GsEq-El71--SA0Mnw"/>
+<!-- Simulated Bounding Boxes -->
+<div class="bounding-box" data-confidence="98.2%" style="top: 20%; left: 30%; width: 60px; height: 60px;"></div>
+<div class="bounding-box" data-confidence="99.1%" style="top: 50%; left: 60%; width: 55px; height: 55px;"></div>
+<div class="bounding-box" data-confidence="95.4%" style="top: 35%; left: 15%; width: 50px; height: 50px;"></div>
+</div>
+</div>
+<!-- Camera 02 -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 overflow-hidden flex flex-col relative group">
+<div class="absolute top-0 left-0 w-full p-sm z-20 flex justify-between items-start">
+<div class="bg-surface/80 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container">videocam</span>
+<span class="font-label-sm text-label-sm">Cam 02 - Sorter B</span>
+</div>
+</div>
+<div class="relative w-full h-full min-h-[250px] bg-surface-dim">
+<img class="absolute inset-0 w-full h-full object-cover opacity-70 grayscale-[30%]" data-alt="A detailed overhead perspective of a sophisticated robotic sorting mechanism interacting with a stream of agricultural produce on an industrial conveyor line. The scene features polished metal arms and glowing blue optical sensors scanning the items. The lighting is moody and high-contrast, emphasizing a cyber-industrial aesthetic with deep blacks, cool metallic tones, and bright functional indicator lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLiAlNR0bnPfqZAJlWwqs94sdCGFkGVFbTmH7q6nY-_jp8gurxl55B5O1Dwko6NNmGBFKKPPcmIFw658cUTsU0x4Gq3_2wFx04vegBOMMLfPn6t6QAkx93AWkjSQvjfopzWHz4oNLdNGg1wnnR14XdStH7TQK6IujbIWOrGE15kpFXFtJ43on4aeYVO3g3FmY_z7MOAunbix_Q6aO21dm5bjBGIA9zO4oXiIYXECFpeZqYec64u3eE7w"/>
+<!-- Simulated Bounding Boxes -->
+<div class="bounding-box" data-confidence="97.8%" style="top: 40%; left: 45%; width: 45px; height: 45px;"></div>
+<div class="bounding-box reject" data-confidence="42.1%" style="top: 60%; left: 20%; width: 50px; height: 50px;"></div>
+</div>
+</div>
+<!-- Camera 03 -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 overflow-hidden flex flex-col relative group">
+<div class="absolute top-0 left-0 w-full p-sm z-20 flex justify-between items-start">
+<div class="bg-surface/80 backdrop-blur-md px-3 py-1.5 rounded-md border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container">videocam</span>
+<span class="font-label-sm text-label-sm">Cam 03 - Packaging</span>
+</div>
+</div>
+<div class="relative w-full h-full min-h-[250px] bg-surface-dim">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60" data-alt="A precise, low-angle shot of a fast-moving packaging line in a smart factory environment. Cardboard boxes are being rapidly assembled and filled with sorted produce. The environment is illuminated by stark, functional white light with subtle hints of neon purple from overhead UV inspection lamps. The design language conveys high-speed automation and pristine industrial order." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp0s20ZqfS6K-yLLZvfJd0pLWszc8B8bgNq5OE44RVOwP4tJFa9KIR6eqP7am7BRiNZBWUbv5huH1m_H_VXMnoxJeDl2cfoHD3jtPDoT-u9f6kLtld6mQ8Qn9hqJKUMJSdbxHbYSLqCnlemTJ1JX7NUvbwRRBcLSMk32eimyOvoIvQqNG3s5R3w0-GCrvm3F6ByjnM216g92Ju0G86adhn0rOWOciDzC_hsM4jeu_lSTPTDdJvVLkymw"/>
+<div class="bounding-box" data-confidence="BOX OK" style="top: 10%; left: 70%; width: 80px; height: 60px;"></div>
+</div>
+</div>
+<!-- Camera 04 -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 overflow-hidden flex flex-col relative group ring-1 ring-error/30 shadow-[0_0_15px_rgba(255,180,171,0.1)]">
+<div class="absolute top-0 left-0 w-full p-sm z-20 flex justify-between items-start">
+<div class="bg-error-container/80 backdrop-blur-md px-3 py-1.5 rounded-md border border-error/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-error">warning</span>
+<span class="font-label-sm text-label-sm text-error">Cam 04 - Reject Lane</span>
+</div>
+</div>
+<div class="relative w-full h-full min-h-[250px] bg-surface-dim">
+<img class="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity" data-alt="A close-up, dramatic shot of an industrial discard chute or rejection lane in an agricultural processing plant. Defective or misshapen produce is diverted here. The scene is bathed in a subtle, pulsing red warning light, contrasting against the dark, matte gray surfaces of the machinery. The aesthetic is tactical and serious, highlighting the precision of the AI quality control system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEcUtTRupO0ZdsEx_yS6LdPlmHeAZVuNW8B0mxyW5Fv24hMKOlmXLWaR_rR5eOveMQdQgthI3Ido0RI5XqfsRijOaD3tmzj16p--6Sb7V86W65cEIRBY6pz2nWx00E-AzDm8fU4vGLsLkvCUkY8wKdaGqmHy3BaPNd5gV9RkWVeOwZoSfygN4UjTN2NWol_IpjFOwhDXeuhlZtoVpd0TIMeygD-r_Y1412d00fWzkss_t0reC-O5WhdQ"/>
+<div class="bounding-box reject" data-confidence="DEFECT: ROT" style="top: 70%; left: 50%; width: 55px; height: 55px;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Metrics & Event Stream (4 cols) -->
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-gutter h-full">
+<!-- Metrics Card -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 p-md flex flex-col gap-md shadow-lg relative overflow-hidden">
+<!-- Glassmorphic accent -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-secondary-container/10 rounded-full blur-[40px] pointer-events-none"></div>
+<div class="flex items-center gap-2 pb-sm border-b border-white/5">
+<span class="material-symbols-outlined text-on-surface-variant">speed</span>
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Line Telemetry</h3>
+</div>
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container p-sm rounded-lg border border-white/5">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-1">Inference Speed</div>
+<div class="font-headline-md text-headline-md text-primary flex items-baseline gap-1" id="telemetry-fps">
+                                    -- <span class="font-mono-data text-[12px] text-on-surface-variant">FPS</span>
+</div>
+</div>
+<div class="bg-surface-container p-sm rounded-lg border border-white/5">
+<div class="font-label-sm text-label-sm text-on-surface-variant mb-1">System CPU</div>
+<div class="font-headline-md text-headline-md text-on-surface flex items-baseline gap-1" id="telemetry-cpu">
+                                    -- <span class="font-mono-data text-[12px] text-on-surface-variant">%</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-sm rounded-lg border border-error/20 flex justify-between items-center relative overflow-hidden">
+<div class="absolute inset-0 bg-error/5 w-[15%] h-full"></div> <!-- Warning bar graph bg -->
+<div>
+<div class="font-label-sm text-label-sm text-error mb-1">System RAM</div>
+<div class="font-headline-md text-headline-md text-error" id="telemetry-ram">-- <span class="font-mono-data text-[12px] text-error/70">%</span></div>
+</div>
+<span class="material-symbols-outlined text-error text-3xl">warning</span>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today's Total Processed</span>
+<span class="font-mono-data text-mono-data text-primary" id="telemetry-total">--</span>
+</div>
+<div class="w-full bg-surface-container-highest rounded-full h-1.5">
+<div class="bg-secondary-container h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<!-- Event Stream Card -->
+<div class="bg-surface-container-low rounded-xl border border-white/10 p-md flex flex-col gap-sm shadow-lg flex-1 overflow-hidden">
+<div class="flex items-center justify-between pb-sm border-b border-white/5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant">list_alt</span>
+<h3 class="font-label-md text-label-md text-on-surface uppercase tracking-wider">Live Event Stream</h3>
+</div>
+<span class="bg-surface-container-highest text-[10px] px-2 py-0.5 rounded font-mono-data text-on-surface-variant">AUTO-SCROLL</span>
+</div>
+<!-- Log List -->
+<div class="flex-1 overflow-y-auto space-y-1 pr-2 font-mono-data text-mono-data" id="event-log">
+<!-- JS will populate these, but adding initial items for layout -->
+<div class="flex items-center gap-2 py-1 px-2 hover:bg-white/5 rounded transition-colors group">
+<span class="text-on-surface-variant text-[10px] opacity-70">12:45:01.03</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface flex-1">Item T-8921: Pass</span>
+<span class="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">99.2%</span>
+</div>
+<div class="flex items-center gap-2 py-1 px-2 bg-error/10 border border-error/20 rounded transition-colors group">
+<span class="text-error/70 text-[10px]">12:45:01.15</span>
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-error flex-1">Item T-8922: Rejected</span>
+<span class="text-error font-bold text-[10px]">42.1%</span>
+</div>
+<div class="flex items-center gap-2 py-1 px-2 hover:bg-white/5 rounded transition-colors group">
+<span class="text-on-surface-variant text-[10px] opacity-70">12:45:01.30</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface flex-1">Item T-8923: Pass</span>
+<span class="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">98.5%</span>
+</div>
+<div class="flex items-center gap-2 py-1 px-2 hover:bg-white/5 rounded transition-colors group">
+<span class="text-on-surface-variant text-[10px] opacity-70">12:45:01.42</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface flex-1">Item T-8924: Pass</span>
+<span class="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">97.9%</span>
+</div>
+<div class="flex items-center gap-2 py-1 px-2 hover:bg-white/5 rounded transition-colors group">
+<span class="text-on-surface-variant text-[10px] opacity-70">12:45:01.55</span>
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-on-surface flex-1">Item T-8925: Pass</span>
+<span class="text-tertiary opacity-0 group-hover:opacity-100 transition-opacity text-[10px]">99.8%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="flex justify-between items-center w-full px-lg py-sm bg-surface-container-low dark:bg-surface-container-low border-t border-white/5">
+<div class="font-mono-data text-mono-data text-on-surface-variant">
+                2024 SmartCam AI. TF v2.15 | Engine: Active
+            </div>
+<div class="flex gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Support</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</div>
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='js/live.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% set active_page = 'reports' %}
+{% block title %}Intelligent Reporting - SmartCam AI{% endblock %}
+{% block body_class %}antialiased min-h-screen flex font-body-md text-body-md selection:bg-primary selection:text-on-primary{% endblock %}
+
+{% block content %}
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-[280px]">
+<!-- TopAppBar (Shared Component) -->
+{% include 'components/topbar.html' %}
+<!-- Main Canvas -->
+<main class="flex-1 p-md lg:p-lg overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-xl">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Report Generation Suite</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">Compile, analyze, and export inspection telemetry across all factory zones. Select a timeframe to generate a comprehensive data package.</p>
+</div>
+</div>
+<!-- Bento Grid for Report Generation -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-md">
+<!-- Daily Report Card -->
+<div class="glass-panel rounded-xl p-md flex flex-col relative overflow-hidden group hover:border-primary/50 transition-colors cursor-pointer">
+<div class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[100px] text-primary">today</span>
+</div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-white/10 flex items-center justify-center mb-md group-hover:neon-glow-primary transition-shadow">
+<span class="material-symbols-outlined text-primary">calendar_today</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Daily Summary</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Last 24 hours of inspection data, shift performance, and immediate defect alerts.</p>
+<div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 2.4 MB</span>
+<button class="flex items-center gap-1 text-primary font-label-md text-label-md hover:text-on-surface transition-colors">
+                                    Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Weekly Report Card -->
+<div class="glass-panel rounded-xl p-md flex flex-col relative overflow-hidden group hover:border-secondary/50 transition-colors cursor-pointer">
+<div class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[100px] text-secondary">date_range</span>
+</div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-white/10 flex items-center justify-center mb-md group-hover:neon-glow-secondary transition-shadow">
+<span class="material-symbols-outlined text-secondary">view_week</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Weekly Rollup</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">7-day trend analysis, zone efficiency comparisons, and calibration logs.</p>
+<div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 14.8 MB</span>
+<button class="flex items-center gap-1 text-secondary font-label-md text-label-md hover:text-on-surface transition-colors">
+                                    Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Monthly Report Card -->
+<div class="glass-panel rounded-xl p-md flex flex-col relative overflow-hidden group hover:border-tertiary/50 transition-colors cursor-pointer">
+<div class="absolute top-0 right-0 p-sm opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[100px] text-tertiary">calendar_month</span>
+</div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest border border-white/10 flex items-center justify-center mb-md shadow-[0_0_15px_rgba(208,188,255,0.2)] transition-shadow">
+<span class="material-symbols-outlined text-tertiary">assessment</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Monthly Deep Dive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Comprehensive historical data, ML model drift metrics, and long-term yield analysis.</p>
+<div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 56.2 MB</span>
+<button class="flex items-center gap-1 text-tertiary font-label-md text-label-md hover:text-on-surface transition-colors">
+                                    Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="flex justify-between items-center w-full px-lg py-sm bg-surface-container-low border-t border-white/5 mt-auto">
+<div class="flex items-center gap-sm">
+<span class="text-label-sm font-label-sm font-bold text-outline-variant uppercase">SmartCam AI</span>
+<span class="font-mono-data text-mono-data text-outline-variant hidden sm:inline-block">2024 SmartCam AI. TF v2.15 | Engine: Active</span>
+</div>
+<div class="flex items-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</div>
+{% endblock %}

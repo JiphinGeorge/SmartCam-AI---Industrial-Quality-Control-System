@@ -1,0 +1,11 @@
+{
+  "best_epoch": 36,
+  "final_accuracy": 0.9982,
+  "final_val_loss": 0.0076,
+  "training_date": "2026-07-03",
+  "num_classes": 2,
+  "input_size": [
+    224,
+    224
+  ]
+}

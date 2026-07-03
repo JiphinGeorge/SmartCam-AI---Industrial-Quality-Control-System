@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% set active_page = 'help' %}
+{% block title %}Knowledge Center - SmartCam AI{% endblock %}
+{% block body_class %}flex bg-background min-h-screen text-on-surface{% endblock %}
+
+{% block content %}
+<!-- Main Wrapper -->
+<div class="flex flex-col flex-1 ml-[280px] w-[calc(100%-280px)] min-h-screen">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Main Content Canvas -->
+<main class="flex-1 p-lg flex flex-col gap-xl max-w-[1600px] w-full mx-auto">
+<!-- Hero / Search Section -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="max-w-2xl w-full">
+<h1 class="font-display-lg text-display-lg text-on-surface mb-xs">How can we help?</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-md">Search documentation, tutorials, and troubleshooting guides.</p>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+<input class="w-full input-industrial rounded-lg py-sm pl-[48px] pr-sm font-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Search for 'camera calibration'..." type="text"/>
+</div>
+</div>
+<!-- System Health Indicator -->
+<div class="glass-panel rounded-xl p-md flex items-center gap-md border border-white/10 shrink-0">
+<div class="relative flex items-center justify-center w-12 h-12 rounded-full bg-surface-container-highest border border-white/10">
+<span class="material-symbols-outlined text-[#10B981]">dns</span>
+<div class="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#10B981] animate-pulse border-2 border-background"></div>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-outline-variant uppercase tracking-wider mb-base">System Health</p>
+<p class="font-headline-md text-[20px] font-semibold text-on-surface leading-tight">All Services Operational</p>
+</div>
+</div>
+</section>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column (8 cols): Video & FAQs -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Quick Start Video -->
+<div class="industrial-card overflow-hidden group cursor-pointer relative">
+<div class="h-[300px] w-full relative">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A highly detailed industrial control room interface showing a sleek, futuristic video feed of a manufacturing line. The lighting is dark and cinematic with glowing blue telemetry data overlays. Cyber-industrial minimalist aesthetic, professional grade UI rendering." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA1C6iWjOSaUvAQPft2bioxxopoGCDZjjpw4ZtmWL-R0JytOPGQeAnQddPwFXzTsoR9rA2sK_nOuuaGftPhtmH4yeGvTb-pHHCEYrDJGv-CYl1_guEjuGAu8pZhms4sL6p15f678ArrAy_pvj2DWE3IMAiqUq27PeJw7wVCMC_hN-l4wWgYeL-lROUBXJ5qEStQGfhpF0IUK38pYQaUd5auVPZXRBgRMmMeaeA-5jAhH4QdbJ6NECJCMA')"></div>
+<div class="absolute inset-0 bg-background/60 flex items-center justify-center transition-background duration-300 group-hover:bg-background/40">
+<div class="w-16 h-16 rounded-full bg-secondary-container/90 flex items-center justify-center backdrop-blur-md border border-white/20 shadow-[0_0_20px_rgba(5,102,217,0.5)] transform transition-transform duration-300 group-hover:scale-110">
+<span class="material-symbols-outlined text-white text-[32px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-md border-t border-white/10 flex justify-between items-center bg-surface-container-low relative z-10">
+<div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">Quick Start: Setting up your first model</h3>
+<p class="font-body-md text-on-surface-variant mt-base">Learn the basics of connecting cameras and deploying detection models in under 5 minutes.</p>
+</div>
+<span class="font-mono-data text-mono-data text-outline-variant bg-surface-container px-xs py-base rounded">04:23</span>
+</div>
+</div>
+<!-- FAQ Accordion -->
+<div class="flex flex-col gap-sm">
+<h2 class="font-headline-lg text-[24px] text-on-surface mb-sm">Frequently Asked Questions</h2>
+<!-- Accordion Item 1 -->
+<div class="industrial-card overflow-hidden">
+<button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
+<span class="font-headline-md text-[18px] font-medium text-on-surface">How do I calibrate a new camera feed?</span>
+<span class="material-symbols-outlined text-on-surface-variant accordion-icon">expand_more</span>
+</button>
+<div class="accordion-content border-t border-white/5 bg-surface-container/30">
+<div class="accordion-inner p-md font-body-md text-on-surface-variant leading-relaxed">
+                                    Navigate to the <strong>Live Monitor</strong> tab, select the inactive feed, and click the "Calibrate" button in the overlay menu. Ensure the target area is well-lit and follow the on-screen geometric alignment prompts. The AI will automatically adjust focal length and distortion parameters.
+                                </div>
+</div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="industrial-card overflow-hidden">
+<button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
+<span class="font-headline-md text-[18px] font-medium text-on-surface">What is the required network latency for real-time inference?</span>
+<span class="material-symbols-outlined text-on-surface-variant accordion-icon">expand_more</span>
+</button>
+<div class="accordion-content border-t border-white/5 bg-surface-container/30">
+<div class="accordion-inner p-md font-body-md text-on-surface-variant leading-relaxed">
+                                    For optimal performance, we recommend a wired gigabit connection with local network latency below 5ms. The system can operate up to 50ms latency, but frame dropping may occur during high-throughput analysis phases.
+                                </div>
+</div>
+</div>
+<!-- Accordion Item 3 -->
+<div class="industrial-card overflow-hidden">
+<button class="w-full flex justify-between items-center p-md text-left hover:bg-white/5 transition-colors focus:outline-none" onclick="this.parentElement.classList.toggle('is-open'); this.nextElementSibling.classList.toggle('is-open')">
+<span class="font-headline-md text-[18px] font-medium text-on-surface">Can I export historical telemetry data?</span>
+<span class="material-symbols-outlined text-on-surface-variant accordion-icon">expand_more</span>
+</button>
+<div class="accordion-content border-t border-white/5 bg-surface-container/30">
+<div class="accordion-inner p-md font-body-md text-on-surface-variant leading-relaxed">
+                                    Yes, navigate to the <strong>Reports</strong> section. You can batch export up to 30 days of telemetry data in CSV, JSON, or Parquet formats. For larger datasets, please use the REST API endpoints detailed in our developer documentation.
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (4 cols): Forms & Contacts -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Support Ticket Form -->
+<div class="industrial-card p-md">
+<div class="flex items-center gap-sm mb-md border-b border-white/10 pb-sm">
+<span class="material-symbols-outlined text-primary">bug_report</span>
+<h2 class="font-headline-md text-[20px] font-semibold text-on-surface">Submit a Ticket</h2>
+</div>
+<form class="space-y-md">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Issue Type</label>
+<select class="w-full input-industrial rounded-lg p-sm font-body-md text-on-surface focus:ring-0 appearance-none">
+<option>Hardware Connectivity</option>
+<option>Model Inference Error</option>
+<option>Billing / Account</option>
+<option>Other</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Description</label>
+<textarea class="w-full input-industrial rounded-lg p-sm font-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Please describe the issue in detail..." rows="4"></textarea>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Attachments (Logs/Screenshots)</label>
+<div class="border border-dashed border-outline-variant rounded-lg p-md text-center hover:bg-white/5 transition-colors cursor-pointer bg-surface-container/50">
+<span class="material-symbols-outlined text-outline-variant mb-xs">upload_file</span>
+<p class="font-label-md text-label-md text-on-surface-variant">Drag files here or click to browse</p>
+</div>
+</div>
+<button class="w-full bg-[#3B82F6] hover:bg-blue-600 text-white font-label-md text-label-md py-sm rounded-lg transition-colors flex items-center justify-center gap-sm mt-sm shadow-[0_0_15px_rgba(59,130,246,0.2)]" type="button">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                                Submit Ticket
+                            </button>
+</form>
+</div>
+<!-- Live Chat Shortcut -->
+<div class="glass-panel rounded-xl p-md flex flex-col gap-md relative overflow-hidden border border-white/10">
+<!-- Decorative background element -->
+<div class="absolute -right-10 -top-10 w-32 h-32 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-start justify-between relative z-10">
+<div>
+<h3 class="font-headline-md text-[18px] font-semibold text-on-surface">Need immediate help?</h3>
+<p class="font-body-md text-on-surface-variant mt-xs">Connect with our engineering support team in real-time.</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">headset_mic</span>
+</div>
+</div>
+<div class="flex items-center gap-sm relative z-10">
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small, circular avatar portrait of a professional female engineer wearing a headset, set against a dark blue industrial background. High quality, crisp lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADU5IS5FcZbKqyAepALDvi1pF1N2sUsOc_3IaNRUmesv3QfyYp-iKwjxNvkqSeu5gQ_xseY2G00M8KFcEsKuCUU-06_C9oBOCtRtQMPRH5lfH4k1V6DsohJW16f54Rgo009YVFKVKORSHnpx02TRXODeJmoFtyFRkfhZK_iTVzC9vxgAnFgmjPaIYhjmgWqDjqajYygolvuikFfvf0ED4vvAlGTBy_t2zV_oJ8nEcU7ymohQnGvZJ8_g"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest object-cover" data-alt="A small, circular avatar portrait of a professional male support technician in a dark, minimalist server room setting. Cyberpunk adjacent aesthetic, moody lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNGCx0ICoF8ZxsV1GvazfodAwXr1RA4jV2hxkf4O0zNV15ZKUyJ3zBtQ0mLLKuROB5LMMV6II98YQpC_z5_5yC0VTzNOJtei_mS5LPDKfJbc_ZuLgdn19kuHBzwS-wSOBoKtR_DdB_6p0hpnN1eXWKR3452wFx2HxWphVWC6KnYl2Pp5nL1X87oDbNBDjJifs9cGgIFr3hhq8IM6CmAFn_K-OTsIVY6_d7jcHYSwBiyPOAzGptFsJltQ"/>
+</div>
+<span class="font-label-sm text-label-sm text-outline-variant">Avg. wait: < 2 mins</span>
+</div>
+<button class="w-full border border-primary text-primary hover:bg-primary/10 font-label-md text-label-md py-sm rounded-lg transition-colors flex items-center justify-center gap-sm relative z-10">
+<span class="material-symbols-outlined">chat</span>
+                            Start Live Chat
+                        </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low border-t border-white/5 flex justify-between items-center w-full px-lg py-sm mt-auto">
+<div class="flex items-center gap-md">
+<span class="text-label-sm font-label-sm font-bold text-outline-variant">2024 SmartCam AI. TF v2.15 | Engine: Active</span>
+</div>
+<div class="flex items-center gap-md">
+<a class="font-body-md text-body-md text-primary underline hover:text-on-surface transition-colors active:opacity-70" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors active:opacity-70" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors active:opacity-70" href="#">Terms</a>
+</div>
+</footer>
+</div>
+{% endblock %}

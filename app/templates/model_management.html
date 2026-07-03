@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+{% set active_page = 'models' %}
+{% block title %}Model Management Console - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen font-body-md overflow-x-hidden antialiased{% endblock %}
+
+{% block content %}
+<!-- Main Content Area -->
+<div class="md:ml-[280px] min-h-screen flex flex-col">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
+<!-- Canvas -->
+<main class="flex-1 p-sm md:p-lg lg:p-xl space-y-lg relative">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-2 py-0.5 rounded-md bg-primary-container text-primary border border-primary/20 font-mono-data text-[11px] uppercase tracking-wider">Production</span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-highest text-on-surface-variant border border-white/5 font-mono-data text-[11px] uppercase tracking-wider">Vision</span>
+</div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-gradient font-bold">Model Management</h2>
+<p class="font-body-md text-on-surface-variant mt-1">Manage, monitor, and deploy vision intelligence models to edge devices.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-md py-2 rounded-lg border border-outline-variant/30 hover:bg-surface-variant/50 transition-all font-label-md text-on-surface">
+<span class="material-symbols-outlined text-[18px]">history</span>
+                        Version History
+                    </button>
+<button class="flex items-center gap-xs px-md py-2 rounded-lg bg-primary text-on-primary hover:bg-primary/90 transition-all font-label-md font-bold shadow-[0_0_15px_rgba(190,199,218,0.2)]">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+                        Import Model
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md">
+<!-- Primary Model Card (Spans 8 cols) -->
+<div class="lg:col-span-8 glass-card rounded-[20px] flex flex-col overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<div class="p-md border-b border-white/5 flex justify-between items-start relative z-10">
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1e3a8a] to-[#312e81] flex items-center justify-center shadow-lg border border-white/10">
+<span class="material-symbols-outlined text-white text-[28px]" style="font-variation-settings: 'FILL' 1;">memory</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm">
+                                    NeuralNet v2.4.1-rc
+                                    <span class="flex h-2.5 w-2.5 relative">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4ade80] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4ade80]"></span>
+</span>
+</h3>
+<p class="font-mono-data text-mono-data text-on-surface-variant mt-1 flex items-center gap-2">
+                                    ID: 8f72a9-c4b1
+                                    <span class="text-outline-variant">•</span>
+                                    Deployed: 2 days ago
+                                </p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-mono-data text-[12px] text-primary bg-primary-container px-2 py-1 rounded border border-primary/20">TF v2.15</span>
+</div>
+</div>
+<div class="p-md grid grid-cols-3 gap-md relative z-10 flex-1">
+<div class="bg-surface-container-highest/30 rounded-xl p-md border border-white/5 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Accuracy
+                            </span>
+<div class="flex items-end gap-sm">
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">98.4<span class="text-[20px] text-outline-variant">%</span></span>
+<span class="font-label-sm text-[#4ade80] flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span> 0.2%
+                                </span>
+</div>
+</div>
+<div class="bg-surface-container-highest/30 rounded-xl p-md border border-white/5 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">speed</span> Inference Time
+                            </span>
+<div class="flex items-end gap-sm">
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">12<span class="text-[20px] text-outline-variant">ms</span></span>
+</div>
+</div>
+<div class="bg-surface-container-highest/30 rounded-xl p-md border border-white/5 flex flex-col justify-center">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">folder_zip</span> Size
+                            </span>
+<div class="flex items-end gap-sm">
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">45<span class="text-[20px] text-outline-variant">MB</span></span>
+<span class="font-label-sm text-[#4ade80] flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px]">arrow_downward</span> 12%
+                                </span>
+</div>
+</div>
+</div>
+<div class="p-sm bg-surface-container-low border-t border-white/5 flex gap-sm relative z-10 justify-end">
+<button class="px-md py-2 rounded-lg border border-outline-variant/30 hover:bg-surface-variant/50 transition-all font-label-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Download Weights
+                        </button>
+<button class="px-md py-2 rounded-lg border border-outline-variant/30 hover:bg-surface-variant/50 transition-all font-label-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">model_training</span>
+                            Re-train
+                        </button>
+<button class="px-md py-2 rounded-lg bg-secondary-container text-on-secondary-container hover:bg-secondary-container/90 transition-all font-label-md font-bold flex items-center gap-2 ml-auto">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+                            Replace Model
+                        </button>
+</div>
+</div>
+<!-- Environment/Nodes Card (Spans 4 cols) -->
+<div class="lg:col-span-4 glass-card rounded-[20px] flex flex-col overflow-hidden">
+<div class="p-md border-b border-white/5 flex justify-between items-center">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">router</span>
+                            Edge Deployment
+                        </h3>
+<span class="font-mono-data text-[12px] text-outline-variant">3 Nodes Active</span>
+</div>
+<div class="p-md flex-1 overflow-y-auto space-y-2">
+<!-- Node Item -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface-container-highest/20 border border-white/5 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-white/10 group-hover:border-primary/50">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">videocam</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface text-[13px]">Line 1 - Quality Cam A</p>
+<p class="font-mono-data text-[11px] text-[#4ade80]">Sync: 0ms</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline-variant group-hover:text-primary">chevron_right</span>
+</div>
+<!-- Node Item -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface-container-highest/20 border border-white/5 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-white/10 group-hover:border-primary/50">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">videocam</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface text-[13px]">Line 2 - Sorter Cam B</p>
+<p class="font-mono-data text-[11px] text-[#4ade80]">Sync: 2ms</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline-variant group-hover:text-primary">chevron_right</span>
+</div>
+<!-- Node Item -->
+<div class="flex items-center justify-between p-sm rounded-lg bg-surface-container-highest/20 border border-white/5 hover:border-primary/30 transition-colors cursor-pointer group">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center border border-white/10 group-hover:border-primary/50">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary">videocam</span>
+</div>
+<div>
+<p class="font-label-md text-on-surface text-[13px]">Pack - Verification Cam</p>
+<p class="font-mono-data text-[11px] text-[#4ade80]">Sync: 1ms</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline-variant group-hover:text-primary">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Analytics Chart (Spans 8 cols) -->
+<div class="lg:col-span-8 glass-card rounded-[20px] flex flex-col h-[350px]">
+<div class="p-md border-b border-white/5 flex justify-between items-center">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed-dim">timeline</span>
+                                Confidence Drift Analysis
+                            </h3>
+<p class="font-mono-data text-[11px] text-outline-variant mt-1">7 Day Rolling Average</p>
+</div>
+<div class="flex gap-2">
+<button class="px-2 py-1 rounded bg-surface-variant text-on-surface text-[12px] font-mono-data border border-white/10">7D</button>
+<button class="px-2 py-1 rounded hover:bg-surface-variant text-outline-variant hover:text-on-surface text-[12px] font-mono-data transition-colors">30D</button>
+<button class="px-2 py-1 rounded hover:bg-surface-variant text-outline-variant hover:text-on-surface text-[12px] font-mono-data transition-colors">ALL</button>
+</div>
+</div>
+<div class="flex-1 p-md relative flex flex-col">
+<!-- Y Axis labels -->
+<div class="absolute left-md top-md bottom-md w-8 flex flex-col justify-between font-mono-data text-[10px] text-outline-variant pb-6">
+<span>100%</span>
+<span>95%</span>
+<span>90%</span>
+<span>85%</span>
+<span>80%</span>
+</div>
+<!-- Chart Area Placeholder (CSS Drawing) -->
+<div class="ml-10 flex-1 relative border-l border-b border-white/10">
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between">
+<div class="w-full border-b border-white/5 h-0"></div>
+<div class="w-full border-b border-white/5 h-0"></div>
+<div class="w-full border-b border-white/5 h-0"></div>
+<div class="w-full border-b border-white/5 h-0"></div>
+<div class="w-full border-b border-transparent h-0"></div>
+</div>
+<!-- Fake SVG Line Chart -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<!-- Safe Zone Fill -->
+<rect fill="rgba(74, 222, 128, 0.05)" height="25" width="100" x="0" y="0"></rect>
+<!-- Warning Zone Fill -->
+<rect fill="rgba(255, 180, 171, 0.05)" height="25" width="100" x="0" y="75"></rect>
+<path class="drop-shadow-[0_0_8px_rgba(190,199,218,0.5)]" d="M0,10 C10,12 20,5 30,15 C40,25 50,10 60,8 C70,6 80,18 90,12 L100,5" fill="none" stroke="#bec7da" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M0,10 C10,12 20,5 30,15 C40,25 50,10 60,8 C70,6 80,18 90,12 L100,5 L100,100 L0,100 Z" fill="url(#grad)" opacity="0.3"></path>
+<defs>
+<lineargradient id="grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#bec7da" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#bec7da" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Data Point Tooltip (Mock) -->
+<div class="absolute top-[8%] left-[60%] -translate-x-1/2 -translate-y-full mb-2 bg-surface-container-highest border border-white/20 rounded px-2 py-1 flex flex-col items-center shadow-lg">
+<span class="font-mono-data text-[10px] text-on-surface">98.2%</span>
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-surface-container-highest border-r border-b border-white/20 rotate-45"></div>
+</div>
+<!-- Point Indicator -->
+<div class="absolute top-[8%] left-[60%] -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary border-2 border-background shadow-[0_0_10px_#bec7da]"></div>
+</div>
+<!-- X Axis labels -->
+<div class="ml-10 h-6 flex justify-between items-end font-mono-data text-[10px] text-outline-variant pt-2">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Training Logs Table (Spans 4 cols) -->
+<div class="lg:col-span-4 glass-card rounded-[20px] flex flex-col h-[350px]">
+<div class="p-md border-b border-white/5 flex justify-between items-center">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-outline">terminal</span>
+                            Training Log
+                        </h3>
+<button class="p-1 rounded hover:bg-surface-variant text-outline-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</button>
+</div>
+<div class="flex-1 overflow-auto bg-[#040e1f]/50 p-sm font-mono-data text-[11px] leading-relaxed">
+<div class="text-outline-variant mb-1">[2024-05-20 14:32:01] Starting training job 'retrain_v2.4'</div>
+<div class="text-on-surface mb-1">Epoch 1/50</div>
+<div class="text-outline mb-2">1240/1240 [==============================] - 45s 36ms/step - loss: 0.2412 - accuracy: 0.9105 - val_loss: 0.1804 - val_accuracy: 0.9411</div>
+<div class="text-on-surface mb-1">Epoch 2/50</div>
+<div class="text-outline mb-2">1240/1240 [==============================] - 42s 34ms/step - loss: 0.1502 - accuracy: 0.9422 - val_loss: 0.1421 - val_accuracy: 0.9580</div>
+<div class="text-on-surface mb-1">Epoch 3/50</div>
+<div class="text-outline mb-2">1240/1240 [==============================] - 43s 35ms/step - loss: 0.1120 - accuracy: 0.9610 - val_loss: 0.1205 - val_accuracy: 0.9692</div>
+<div class="text-[#4ade80] mt-4 mb-1">[2024-05-20 15:10:44] Checkpoint saved: weights_epoch_03.h5</div>
+<div class="text-outline-variant animate-pulse">Waiting for next epoch...</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low border-t border-white/5 flex justify-between items-center w-full px-lg py-sm mt-auto">
+<span class="font-body-md text-body-md text-on-surface-variant font-mono-data text-[12px]">2024 SmartCam AI. TF v2.15 | Engine: Active</span>
+<div class="flex gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface text-[12px] transition-colors" href="#">Support</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface text-[12px] transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface text-[12px] transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</div>
+{% endblock %}
