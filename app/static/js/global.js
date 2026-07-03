@@ -32,4 +32,41 @@ document.addEventListener("DOMContentLoaded", function() {
             window.dispatchEvent(new Event('themeChanged'));
         });
     }
+    // Settings Page Theme Toggle
+    const settingsThemeToggle = document.getElementById("set-theme-toggle");
+    const settingsThemeText = document.getElementById("setting-theme-text");
+    const settingsThemeIcon = document.getElementById("setting-theme-icon");
+
+    if (settingsThemeToggle) {
+        function updateSettingsToggleUI() {
+            const isDark = document.documentElement.classList.contains("dark");
+            settingsThemeToggle.checked = isDark;
+            if (settingsThemeText) settingsThemeText.textContent = isDark ? "Dark Mode" : "Light Mode";
+            if (settingsThemeIcon) settingsThemeIcon.textContent = isDark ? "dark_mode" : "light_mode";
+        }
+        
+        // Initial setup
+        updateSettingsToggleUI();
+
+        // Listen for changes from the settings toggle
+        settingsThemeToggle.addEventListener("change", (e) => {
+            const isDark = e.target.checked;
+            if (isDark) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            updateSettingsToggleUI();
+            
+            // Sync topbar
+            if (themeToggleBtn) {
+                const iconEl = themeToggleBtn.querySelector(".material-symbols-outlined");
+                iconEl.textContent = isDark ? "light_mode" : "dark_mode";
+            }
+        });
+
+        // Listen for changes from topbar
+        window.addEventListener('themeChanged', updateSettingsToggleUI);
+    }
 });
