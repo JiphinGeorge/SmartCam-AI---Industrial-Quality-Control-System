@@ -111,16 +111,21 @@ class DatabaseService:
         machine_id = kwargs.get('machine_id', 'CAM-01')
         model_version = kwargs.get('model_version', 'v2.1')
         
-        cursor.execute('''
-            INSERT INTO predictions 
-            (inspection_id, timestamp, filename, prediction, confidence, status, inference_time_ms, image_path, camera_source, operator, location, shift, notes, batch_id, machine_id, model_version, gradcam_path)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        ''', (
-            inspection_id, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), filename, prediction, confidence, status, 
-            inference_time_ms, image_path, camera_source, operator, location, shift, notes, batch_id, machine_id, model_version, gradcam_path
-        ))
-        conn.commit()
-        conn.close()
+        try:
+            cursor.execute('''
+                INSERT INTO predictions 
+                (inspection_id, timestamp, filename, prediction, confidence, status, inference_time_ms, image_path, camera_source, operator, location, shift, notes, batch_id, machine_id, model_version, gradcam_path)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                inspection_id, datetime.now().strftime('%Y-%m-%d %H:%M:%S'), filename, prediction, confidence, status, 
+                inference_time_ms, image_path, camera_source, operator, location, shift, notes, batch_id, machine_id, model_version, gradcam_path
+            ))
+            conn.commit()
+        except Exception as e:
+            import logging
+            logging.error(f"Failed to log prediction to DB: {e}")
+        finally:
+            conn.close()
 
     @staticmethod
     def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC'):
