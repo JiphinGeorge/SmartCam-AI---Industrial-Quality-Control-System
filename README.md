@@ -131,6 +131,8 @@ graph TD
 ✔ Socket.IO Real-time Telemetry
 ✔ Industrial Dashboard (Google Stitch UI Aesthetics)
 ✔ Enterprise MVC Architecture
+✔ Global Telemetry Search Engine
+✔ Advanced History Filtering & CSV Export
 
 ---
 
@@ -150,6 +152,9 @@ graph TD
 | Dataset Repository UI | ✅ |
 | Model Management UI | ✅ |
 | Knowledge Center | ✅ |
+| Global Telemetry Search | ✅ |
+| Advanced History Filtering | ✅ |
+| History CSV Export | ✅ |
 
 ---
 

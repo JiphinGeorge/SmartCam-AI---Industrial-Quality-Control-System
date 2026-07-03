@@ -6,13 +6,42 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLimit = 10;
     let currentStatus = 'All';
     let currentSort = 'timestamp DESC';
+    let currentTimeRange = 'all';
     
     const urlParams = new URLSearchParams(window.location.search);
     let currentSearchQuery = urlParams.get('q') || '';
 
+    // UI elements
+    const filterStatus = document.getElementById('filter-status');
+    const filterTime = document.getElementById('filter-time');
+    const btnExport = document.getElementById('btn-export');
+
+    if (filterStatus) {
+        filterStatus.addEventListener('change', (e) => {
+            currentStatus = e.target.value;
+            currentPage = 1;
+            loadHistory();
+        });
+    }
+
+    if (filterTime) {
+        filterTime.addEventListener('change', (e) => {
+            currentTimeRange = e.target.value;
+            currentPage = 1;
+            loadHistory();
+        });
+    }
+
+    if (btnExport) {
+        btnExport.addEventListener('click', () => {
+            const exportUrl = `/api/history/export?status=${currentStatus}&time_range=${currentTimeRange}&q=${encodeURIComponent(currentSearchQuery)}`;
+            window.location.href = exportUrl;
+        });
+    }
+
     async function loadHistory() {
         try {
-            const res = await fetch(`/api/history?page=${currentPage}&limit=${currentLimit}&status=${currentStatus}&sort_by=${currentSort}&q=${encodeURIComponent(currentSearchQuery)}`);
+            const res = await fetch(`/api/history?page=${currentPage}&limit=${currentLimit}&status=${currentStatus}&sort_by=${currentSort}&time_range=${currentTimeRange}&q=${encodeURIComponent(currentSearchQuery)}`);
             const data = await res.json();
             
             renderRows(data.data);
@@ -84,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="material-symbols-outlined text-outline-variant text-[20px]" title="Stored">cloud_done</span>
                 </div>
                 <div class="col-span-2 flex items-center justify-end gap-2 opacity-50 hover:opacity-100 transition-opacity">
-                    <button class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
+                    <button onclick="window.deletePrediction('${row.inspection_id}')" class="p-1.5 rounded text-on-surface-variant hover:text-error hover:bg-error-container/20 transition-colors" title="Delete">
                         <span class="material-symbols-outlined text-[18px]">delete</span>
                     </button>
                 </div>
@@ -132,6 +161,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.changePage = function(newPage) {
         currentPage = newPage;
         loadHistory();
+    };
+
+    window.deletePrediction = async function(inspectionId) {
+        if (!confirm("Are you sure you want to delete this prediction?")) return;
+        try {
+            const res = await fetch(`/api/history/${inspectionId}`, { method: 'DELETE' });
+            if (res.ok) {
+                loadHistory();
+            } else {
+                alert("Failed to delete record.");
+            }
+        } catch (err) {
+            console.error("Error deleting prediction", err);
+            alert("Error deleting record.");
+        }
     };
 
     // Initial load

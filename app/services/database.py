@@ -128,7 +128,7 @@ class DatabaseService:
             conn.close()
 
     @staticmethod
-    def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC', search_query=None):
+    def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC', search_query=None, time_range=None):
         """Fetches paginated and filtered inspection history."""
         conn = DatabaseService.get_connection()
         cursor = conn.cursor()
@@ -139,6 +139,14 @@ class DatabaseService:
         if status:
             query += " AND status = ?"
             params.append(status)
+            
+        if time_range:
+            if time_range == '24h':
+                query += " AND timestamp >= datetime('now', '-1 day')"
+            elif time_range == '7d':
+                query += " AND timestamp >= datetime('now', '-7 days')"
+            elif time_range == '30d':
+                query += " AND timestamp >= datetime('now', '-30 days')"
             
         if search_query:
             query += " AND (inspection_id LIKE ? OR prediction LIKE ? OR status LIKE ? OR batch_id LIKE ? OR notes LIKE ? OR operator LIKE ? OR machine_id LIKE ?)"
@@ -159,6 +167,14 @@ class DatabaseService:
             count_query += " AND status = ?"
             count_params.append(status)
             
+        if time_range:
+            if time_range == '24h':
+                count_query += " AND timestamp >= datetime('now', '-1 day')"
+            elif time_range == '7d':
+                count_query += " AND timestamp >= datetime('now', '-7 days')"
+            elif time_range == '30d':
+                count_query += " AND timestamp >= datetime('now', '-30 days')"
+            
         if search_query:
             count_query += " AND (inspection_id LIKE ? OR prediction LIKE ? OR status LIKE ? OR batch_id LIKE ? OR notes LIKE ? OR operator LIKE ? OR machine_id LIKE ?)"
             like_query = f"%{search_query}%"
@@ -175,4 +191,15 @@ class DatabaseService:
             'page': page,
             'pages': max(1, (total + limit - 1) // limit)
         }
+        
+    @staticmethod
+    def delete_prediction(inspection_id):
+        """Deletes a prediction record by inspection_id."""
+        conn = DatabaseService.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM predictions WHERE inspection_id = ?", (inspection_id,))
+        success = cursor.rowcount > 0
+        conn.commit()
+        conn.close()
+        return success
 

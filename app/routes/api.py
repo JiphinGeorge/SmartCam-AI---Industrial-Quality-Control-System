@@ -185,8 +185,9 @@ def get_history():
         status = None
     sort_by = request.args.get('sort_by', 'timestamp DESC')
     search_query = request.args.get('q', None)
+    time_range = request.args.get('time_range', None)
     
-    data = DatabaseService.get_history(page, limit, status, sort_by, search_query)
+    data = DatabaseService.get_history(page, limit, status, sort_by, search_query, time_range)
     
     # Map image paths to web URLs
     for row in data['data']:
@@ -201,6 +202,35 @@ def get_history():
                 row['image_url'] = '/static/images/placeholder.jpg'
                 
     return jsonify(data)
+
+@api_bp.route('/api/history/export', methods=['GET'])
+def export_history():
+    status = request.args.get('status')
+    if status == 'All':
+        status = None
+    time_range = request.args.get('time_range', None)
+    search_query = request.args.get('q', None)
+    
+    data = DatabaseService.get_history(page=1, limit=10000, status=status, sort_by='timestamp DESC', search_query=search_query, time_range=time_range)
+    
+    import io
+    import csv
+    si = io.StringIO()
+    cw = csv.writer(si)
+    cw.writerow(['Timestamp', 'Inspection ID', 'Prediction', 'Confidence', 'Status', 'Machine ID', 'Operator', 'Inference Time (ms)'])
+    for row in data['data']:
+        cw.writerow([row.get('timestamp'), row.get('inspection_id'), row.get('prediction'), row.get('confidence'), row.get('status'), row.get('machine_id'), row.get('operator'), row.get('inference_time_ms')])
+    
+    output = si.getvalue()
+    return Response(output, mimetype='text/csv', headers={"Content-Disposition": "attachment;filename=history_export.csv"})
+
+@api_bp.route('/api/history/<inspection_id>', methods=['DELETE'])
+def delete_history(inspection_id):
+    success = DatabaseService.delete_prediction(inspection_id)
+    if success:
+        return jsonify({"message": "Deleted successfully"})
+    else:
+        return jsonify({"error": "Record not found"}), 404
 
 @api_bp.route('/api/analytics', methods=['GET'])
 def get_analytics():
