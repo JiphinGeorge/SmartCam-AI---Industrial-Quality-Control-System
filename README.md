@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/static/images/avatar.jpg" alt="SmartCam AI Logo" width="200"/>
+  <img src="./app/static/images/avatar.png" alt="SmartCam AI Logo" width="200"/>
   <h1>SmartCam AI</h1>
   <p><strong>Industrial Quality Control System Powered by Deep Learning</strong></p>
 
@@ -53,21 +53,21 @@ Whether you are identifying defective machinery parts or sorting agricultural pr
 
 | Executive Dashboard | Live Monitoring |
 |---------------------|-----------------|
-| ![Executive Dashboard](docs/screenshots/02-dashboard.png) | ![Live Monitoring](docs/screenshots/03-live-monitoring.png) |
+| <img src="./docs/screenshots/02-dashboard.png" alt="Executive Dashboard"> | <img src="./docs/screenshots/03-live-monitoring.png" alt="Live Monitoring"> |
 
 | Grad-CAM Inspection | Dark Mode Dashboard |
 |---------------------|---------------------|
-| ![Grad-CAM Inspection](docs/screenshots/04-inspection.png) | ![Dark Mode Dashboard](docs/screenshots/14-dark-mode.png) |
+| <img src="./docs/screenshots/04-inspection.png" alt="Grad-CAM Inspection"> | <img src="./docs/screenshots/14-dark-mode.png" alt="Dark Mode Dashboard"> |
 
 <details>
 <summary>Click to view more screenshots...</summary>
 
-- [Login Page](docs/screenshots/01-login.png)
-- [Mobile Login](docs/screenshots/16-mobile-view.png)
-- [Analytics Charts](docs/screenshots/07-analytics.png)
-- [Inspection History](docs/screenshots/08-history.png)
-- [Dataset Repository](docs/screenshots/10-dataset.png)
-- [Model Management](docs/screenshots/11-model-manager.png)
+- [Login Page](./docs/screenshots/01-login.png)
+- [Mobile Login](./docs/screenshots/16-mobile-view.png)
+- [Analytics Charts](./docs/screenshots/07-analytics.png)
+- [Inspection History](./docs/screenshots/08-history.png)
+- [Dataset Repository](./docs/screenshots/10-dataset.png)
+- [Model Management](./docs/screenshots/11-model-manager.png)
 </details>
 
 ---
