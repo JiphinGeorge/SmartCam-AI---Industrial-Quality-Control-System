@@ -23,8 +23,12 @@ def create_app():
             'https://cdn.tailwindcss.com',
             'https://fonts.googleapis.com',
             'https://fonts.gstatic.com',
-            'https://cdn.jsdelivr.net'
-        ]
+            'https://cdn.jsdelivr.net',
+            'https://cdnjs.cloudflare.com'
+        ],
+        'img-src': ['\'self\'', 'data:', 'blob:', 'https:'],
+        'script-src': ['\'self\'', '\'unsafe-inline\'', '\'unsafe-eval\'', 'https:'],
+        'style-src': ['\'self\'', '\'unsafe-inline\'', 'https:']
     }
     Talisman(app, content_security_policy=csp, force_https=False)
     
@@ -80,6 +84,12 @@ def create_app():
     app.register_blueprint(live_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(api_bp)
+    @app.route('/inspection_history/<path:filename>')
+    def serve_inspection_history(filename):
+        from flask import send_from_directory
+        from app.config import Config
+        return send_from_directory(Config.INSPECTION_HISTORY_DIR, filename)
+
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404

@@ -1,3 +1,7 @@
+let weeklyChartInstance = null;
+let qualityChartInstance = null;
+let hourlyChartInstance = null;
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
         const res = await fetch('/api/analytics');
@@ -42,7 +46,11 @@ function renderWeeklyTrend(weeklyData) {
     // Sort chronologically
     weeklyData.sort((a, b) => new Date(a.date) - new Date(b.date));
     
-    new Chart(ctx, {
+    if (weeklyChartInstance) {
+        weeklyChartInstance.destroy();
+    }
+    
+    weeklyChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: weeklyData.map(d => d.date),
@@ -78,7 +86,11 @@ function renderQualityPie(qualityData) {
     const fail = qualityData['FAIL'] || qualityData['Rotten'] || 0;
     const review = qualityData['REVIEW'] || qualityData['Unknown'] || 0;
     
-    new Chart(ctx, {
+    if (qualityChartInstance) {
+        qualityChartInstance.destroy();
+    }
+    
+    qualityChartInstance = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: ['Pass', 'Fail', 'Review'],
@@ -107,7 +119,11 @@ function renderHourlyVolume(hourlyData) {
     const labels = Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0'));
     const data = labels.map(hr => hourlyData[hr] || 0);
     
-    new Chart(ctx, {
+    if (hourlyChartInstance) {
+        hourlyChartInstance.destroy();
+    }
+    
+    hourlyChartInstance = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: labels,
