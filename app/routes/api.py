@@ -198,3 +198,10 @@ def get_history():
                 row['image_url'] = '/static/images/placeholder.jpg'
                 
     return jsonify(data)
+
+@api_bp.route('/analytics', methods=['GET'])
+def get_analytics():
+    from app.services.analytics import AnalyticsService
+    data = AnalyticsService.get_timeseries_data()
+    return jsonify(data)
+
