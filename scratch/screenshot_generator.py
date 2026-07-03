@@ -2,7 +2,7 @@ import asyncio
 import os
 from playwright.async_api import async_playwright
 
-BASE_URL = "http://localhost:5000"
+BASE_URL = "http://127.0.0.1:5000"
 SCREENSHOT_DIR = "app/static/images/screenshots"
 
 os.makedirs(SCREENSHOT_DIR, exist_ok=True)
