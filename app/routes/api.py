@@ -285,3 +285,14 @@ def get_model_stats():
 
 
 
+
+@api_bp.route('/settings', methods=['GET', 'POST'])
+def handle_settings():
+    from app.services.settings import SettingsService
+    if request.method == 'GET':
+        return jsonify(SettingsService.get_all())
+    elif request.method == 'POST':
+        data = request.json
+        if data:
+            SettingsService.update(data)
+        return jsonify({'status': 'success'})
