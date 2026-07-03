@@ -64,6 +64,12 @@ class DatabaseService:
             )
         ''')
         
+        # Create indexes for performance
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_predictions_timestamp ON predictions(timestamp)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_predictions_status ON predictions(status)")
+        cursor.execute("CREATE INDEX IF NOT EXISTS idx_predictions_prediction ON predictions(prediction)")
+
+        
         # Insert default users if table is empty
         cursor.execute("SELECT COUNT(*) FROM users")
         if cursor.fetchone()[0] == 0:

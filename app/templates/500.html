@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% set active_page = 'error' %}
-{% block title %}500 Server Error - SmartCam AI{% endblock %}
+{% block title %}500 Internal Error - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen flex items-center justify-center font-body-md{% endblock %}
 
 {% block content %}
-<div class="flex-1 ml-[280px] flex flex-col h-screen relative bg-surface">
-    {% include 'components/topbar.html' %}
-    <main class="flex-1 p-gutter overflow-y-auto flex flex-col items-center justify-center gap-gutter">
-        <h1 class="text-3xl text-primary font-bold">500 Server Error</h1>
-        <p class="text-on-surface-variant">This page is currently under construction.</p>
-    </main>
+<div class="text-center p-xl">
+    <div class="inline-flex items-center justify-center w-24 h-24 rounded-full bg-error/10 border border-error/20 mb-lg">
+        <span class="material-symbols-outlined text-[48px] text-error">warning</span>
+    </div>
+    <h1 class="font-display-lg text-[64px] font-bold text-on-surface tracking-tighter mb-xs">500</h1>
+    <h2 class="font-headline-md text-[24px] text-on-surface-variant mb-md">System Malfunction</h2>
+    <p class="font-body-md text-outline-variant max-w-md mx-auto mb-lg">The server encountered an unexpected condition that prevented it from fulfilling the request. The diagnostic log has been updated.</p>
+    
+    <a href="{{ url_for('dashboard_bp.index') }}" class="inline-flex items-center gap-2 bg-primary text-on-primary font-label-md px-lg py-sm rounded-lg hover:bg-blue-600 transition-colors glow-primary">
+        <span class="material-symbols-outlined">restart_alt</span> Reboot Session
+    </a>
 </div>
 {% endblock %}

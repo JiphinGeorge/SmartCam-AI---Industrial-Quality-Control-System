@@ -14,6 +14,30 @@ def create_app():
     # Initialize plugins
     socketio.init_app(app)
     
+    from flask_talisman import Talisman
+    # Disable HTTPS redirect in development/local, set strict CSP
+    csp = {
+        'default-src': [
+            '\'self\'',
+            '\'unsafe-inline\'',
+            'https://cdn.tailwindcss.com',
+            'https://fonts.googleapis.com',
+            'https://fonts.gstatic.com',
+            'https://cdn.jsdelivr.net'
+        ]
+    }
+    Talisman(app, content_security_policy=csp, force_https=False)
+    
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+    limiter = Limiter(
+        get_remote_address,
+        app=app,
+        default_limits=["200 per day", "50 per hour"],
+        storage_uri="memory://"
+    )
+    # Apply to auth blueprint specifically
+    
     from flask_login import LoginManager
     login_manager = LoginManager()
     login_manager.init_app(app)

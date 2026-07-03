@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify, Response, send_file
+from flask_login import login_required
 import os
 import time
 from datetime import datetime
@@ -296,3 +297,27 @@ def handle_settings():
         if data:
             SettingsService.update(data)
         return jsonify({'status': 'success'})
+
+@api_bp.route('/reports/download', methods=['GET'])
+@login_required
+def download_report():
+    from flask import Response
+    from app.services.report import ReportService
+    timeframe = request.args.get('timeframe', 'daily')
+    fmt = request.args.get('format', 'csv')
+    data = ReportService.get_data(timeframe)
+    
+    if fmt == 'csv':
+        csv_data = ReportService.generate_csv(data)
+        return Response(csv_data, mimetype='text/csv', headers={'Content-Disposition': f'attachment; filename=report_{timeframe}.csv'})
+    elif fmt == 'json':
+        json_data = ReportService.generate_json(data)
+        return Response(json_data, mimetype='application/json', headers={'Content-Disposition': f'attachment; filename=report_{timeframe}.json'})
+    elif fmt == 'excel':
+        excel_data = ReportService.generate_excel(data)
+        return Response(excel_data, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', headers={'Content-Disposition': f'attachment; filename=report_{timeframe}.xlsx'})
+    elif fmt == 'pdf':
+        pdf_data = ReportService.generate_pdf(data, timeframe)
+        return Response(pdf_data, mimetype='application/pdf', headers={'Content-Disposition': f'attachment; filename=report_{timeframe}.pdf'})
+    
+    return jsonify({'error': 'Invalid format'}), 400
