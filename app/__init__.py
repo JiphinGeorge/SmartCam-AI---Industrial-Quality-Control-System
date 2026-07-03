@@ -14,6 +14,18 @@ def create_app():
     # Initialize plugins
     socketio.init_app(app)
     
+    from flask_login import LoginManager
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'auth_bp.login'
+    login_manager.login_message = 'Please log in to access this page.'
+    login_manager.login_message_category = 'warning'
+    
+    @login_manager.user_loader
+    def load_user(user_id):
+        from app.models.user import User
+        return User.get(user_id)
+    
     # Initialize logger
     from app.services.logger import setup_logger
     setup_logger(Config.LOGS_DIR)

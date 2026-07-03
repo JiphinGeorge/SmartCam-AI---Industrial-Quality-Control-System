@@ -224,7 +224,9 @@
     </div>
 </div>
 
+{% if current_user.is_authenticated %}
 {% include 'components/sidebar.html' %}
+{% endif %}
 {% block content %}{% endblock %}
 {% block scripts %}{% endblock %}
 </body>

@@ -1,13 +1,105 @@
 {% extends 'base.html' %}
 {% set active_page = 'notifications' %}
 {% block title %}Notifications - SmartCam AI{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen flex font-body-md selection:bg-primary selection:text-on-primary{% endblock %}
 
 {% block content %}
-<div class="flex-1 ml-[280px] flex flex-col h-screen relative bg-surface">
+<div class="flex-1 ml-0 md:ml-[280px] flex flex-col h-screen overflow-hidden">
     {% include 'components/topbar.html' %}
-    <main class="flex-1 p-gutter overflow-y-auto flex flex-col items-center justify-center gap-gutter">
-        <h1 class="text-3xl text-primary font-bold">Notifications</h1>
-        <p class="text-on-surface-variant">This page is currently under construction.</p>
+    
+    <main class="flex-1 overflow-y-auto p-md md:p-lg space-y-md">
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-md mb-lg">
+            <div>
+                <h2 class="font-headline-lg text-[28px] font-bold text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[32px]">notifications_active</span>
+                    System Notifications
+                </h2>
+                <p class="font-body-md text-on-surface-variant mt-1">Review alerts, warnings, and system events.</p>
+            </div>
+            
+            <div class="flex items-center gap-sm">
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant">search</span>
+                    <input type="text" id="notif-search" placeholder="Search events..." class="bg-surface-container border border-white/10 rounded-lg py-sm pl-[40px] pr-sm font-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all">
+                </div>
+                <button class="bg-surface-container-highest border border-white/10 text-on-surface px-md py-sm rounded-lg hover:bg-surface-bright transition-colors flex items-center gap-2 font-label-md">
+                    <span class="material-symbols-outlined text-[18px]">done_all</span> Mark All Read
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="flex items-center gap-2 mb-md border-b border-white/5 pb-md">
+            <button class="px-md py-1 rounded-full bg-surface-variant text-on-surface font-label-sm uppercase tracking-wider hover:bg-primary/20 transition-colors border border-transparent">All</button>
+            <button class="px-md py-1 rounded-full bg-surface-container-highest text-primary font-label-sm uppercase tracking-wider hover:bg-primary/20 transition-colors border border-white/5">Info</button>
+            <button class="px-md py-1 rounded-full bg-surface-container-highest text-yellow-400 font-label-sm uppercase tracking-wider hover:bg-yellow-400/20 transition-colors border border-white/5">Warning</button>
+            <button class="px-md py-1 rounded-full bg-surface-container-highest text-error font-label-sm uppercase tracking-wider hover:bg-error/20 transition-colors border border-white/5">Critical</button>
+        </div>
+
+        <!-- Notification List -->
+        <div class="space-y-sm" id="notifications-list">
+            
+            <!-- Critical Item -->
+            <div class="glass-panel p-md rounded-xl flex gap-md items-start border-l-4 border-l-error group hover:bg-surface-variant/30 transition-colors cursor-pointer relative overflow-hidden">
+                <div class="w-10 h-10 rounded-full bg-error/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-error">warning</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-headline-md text-[16px] text-on-surface font-semibold">Consecutive Rotten Anomalies</h4>
+                        <span class="font-mono-data text-[12px] text-outline-variant">2 mins ago</span>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant mt-1">Line 1 has rejected 5 items consecutively. Confidence > 98%.</p>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute right-md top-1/2 -translate-y-1/2">
+                    <button class="p-2 rounded-full hover:bg-white/10 text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">more_vert</span></button>
+                </div>
+            </div>
+
+            <!-- Warning Item -->
+            <div class="glass-panel p-md rounded-xl flex gap-md items-start border-l-4 border-l-yellow-400 group hover:bg-surface-variant/30 transition-colors cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-yellow-400/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-yellow-400">help_center</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-headline-md text-[16px] text-on-surface font-semibold">Review Required</h4>
+                        <span class="font-mono-data text-[12px] text-outline-variant">15 mins ago</span>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant mt-1">Prediction confidence dropped below 85% for Batch #A12.</p>
+                </div>
+            </div>
+
+            <!-- Info Item -->
+            <div class="glass-panel p-md rounded-xl flex gap-md items-start border-l-4 border-l-primary group hover:bg-surface-variant/30 transition-colors cursor-pointer opacity-70">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-primary">cloud_download</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-headline-md text-[16px] text-on-surface font-semibold">Report Generated</h4>
+                        <span class="font-mono-data text-[12px] text-outline-variant">1 hour ago</span>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant mt-1">Weekly Rollup PDF has been generated and is ready for download.</p>
+                </div>
+            </div>
+
+            <!-- Info Item -->
+            <div class="glass-panel p-md rounded-xl flex gap-md items-start border-l-4 border-l-primary group hover:bg-surface-variant/30 transition-colors cursor-pointer opacity-70">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <span class="material-symbols-outlined text-primary">login</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-headline-md text-[16px] text-on-surface font-semibold">Administrator Login</h4>
+                        <span class="font-mono-data text-[12px] text-outline-variant">3 hours ago</span>
+                    </div>
+                    <p class="font-body-sm text-on-surface-variant mt-1">User 'admin' authenticated successfully.</p>
+                </div>
+            </div>
+
+        </div>
     </main>
 </div>
 {% endblock %}
