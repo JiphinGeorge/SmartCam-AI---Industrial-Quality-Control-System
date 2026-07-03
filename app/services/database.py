@@ -54,6 +54,27 @@ class DatabaseService:
         cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('alarm_volume', '85')")
         cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('alert_tone', 'Klaxon (Industrial)')")
         
+        # Create users table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL,
+                role TEXT NOT NULL
+            )
+        ''')
+        
+        # Insert default users if table is empty
+        cursor.execute("SELECT COUNT(*) FROM users")
+        if cursor.fetchone()[0] == 0:
+            from werkzeug.security import generate_password_hash
+            users = [
+                ('admin', generate_password_hash('admin123'), 'Administrator'),
+                ('manager', generate_password_hash('manager123'), 'Manager'),
+                ('operator', generate_password_hash('operator123'), 'Operator')
+            ]
+            cursor.executemany("INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)", users)
+        
         # Apply schema updates to existing table if needed (simple approach for SQLite)
         try:
             cursor.execute("ALTER TABLE predictions ADD COLUMN operator TEXT DEFAULT 'System'")
