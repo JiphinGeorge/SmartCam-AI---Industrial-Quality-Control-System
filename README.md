@@ -1,14 +1,22 @@
 <div align="center">
-  <img src="./app/static/images/avatar.png" alt="QualiVision AI Logo" width="200"/>
+  <img src="./app/static/images/avatar.png" alt="QualiVision AI Logo" width="120"/>
   <h1>QualiVision AI</h1>
-  <p><strong>Industrial Quality Control System Powered by Deep Learning</strong></p>
+  <p><strong>Enterprise Deep Learning–Driven Industrial Quality Inspection & Visual Analytics Platform</strong></p>
 
   <p>
     <a href="https://github.com/your-username/smartcam-ai"><img src="https://img.shields.io/badge/Status-Production%20Ready-success?style=for-the-badge" alt="Status"></a>
     <a href="https://python.org"><img src="https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python" alt="Python"></a>
     <a href="https://flask.palletsprojects.com/"><img src="https://img.shields.io/badge/Flask-2.x-black?style=for-the-badge&logo=flask" alt="Flask"></a>
     <a href="https://tensorflow.org"><img src="https://img.shields.io/badge/TensorFlow-2.x-orange?style=for-the-badge&logo=tensorflow" alt="TensorFlow"></a>
+    <a href="https://opencv.org/"><img src="https://img.shields.io/badge/OpenCV-4.x-green?style=for-the-badge&logo=opencv" alt="OpenCV"></a>
+    <a href="https://www.sqlite.org/"><img src="https://img.shields.io/badge/SQLite-3-lightgray?style=for-the-badge&logo=sqlite" alt="SQLite"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License"></a>
+  </p>
+
+  <p>
+    <img src="https://img.shields.io/github/stars/your-username/smartcam-ai?style=social" alt="GitHub Stars">
+    <img src="https://img.shields.io/github/last-commit/your-username/smartcam-ai" alt="Last Commit">
+    <img src="https://img.shields.io/github/v/release/your-username/smartcam-ai" alt="Release">
   </p>
 </div>
 
@@ -20,32 +28,229 @@ QualiVision AI is an enterprise-grade, real-time computer vision system tailored
 
 Whether you are identifying defective machinery parts or sorting agricultural produce, QualiVision AI provides a robust, scalable, and fully audited interface to monitor production quality.
 
+### 🌟 Project Showcase
+This project is built to demonstrate production-level expertise in:
+- Deep Learning & Computer Vision
+- Backend Development (Flask, REST APIs)
+- Frontend Development (TailwindCSS, Vanilla JS)
+- WebSockets for Real-Time Telemetry
+- SQL Database Architecture
+- Industrial Automation Workflows
+- Software Architecture & Documentation
+
 ---
 
 ## 📑 Table of Contents
-- [✨ Features](#-features)
-- [📸 Screenshots](#-screenshots)
-- [🏗️ System Architecture](#️-system-architecture)
-- [🗂️ Folder Structure](#️-folder-structure)
-- [💻 Technology Stack](#-technology-stack)
+- [🚀 Live Demo](#-live-demo)
+- [🚨 Problem Statement](#-problem-statement)
+- [⚖️ Why QualiVision AI?](#️-why-qualivision-ai)
+- [🏗️ Workflow & Architecture](#️-workflow--architecture)
+- [✨ Project Highlights](#-project-highlights)
+- [🎯 Feature Matrix](#-feature-matrix)
+- [🔍 Inspection Modes](#-inspection-modes)
 - [🧠 AI Pipeline & Prediction](#-ai-pipeline--prediction)
-- [🚀 Installation & Deployment](#-installation--deployment)
-- [📊 Performance & Benchmarks](#-performance--benchmarks)
-- [🔒 Security & Authentication](#-security--authentication)
+- [📂 Dataset](#-dataset)
+- [🗂️ Folder Tree](#️-folder-tree)
+- [🔌 API Endpoints](#-api-endpoints)
+- [📊 Benchmarks](#-benchmarks)
+- [🗺️ Future Roadmap](#️-future-roadmap)
+- [📸 Screenshots](#-screenshots)
+- [💻 Installation](#-installation)
 - [📚 Supplementary Documentation](#-supplementary-documentation)
 
 ---
 
-## ✨ Features
+## 🚀 Live Demo
 
-- **Real-Time Live Monitoring**: WebSocket (Socket.IO) powered MJPEG camera streaming and live telemetry updates.
-- **Deep Learning Inference**: TensorFlow 2.x backend providing sub-second predictions.
-- **Grad-CAM Explanations**: Visual heatmaps explaining exactly *why* the AI made its decision.
-- **Out-of-Distribution Handling**: Gracefully catches "Unknown" classes (e.g. random objects on the belt) and flags them for manual review based on a strict 65% confidence threshold.
-- **Executive Dashboard**: Beautiful Chart.js analytics for volume, pass rates, and hourly throughput.
-- **Role-Based Access Control**: Flask-Login secured endpoints for `Admin` and `Operator` roles.
-- **Batch Processing & History**: SQLite backed persistent history with pagination.
-- **Automated Reporting**: Export predictions to CSV/JSON for ERP integration.
+- **Local Deployment**: Fully available for local deployment using the provided installation instructions.
+- **Production**: Production deployment available via Docker Compose.
+- *Note: A live interactive `Demo.gif` demonstrating the Login, Dashboard, Upload, Inference, Grad-CAM, and Reporting flows will be added here.*
+
+---
+
+## 🚨 Problem Statement
+
+Manual quality inspection on modern industrial manufacturing and sorting lines is often:
+- **Slow**: Cannot keep up with the physical throughput of conveyor belts.
+- **Inconsistent**: Prone to human error, visual fatigue, and subjective judgments.
+- **Labor Intensive**: Requires dedicated, round-the-clock staffing for monotonous tasks.
+- **Expensive**: High operational costs and overhead over time.
+
+**QualiVision AI** automates this process using advanced computer vision and deep learning, ensuring rapid, consistent, transparent, and cost-effective quality assurance.
+
+---
+
+## ⚖️ Why QualiVision AI?
+
+| Traditional QC | QualiVision AI |
+|----------------|----------------|
+| ❌ Human visual fatigue | ✅ Real-time 24/7 constant analysis |
+| ❌ Inconsistent decisions | ✅ Explainable AI (Grad-CAM visuals) |
+| ❌ Slow inspection speed | ✅ Sub-second inference & telemetry |
+| ❌ Difficult manual reporting | ✅ Automated PDF/CSV Analytics |
+
+---
+
+## 🏗️ Workflow & Architecture
+
+### 🔄 Data Workflow
+`Factory Camera` ➔ `AI Inspection` ➔ **PASS** (Send to Production) OR **FAIL** (Operator Alert ➔ Archive ➔ Report)
+
+### 🧠 Processing Workflow
+`Tomato` ➔ `Camera` ➔ `OpenCV` ➔ `Preprocessing` ➔ `TensorFlow` ➔ `Prediction` ➔ `Grad-CAM` ➔ `SQLite` ➔ `Dashboard` ➔ `Reports`
+
+### 📐 System Architecture
+
+QualiVision AI utilizes a robust Model-View-Controller (MVC) architecture powered by Flask Blueprints and Socket.IO.
+
+```mermaid
+graph TD
+    User((Industrial Operator)) -->|HTTPS| WebBrowser[Dashboard UI]
+    WebBrowser -->|WSS| WebSocket[Flask-SocketIO]
+    WebBrowser -->|HTTPS| FlaskAPI[Flask Routes]
+    
+    FlaskAPI --> Security[Flask-Login / Limiter]
+    Security --> TFEngine[TensorFlow Inference]
+    WebSocket --> OpenCV[Camera Service]
+    
+    TFEngine --> GradCAM[Heatmap Generator]
+    TFEngine --> DB[(SQLite /inspection_history)]
+```
+> *For more detailed diagrams, see [PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md).*
+
+---
+
+## ✨ Project Highlights
+
+✔ 99.82% Validation Accuracy
+✔ Grad-CAM Explainability Heatmaps
+✔ 7900+ Image Dataset
+✔ Live Webcam Integration
+✔ Batch Folder Inspection
+✔ SQLite Persistent Event Logging
+✔ Socket.IO Real-time Telemetry
+✔ Industrial Dashboard (Google Stitch UI Aesthetics)
+✔ Enterprise MVC Architecture
+
+---
+
+## 🎯 Feature Matrix
+
+| Feature | Status |
+|---------|--------|
+| Secure Login & RBAC | ✅ |
+| Executive Dashboard | ✅ |
+| Live Webcam Streaming | ✅ |
+| Single Image Upload | ✅ |
+| Batch Folder Inspection | ✅ |
+| Grad-CAM Visualizations | ✅ |
+| Performance Analytics | ✅ |
+| Automated PDF/CSV Reports | ✅ |
+| Inspection History Log | ✅ |
+| Dataset Repository UI | ✅ |
+| Model Management UI | ✅ |
+| Knowledge Center | ✅ |
+
+---
+
+## 🔍 Inspection Modes
+
+QualiVision AI supports multiple flexible inspection modes tailored for different environments:
+
+1. **Live Webcam**: Direct MJPEG streaming and real-time inference on live factory feeds.
+2. **Image Upload**: Manual upload via the Web UI for one-off quality checks and detailed Grad-CAM analysis.
+3. **Batch Folder**: Process hundreds of images simultaneously from an offline directory.
+4. **API Upload**: REST endpoints (`/api/predict`) for headless integration with existing factory PLCs and IoT hardware.
+
+---
+
+## 🧠 AI Pipeline & Prediction
+
+The core of QualiVision AI is built on a highly optimized deep learning pipeline:
+
+- **Backbone**: EfficientNetV2B0
+- **Approach**: Transfer Learning
+- **Input Size**: 224x224 RGB
+- **Optimizer**: Adam
+- **Loss Function**: Binary Crossentropy
+- **Activation**: Softmax
+- **Output Classes**: `Fresh`, `Rotten`, `Unknown` (OOD handling)
+
+**Out-of-Distribution Handling**: If the highest probability is below a strict **65%**, the system gracefully rejects the prediction and flags it for `REVIEW REQUIRED`. This prevents dangerous misclassification of foreign objects on the belt.
+
+---
+
+## 📂 Dataset
+
+The neural network is trained on a rigorously prepared and audited agricultural dataset:
+- **Total Images**: 7900+
+- **Classes**: Fresh, Rotten
+- **Sources**: Roboflow, Kaggle
+- **Processing**: Heavily augmented (rotations, horizontal/vertical flips, contrast adjustments) and perfectly balanced to prevent class bias.
+
+---
+
+## 🗂️ Folder Tree
+
+```text
+📦 qualivision-ai
+ ┣ 📂 app/
+ ┃ ┣ 📂 routes/         # Flask Blueprints
+ ┃ ┣ 📂 services/       # Core Business Logic (Inference, Camera)
+ ┃ ┣ 📂 templates/      # Jinja2 HTML Templates
+ ┃ ┗ 📂 static/         # CSS (Tailwind), JS, and Images
+ ┣ 📂 dataset/          # Training & Validation images
+ ┣ 📂 models/           # .keras saved models
+ ┣ 📂 reports/          # Generated PDF/CSV analytics
+ ┣ 📂 training/         # ML Pipeline (Train, Evaluate, Predict)
+ ┣ 📂 inspection_history/ # Processed Grad-CAM image cache
+ ┗ 📂 docs/             # API, DB, and Architecture Docs
+```
+
+---
+
+## 🔌 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/predict` | `POST` | Execute inference on uploaded image |
+| `/api/stats` | `GET` | Retrieve real-time dashboard statistics |
+| `/api/report` | `GET` | Download generated PDF/CSV reports |
+
+> *For complete API documentation, see [API_REFERENCE.md](docs/API_REFERENCE.md).*
+
+---
+
+## 📊 Benchmarks
+
+During rigorous QA and stress testing with 20 concurrent worker threads:
+
+| Metric | Value |
+|--------|-------|
+| **Validation Accuracy** | 99.82% |
+| **Validation Loss** | 0.0076 |
+| **Avg Inference Time** | ~3.6 s (Under peak concurrency load) |
+| **Peak RAM Usage** | 273.52 MB (No memory leaks detected) |
+| **Hardware Tested** | NVIDIA GeForce RTX 3050 Laptop GPU / 16 GB RAM |
+
+> [!CAUTION]
+> **TensorFlow High Concurrency Limitation**: Load tests with 20+ concurrent workers trigger an `OOM (Out Of Memory)` crash in TensorFlow due to the 1.6GB VRAM limit on the RTX 3050. To deploy in a heavy industrial setting, you should introduce an inference request queue (e.g. Celery/Redis).
+
+---
+
+## 🗺️ Future Roadmap
+
+- [x] Flask Backend Integration
+- [x] AI Model Training & Inference
+- [x] PDF/CSV Reports Generation
+- [x] Real-time Telemetry Dashboard
+- [ ] Multi-camera Support
+- [ ] Cloud Native Deployment
+- [ ] Mobile Companion App
+- [ ] Docker Swarm Integration
+- [ ] Kubernetes Orchestration
+- [ ] MQTT Protocol Integration
+- [ ] PLC Hardware Integration
 
 ---
 
@@ -72,71 +277,7 @@ Whether you are identifying defective machinery parts or sorting agricultural pr
 
 ---
 
-## 🏗️ System Architecture
-
-QualiVision AI utilizes a robust Model-View-Controller (MVC) architecture powered by Flask Blueprints and Socket.IO.
-
-```mermaid
-graph TD
-    User((Industrial Operator)) -->|HTTPS| WebBrowser[Dashboard UI]
-    WebBrowser -->|WSS| WebSocket[Flask-SocketIO]
-    WebBrowser -->|HTTPS| FlaskAPI[Flask Routes]
-    
-    FlaskAPI --> Security[Flask-Login / Limiter]
-    Security --> TFEngine[TensorFlow Inference]
-    WebSocket --> OpenCV[Camera Service]
-    
-    TFEngine --> GradCAM[Heatmap Generator]
-    TFEngine --> DB[(SQLite /inspection_history)]
-```
-> *For more detailed diagrams including Authentication Flows and DB Schemas, see [PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md).*
-
----
-
-## 🗂️ Folder Structure
-
-```text
-📦 smartcam-ai
- ┣ 📂 app
- ┃ ┣ 📂 routes         # Flask Blueprints (api.py, auth.py, dashboard.py)
- ┃ ┣ 📂 services       # Core Business Logic (predictor.py, camera.py)
- ┃ ┣ 📂 static         # CSS (Tailwind), JS, and Images
- ┃ ┗ 📂 templates      # Jinja2 HTML Templates
- ┣ 📂 database         # smartcam.db SQLite store
- ┣ 📂 dataset          # Training images
- ┣ 📂 inspection_history # Processed Grad-CAM images
- ┣ 📂 logs             # App and Error Logs
- ┣ 📂 models           # .keras saved models
- ┣ 📜 app.py           # Main WSGI Entry Point
- ┗ 📜 requirements.txt # Python Dependencies
-```
-
----
-
-## 💻 Technology Stack
-
-- **Backend**: Python 3.10+, Flask, Flask-SocketIO, Werkzeug
-- **Frontend**: HTML5, Vanilla JavaScript, Chart.js, TailwindCSS (via CDN)
-- **Database**: SQLite3
-- **AI / Vision**: TensorFlow 2.x, Keras, OpenCV (cv2)
-- **Security**: Flask-Login, Flask-Limiter, Flask-Talisman (CSP)
-
----
-
-## 🧠 AI Pipeline & Prediction
-
-QualiVision AI utilizes Transfer Learning on an **EfficientNetV2B0** backbone. 
-When a frame is captured from the camera or uploaded manually:
-1. **Preprocessing**: The image is resized to `224x224` and normalized.
-2. **Inference**: The model returns a Softmax probability distribution.
-3. **Thresholding**: If the highest probability is below **65%**, the system rejects the prediction and flags it for `REVIEW REQUIRED`. This prevents misclassification of foreign objects on the conveyor belt.
-4. **Grad-CAM**: A gradient-weighted class activation map is generated from the final convolutional layer, highlighting the exact pixels that drove the model's decision.
-
-> *For full training metrics and optimizer configurations, see [AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md).*
-
----
-
-## 🚀 Installation & Deployment
+## 💻 Installation
 
 ### Local Development (Windows / Linux)
 1. **Clone the repository**
@@ -167,21 +308,6 @@ docker-compose up --build -d
 
 ---
 
-## 📊 Performance & Benchmarks
-
-During rigorous QA and stress testing with 20 concurrent worker threads:
-
-- **Hardware**: NVIDIA GeForce RTX 3050 Laptop GPU / 16 GB RAM
-- **Average Inference Time**: ~3.6s (under peak concurrency load)
-- **Throughput**: ~1.6 predictions / second 
-- **Peak RAM Usage**: 273.52 MB (No memory leaks detected over 360 continuous predictions)
-- **Peak CPU Usage**: 0% (Fully offloaded to CUDA)
-
-> [!CAUTION]
-> **TensorFlow High Concurrency Limitation**: Load tests with 20+ concurrent workers trigger an `OOM (Out Of Memory)` crash in TensorFlow due to the 1.6GB VRAM limit on the RTX 3050. To deploy in a heavy industrial setting, you should introduce an inference request queue (e.g. Celery/Redis) or deploy on hardware with higher VRAM capacity (e.g. RTX 4090).
-
----
-
 ## 🔒 Security & Authentication
 
 - **Passwords**: Hashed securely using PBKDF2 (`werkzeug.security`).
@@ -194,16 +320,13 @@ During rigorous QA and stress testing with 20 concurrent worker threads:
 
 This repository also includes detailed technical documentation generated during development.
 
-- **[API_REFERENCE.md](docs/API_REFERENCE.md)** — Complete REST API documentation including endpoints, request/response examples, authentication, and status codes.
-- **[DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md)** — SQLite schema, ER diagrams, relationships, indexes, and database architecture.
-- **[PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md)** — Complete software architecture, Mermaid diagrams, request lifecycle, AI pipeline, Flask architecture, and deployment flow.
-- **[AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md)** — Dataset preparation, EfficientNetV2B0 training pipeline, transfer learning strategy, Grad-CAM implementation, threshold logic, and evaluation metrics.
-- **[QA_REPORT.md](docs/QA_REPORT.md)** — Functional testing results, stress testing, UI validation, API verification, and performance benchmarking.
-- **[BUG_LIST.md](docs/BUG_LIST.md)** — Known issues, pending improvements, technical debt, feature requests, and future enhancements.
-- **[PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md)** — CPU usage, RAM usage, inference time, throughput, benchmark results, and hardware configuration.
-- **[TEST_RESULTS.md](docs/TEST_RESULTS.md)** — End-to-end testing logs, integration testing, validation images, confusion matrix, and production verification.
-- **[CHANGELOG.md](docs/CHANGELOG.md)** — Version history and implemented features.
-- **[ROADMAP.md](docs/ROADMAP.md)** — Planned future improvements and upcoming milestones.
+- **[API_REFERENCE.md](docs/API_REFERENCE.md)** — REST API documentation.
+- **[DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md)** — SQLite schema, ER diagrams, relationships.
+- **[PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md)** — Software architecture, Mermaid diagrams.
+- **[AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md)** — Training pipeline, Grad-CAM, threshold logic.
+- **[QA_REPORT.md](docs/QA_REPORT.md)** — Testing results, stress testing.
+- **[PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md)** — CPU usage, RAM usage, inference throughput.
+- **[TEST_RESULTS.md](docs/TEST_RESULTS.md)** — E2E testing logs, confusion matrix.
 
 ---
 
@@ -224,19 +347,6 @@ AI & Machine Learning Internship
 **Organization:**
 Nestsoft Technomaster
 
-**Technology Stack:**
-- Python
-- Flask
-- TensorFlow
-- Keras
-- EfficientNetV2B0
-- OpenCV
-- SQLite
-- JavaScript
-- TailwindCSS
-- Chart.js
-- Socket.IO
-
 ---
 
 ## 🙏 Acknowledgements
@@ -245,17 +355,12 @@ This project was developed as the capstone internship project for an AI & Machin
 
 Special thanks to:
 - Nestsoft Technomaster for internship guidance and project mentorship.
-- Google Teachable Machine for rapid prototyping during the initial development phase.
 - TensorFlow & Keras teams for the deep learning framework.
-- Flask and the open-source Python community.
 - Google Stitch for the UI inspiration and interface design.
-- Open-source dataset contributors for providing tomato image datasets used for model training.
-- The creators and maintainers of EfficientNet for transfer learning research.
 
 ---
 
 ## 📄 License
 
 This project is licensed under the MIT License.
-
 See the LICENSE file for complete details.
