@@ -203,5 +203,6 @@ def get_history():
 def get_analytics():
     from app.services.analytics import AnalyticsService
     data = AnalyticsService.get_timeseries_data()
+    data['stats'] = AnalyticsService.get_dashboard_stats()
     return jsonify(data)
 
