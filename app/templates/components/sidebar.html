@@ -24,15 +24,15 @@
             </a>
         </li>
         <li>
-            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'live' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('live.index') }}">
-                <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'live' else "" }}>videocam</span>
-                <span class="font-label-md text-label-md">Live Monitor</span>
-            </a>
-        </li>
-        <li>
             <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'history' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('history.index') }}">
                 <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'history' else "" }}>history</span>
                 <span class="font-label-md text-label-md">History</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center px-md py-sm rounded-lg {{ 'text-primary font-bold border-r-2 border-primary bg-surface-variant/20' if active_page == 'live' else 'text-on-surface-variant hover:bg-surface-variant/50 hover:text-on-surface' }}" href="{{ url_for('live.index') }}">
+                <span class="material-symbols-outlined mr-sm" {{ "style=\"font-variation-settings: 'FILL' 1;\""|safe if active_page == 'live' else "" }}>videocam</span>
+                <span class="font-label-md text-label-md">Live Monitor</span>
             </a>
         </li>
         <li>
