@@ -229,5 +229,32 @@
 {% endif %}
 {% block content %}{% endblock %}
 {% block scripts %}{% endblock %}
+
+<script>
+    // Splash Screen Logic
+    document.addEventListener("DOMContentLoaded", function() {
+        const steps = ["Loading TensorFlow...", "Loading Model...", "Connecting Database...", "Initializing Dashboard...", "System Ready"];
+        let currentStep = 0;
+        const splashProgress = document.getElementById('splash-progress');
+        const splashStep = document.getElementById('splash-step');
+        const splashScreen = document.getElementById('splash-screen');
+
+        if (splashScreen) {
+            const interval = setInterval(() => {
+                currentStep++;
+                if (splashProgress) splashProgress.style.width = (currentStep / steps.length) * 100 + '%';
+                if (currentStep < steps.length) {
+                    if (splashStep) splashStep.textContent = steps[currentStep];
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        splashScreen.style.opacity = '0';
+                        setTimeout(() => splashScreen.remove(), 500);
+                    }, 300);
+                }
+            }, 250);
+        }
+    });
+</script>
 </body>
 </html>
