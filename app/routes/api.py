@@ -208,7 +208,7 @@ def get_analytics():
     data['stats'] = AnalyticsService.get_dashboard_stats()
     return jsonify(data)
 
-@api_bp.route('/dataset_stats', methods=['GET'])
+@api_bp.route('/api/dataset_stats', methods=['GET'])
 def get_dataset_stats():
     import os
     dataset_dir = "dataset"
@@ -249,7 +249,7 @@ def get_dataset_stats():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-@api_bp.route('/model_stats', methods=['GET'])
+@api_bp.route('/api/model_stats', methods=['GET'])
 def get_model_stats():
     import os
     import json
@@ -288,7 +288,7 @@ def get_model_stats():
 
 
 
-@api_bp.route('/settings', methods=['GET', 'POST'])
+@api_bp.route('/api/settings', methods=['GET', 'POST'])
 def handle_settings():
     from app.services.settings import SettingsService
     if request.method == 'GET':
@@ -299,7 +299,7 @@ def handle_settings():
             SettingsService.update(data)
         return jsonify({'status': 'success'})
 
-@api_bp.route('/reports/download', methods=['GET'])
+@api_bp.route('/api/reports/download', methods=['GET'])
 @login_required
 def download_report():
     from flask import Response
