@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% set active_page = 'settings' %}
-{% block title %}System Configuration - SmartCam AI{% block scripts %}
-<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% block title %}System Configuration - SmartCam AI
 {% endblock %}
-{% endblock %}
-{% block body_class %}bg-background text-on-background min-h-screen font-body-md text-body-md flex antialiased selection:bg-primary-container selection:text-primary{% block scripts %}
-<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
-{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen font-body-md text-body-md flex antialiased selection:bg-primary-container selection:text-primary
 {% endblock %}
 
 {% block content %}
@@ -163,7 +159,5 @@
 </footer>
 </main>
 
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
-{% endblock %}
+
 {% endblock %}

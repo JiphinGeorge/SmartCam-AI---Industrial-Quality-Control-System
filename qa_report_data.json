@@ -1,28 +1,23 @@
 {
     "console_errors": [
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuAHw0bUPoufHS0y80Y583D3k3P6OmfEi6czRXPwzegq6ARU4LC4eP9UNNje4n3osVjCXwsBcgtLyTO4WuxWoKxsApnmz2IW2Bg1PMUH8RpNbf16YDO9EjK0qNxtQkj1XY5STeN8aWVtSblCWPY54pNrp4iZr0hqoUuXNUGCAw_9Qp6g44qCUdtnF0CxzrQKwcnIPJdA9k-slbblDCVwSpFwyHzghLWMZwuz5J1uUzSrOFKEoVAoIvXy5w' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuAHw0bUPoufHS0y80Y583D3k3P6OmfEi6czRXPwzegq6ARU4LC4eP9UNNje4n3osVjCXwsBcgtLyTO4WuxWoKxsApnmz2IW2Bg1PMUH8RpNbf16YDO9EjK0qNxtQkj1XY5STeN8aWVtSblCWPY54pNrp4iZr0hqoUuXNUGCAw_9Qp6g44qCUdtnF0CxzrQKwcnIPJdA9k-slbblDCVwSpFwyHzghLWMZwuz5J1uUzSrOFKEoVAoIvXy5w' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
         "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
-        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
-        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
-        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
-        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)",
-        "Failed to load resource: the server responded with a status of 500 (INTERNAL SERVER ERROR)"
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+        "Loading the image 'https://lh3.googleusercontent.com/aida-public/AB6AXuBt0q6sJryVcgFy1tOlmNe0CSJS_9kGuldGyGAPC0NDO9eqwMBjwGg54pr8KNJWiRhiOyjObDHlmdDujaLNT8J7hAwY-rU3K_POmch4_As3ES3aoWwqVessLPxDmV9R5NcoFAXeCxm1ENTHe5ooawimeuOnPYaODi_2etBho9V43WCnU83lfmrfh3z79rtFGGhf1LslW_AICeVJ6B6TLBr7H-rSHTreZqRXttxl_Nydx1FPqFVHA6sJTA' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked.",
+        "Loading the image 'data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e' violates the following Content Security Policy directive: \"default-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com https://cdn.jsdelivr.net\". Note that 'img-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked."
     ],
     "http_errors": [
-        {
-            "url": "http://localhost:5000/dashboard",
-            "status": 500
-        },
-        {
-            "url": "http://localhost:5000/dashboard",
-            "status": 500
-        },
         {
             "url": "http://localhost:5000/live",
             "status": 500
@@ -40,10 +35,6 @@
             "status": 500
         },
         {
-            "url": "http://localhost:5000/reports",
-            "status": 500
-        },
-        {
             "url": "http://localhost:5000/dataset",
             "status": 500
         },
@@ -57,14 +48,6 @@
         },
         {
             "url": "http://localhost:5000/knowledge",
-            "status": 500
-        },
-        {
-            "url": "http://localhost:5000/notifications",
-            "status": 500
-        },
-        {
-            "url": "http://localhost:5000/logs",
             "status": 500
         }
     ],

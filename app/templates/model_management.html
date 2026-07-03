@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% set active_page = 'models' %}
-{% block title %}Model Management Console - SmartCam AI{% block scripts %}
-<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% block title %}Model Management Console - SmartCam AI
 {% endblock %}
-{% endblock %}
-{% block body_class %}bg-background text-on-background min-h-screen font-body-md overflow-x-hidden antialiased{% block scripts %}
-<script src="{{ url_for('static', filename='js/models.js') }}"></script>
-{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen font-body-md overflow-x-hidden antialiased
 {% endblock %}
 
 {% block content %}
@@ -269,7 +265,5 @@
 </div>
 </footer>
 </div>
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/models.js') }}"></script>
-{% endblock %}
+
 {% endblock %}

@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 {% set active_page = 'help' %}
-{% block title %}Knowledge Center - SmartCam AI{% block scripts %}
-<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
+{% block title %}Knowledge Center - SmartCam AI
 {% endblock %}
-{% endblock %}
-{% block body_class %}flex bg-background min-h-screen text-on-surface{% block scripts %}
-<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
-{% endblock %}
+{% block body_class %}flex bg-background min-h-screen text-on-surface
 {% endblock %}
 
 {% block content %}
@@ -180,7 +176,5 @@
 </div>
 </footer>
 </div>
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/knowledge.js') }}"></script>
-{% endblock %}
+
 {% endblock %}
