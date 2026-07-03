@@ -53,21 +53,21 @@ Whether you are identifying defective machinery parts or sorting agricultural pr
 
 | Executive Dashboard | Live Monitoring |
 |---------------------|-----------------|
-| ![Executive Dashboard](app/static/images/screenshots/2_dashboard_populated.png) | ![Live Monitoring](app/static/images/screenshots/3_live_monitoring.png) |
+| ![Executive Dashboard](docs/screenshots/02-dashboard.png) | ![Live Monitoring](docs/screenshots/03-live-monitoring.png) |
 
 | Grad-CAM Inspection | Dark Mode Dashboard |
 |---------------------|---------------------|
-| ![Grad-CAM Inspection](app/static/images/screenshots/4_inspection_module.png) | ![Dark Mode Dashboard](app/static/images/screenshots/2_dashboard_dark.png) |
+| ![Grad-CAM Inspection](docs/screenshots/04-inspection.png) | ![Dark Mode Dashboard](docs/screenshots/14-dark-mode.png) |
 
 <details>
 <summary>Click to view more screenshots...</summary>
 
-- [Login Page](app/static/images/screenshots/1_login_page.png)
-- [Mobile Login](app/static/images/screenshots/1_login_mobile.png)
-- [Analytics Charts](app/static/images/screenshots/5_analytics_charts.png)
-- [Inspection History](app/static/images/screenshots/6_inspection_history.png)
-- [Dataset Repository](app/static/images/screenshots/8_dataset_repository.png)
-- [Model Management](app/static/images/screenshots/9_model_management.png)
+- [Login Page](docs/screenshots/01-login.png)
+- [Mobile Login](docs/screenshots/16-mobile-view.png)
+- [Analytics Charts](docs/screenshots/07-analytics.png)
+- [Inspection History](docs/screenshots/08-history.png)
+- [Dataset Repository](docs/screenshots/10-dataset.png)
+- [Model Management](docs/screenshots/11-model-manager.png)
 </details>
 
 ---
@@ -192,19 +192,70 @@ During rigorous QA and stress testing with 20 concurrent worker threads:
 
 ## 📚 Supplementary Documentation
 
-To explore the exact specifications of the system, please refer to the following generated documents:
+This repository also includes detailed technical documentation generated during development.
 
-- [API_REFERENCE.md](docs/API_REFERENCE.md): Full HTTP endpoint specifications.
-- [DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md): SQLite table definitions and ER diagram.
-- [PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md): Detailed Mermaid diagrams.
-- [AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md): Training parameters and Grad-CAM logic.
-- [QA_REPORT.md](docs/QA_REPORT.md): Audit results and test coverage matrix.
-- [BUG_LIST.md](docs/BUG_LIST.md): Known issues and technical debt.
+- **[API_REFERENCE.md](docs/API_REFERENCE.md)** — Complete REST API documentation including endpoints, request/response examples, authentication, and status codes.
+- **[DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md)** — SQLite schema, ER diagrams, relationships, indexes, and database architecture.
+- **[PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md)** — Complete software architecture, Mermaid diagrams, request lifecycle, AI pipeline, Flask architecture, and deployment flow.
+- **[AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md)** — Dataset preparation, EfficientNetV2B0 training pipeline, transfer learning strategy, Grad-CAM implementation, threshold logic, and evaluation metrics.
+- **[QA_REPORT.md](docs/QA_REPORT.md)** — Functional testing results, stress testing, UI validation, API verification, and performance benchmarking.
+- **[BUG_LIST.md](docs/BUG_LIST.md)** — Known issues, pending improvements, technical debt, feature requests, and future enhancements.
+- **[PERFORMANCE_REPORT.md](docs/PERFORMANCE_REPORT.md)** — CPU usage, RAM usage, inference time, throughput, benchmark results, and hardware configuration.
+- **[TEST_RESULTS.md](docs/TEST_RESULTS.md)** — End-to-end testing logs, integration testing, validation images, confusion matrix, and production verification.
+- **[CHANGELOG.md](docs/CHANGELOG.md)** — Version history and implemented features.
+- **[ROADMAP.md](docs/ROADMAP.md)** — Planned future improvements and upcoming milestones.
+
+---
+
+## 👨‍💻 Project Credits
+
+**Project Title:**
+SmartCam AI – Industrial Quality Control System
+
+**Developer:**
+Jiphin George
+
+**Course:**
+Master of Computer Applications (MCA)
+
+**Internship:**
+AI & Machine Learning Internship
+
+**Organization:**
+Nestsoft Technomaster
+
+**Technology Stack:**
+- Python
+- Flask
+- TensorFlow
+- Keras
+- EfficientNetV2B0
+- OpenCV
+- SQLite
+- JavaScript
+- TailwindCSS
+- Chart.js
+- Socket.IO
+
+---
+
+## 🙏 Acknowledgements
+
+This project was developed as the capstone internship project for an AI & Machine Learning Industrial Quality Control System.
+
+Special thanks to:
+- Nestsoft Technomaster for internship guidance and project mentorship.
+- Google Teachable Machine for rapid prototyping during the initial development phase.
+- TensorFlow & Keras teams for the deep learning framework.
+- Flask and the open-source Python community.
+- Google Stitch for the UI inspiration and interface design.
+- Open-source dataset contributors for providing tomato image datasets used for model training.
+- The creators and maintainers of EfficientNet for transfer learning research.
 
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgements
-Built by the Advanced Agentic Coding Team at Google DeepMind.
+This project is licensed under the MIT License.
+
+See the LICENSE file for complete details.
