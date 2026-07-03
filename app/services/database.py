@@ -41,6 +41,19 @@ class DatabaseService:
             )
         ''')
         
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS settings (
+                key TEXT PRIMARY KEY,
+                value TEXT
+            )
+        ''')
+        
+        # Insert default settings if they don't exist
+        cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('critical_alerts', 'true')")
+        cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('email_digest', 'false')")
+        cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('alarm_volume', '85')")
+        cursor.execute("INSERT OR IGNORE INTO settings (key, value) VALUES ('alert_tone', 'Klaxon (Industrial)')")
+        
         # Apply schema updates to existing table if needed (simple approach for SQLite)
         try:
             cursor.execute("ALTER TABLE predictions ADD COLUMN operator TEXT DEFAULT 'System'")
