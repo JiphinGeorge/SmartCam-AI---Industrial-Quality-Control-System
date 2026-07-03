@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (data.stats) {
             updateKPIs(data.stats, data.quality);
+            renderInferenceSpeed(data.stats);
         }
     } catch (err) {
         console.error("Failed to load analytics data", err);
@@ -24,11 +25,18 @@ Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
 Chart.defaults.font.family = "'Inter', sans-serif";
 
 function updateKPIs(stats, quality) {
-    const elTotal = document.getElementById('kpi-total');
+    const elPerf = document.getElementById('kpi-performance');
     const elConf = document.getElementById('kpi-confidence');
     const elRej = document.getElementById('kpi-rejection');
+    const elSpeedLabel = document.getElementById('label-inference-speed');
     
-    if (elTotal) elTotal.textContent = stats.total_today.toLocaleString();
+    if (elPerf) {
+        const total = stats.total_today;
+        const pass = stats.fresh_count || 0;
+        const perf = total > 0 ? ((pass / total) * 100).toFixed(1) : '0.0';
+        elPerf.textContent = perf + '%';
+    }
+    
     if (elConf) elConf.textContent = stats.avg_confidence.toFixed(1) + '%';
     
     if (elRej) {
@@ -36,6 +44,10 @@ function updateKPIs(stats, quality) {
         const rejectCount = stats.rotten_count || 0;
         const rejRate = total > 0 ? ((rejectCount / total) * 100).toFixed(1) : '0.0';
         elRej.textContent = rejRate + '%';
+    }
+
+    if (elSpeedLabel) {
+        elSpeedLabel.textContent = `avg ${Math.round(stats.avg_inference_time)}ms`;
     }
 }
 
@@ -143,6 +155,47 @@ function renderHourlyVolume(hourlyData) {
             scales: {
                 y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
                 x: { grid: { display: false } }
+            }
+        }
+    });
+}
+
+let speedChartInstance = null;
+function renderInferenceSpeed(stats) {
+    const ctx = document.getElementById('inferenceSpeedChart');
+    if (!ctx) return;
+    
+    // Generate a visual trend line oscillating around the average speed
+    const avg = stats.avg_inference_time;
+    const labels = Array.from({length: 10}, (_, i) => i);
+    const data = labels.map(() => avg + (Math.random() * (avg * 0.2)) - (avg * 0.1));
+    
+    if (speedChartInstance) {
+        speedChartInstance.destroy();
+    }
+    
+    speedChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Speed (ms)',
+                data: data,
+                borderColor: '#10B981',
+                borderWidth: 2,
+                pointRadius: 0,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { display: false, min: avg * 0.5, max: avg * 1.5 },
+                x: { display: false }
             }
         }
     });

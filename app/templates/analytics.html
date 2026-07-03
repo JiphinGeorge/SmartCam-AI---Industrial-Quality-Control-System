@@ -4,8 +4,12 @@
 {% block body_class %}bg-background text-on-background font-body-md min-h-screen flex overflow-hidden selection:bg-primary selection:text-on-primary{% endblock %}
 
 {% block content %}
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-[280px] w-full md:w-[calc(100%-280px)] h-screen overflow-hidden relative">
+<!-- TopAppBar -->
+{% include 'components/topbar.html' %}
 <!-- Main Content Canvas -->
-<main class="flex-1 ml-0 md:ml-[280px] p-md md:p-xl space-y-xl overflow-x-hidden">
+<main class="flex-1 overflow-y-auto p-md md:p-xl space-y-xl overflow-x-hidden">
 <!-- Header & Controls -->
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-sm">
 <div>
@@ -51,7 +55,7 @@
 <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">Factory Performance</span>
 <span class="material-symbols-outlined text-primary">speed</span>
 </div>
-<div class="font-display-lg text-display-lg text-on-surface">94.2%</div>
+<div class="font-display-lg text-display-lg text-on-surface" id="kpi-performance">--%</div>
 <div class="flex items-center gap-xs mt-xs text-green-400 font-label-sm text-label-sm">
 <span class="material-symbols-outlined text-sm">trending_up</span>
 <span>+2.1% from last week</span>
@@ -92,14 +96,13 @@
 <h3 class="font-headline-md text-headline-md text-on-surface">Weekly Inspection Trend</h3>
 <button class="text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined">more_vert</span></button>
 </div>
-<div class="p-md flex-1 relative min-h-[300px]">
-<!-- Placeholder for Chart Library -->
-<canvas id="inferenceSpeedChart" class="w-full h-full"></canvas>
-</div>
-<div class="p-sm border-t border-white/5 text-right font-mono-data text-mono-data text-on-surface-variant">
-                    Last updated: Just now
-                </div>
-</div>
+        <div class="p-md flex-1 relative min-h-[300px]">
+            <canvas id="weeklyTrendChart" class="w-full h-full"></canvas>
+        </div>
+        <div class="p-sm border-t border-white/5 text-right font-mono-data text-mono-data text-on-surface-variant">
+            Last updated: Just now
+        </div>
+    </div>
 <!-- Pie Chart: Fresh vs Rotten -->
 <div class="glass-card flex flex-col">
 <div class="p-md border-b border-white/5 flex justify-between items-center">
@@ -121,35 +124,14 @@
 </div>
 </div>
 </div>
-<!-- Bar Chart: Hourly Production Volume -->
-<div class="glass-card flex flex-col">
-<div class="p-md border-b border-white/5 flex justify-between items-center">
-<h3 class="font-headline-md text-headline-md text-on-surface">Hourly Volume</h3>
-</div>
-<div class="p-md flex-1 flex items-end gap-2 h-[250px]">
-<!-- Simple CSS Bar Chart -->
-<div class="flex-1 flex flex-col justify-end h-full group">
-<div class="chart-bar w-full" style="height: 40%"></div>
-<span class="text-center text-xs mt-2 text-on-surface-variant font-mono-data">08</span>
-</div>
-<div class="flex-1 flex flex-col justify-end h-full group">
-<div class="chart-bar w-full" style="height: 65%"></div>
-<span class="text-center text-xs mt-2 text-on-surface-variant font-mono-data">09</span>
-</div>
-<div class="flex-1 flex flex-col justify-end h-full group">
-<div class="chart-bar w-full bg-blue-400 neon-glow" style="height: 90%"></div>
-<span class="text-center text-xs mt-2 text-on-surface-variant font-mono-data text-primary">10</span>
-</div>
-<div class="flex-1 flex flex-col justify-end h-full group">
-<div class="chart-bar w-full" style="height: 50%"></div>
-<span class="text-center text-xs mt-2 text-on-surface-variant font-mono-data">11</span>
-</div>
-<div class="flex-1 flex flex-col justify-end h-full group">
-<div class="chart-bar w-full" style="height: 75%"></div>
-<span class="text-center text-xs mt-2 text-on-surface-variant font-mono-data">12</span>
-</div>
-</div>
-</div>
+    <div class="glass-card flex flex-col">
+        <div class="p-md border-b border-white/5 flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Hourly Volume</h3>
+        </div>
+        <div class="p-md flex-1 relative min-h-[250px]">
+            <canvas id="hourlyVolumeChart" class="w-full h-full"></canvas>
+        </div>
+    </div>
 <!-- Histogram: Confidence Distribution -->
 <div class="glass-card flex flex-col">
 <div class="p-md border-b border-white/5 flex justify-between items-center">
@@ -170,27 +152,28 @@
 <span>99%</span>
 </div>
 </div>
-<!-- Line Chart: Inference Speed -->
-<div class="glass-card flex flex-col">
-<div class="p-md border-b border-white/5 flex justify-between items-center">
-<h3 class="font-headline-md text-headline-md text-on-surface">Inference Speed</h3>
-<span class="font-mono-data text-mono-data text-primary">avg 12ms</span>
-</div>
-<div class="p-md flex-1 relative h-[250px] flex items-center">
-<canvas id="weeklyTrendChart" class="w-full h-full"></canvas>
-</div>
-</div>
+    <!-- Line Chart: Inference Speed -->
+    <div class="glass-card flex flex-col">
+        <div class="p-md border-b border-white/5 flex justify-between items-center">
+            <h3 class="font-headline-md text-headline-md text-on-surface">Inference Speed</h3>
+            <span class="font-mono-data text-mono-data text-primary" id="label-inference-speed">avg --ms</span>
+        </div>
+        <div class="p-md flex-1 relative h-[250px] flex items-center">
+            <canvas id="inferenceSpeedChart" class="w-full h-full"></canvas>
+        </div>
+    </div>
 </div>
 </main>
 <!-- Footer -->
-<footer class="flex justify-between items-center w-full px-lg py-sm ml-0 md:ml-[280px] md:w-[calc(100%-280px)] bg-surface-container-low border-t border-white/5 mt-auto">
+<footer class="flex justify-between items-center w-full px-lg py-sm bg-surface-container-low border-t border-white/5 mt-auto">
 <span class="text-on-surface-variant font-mono-data text-mono-data">2024 SmartCam AI. TF v2.15 | Engine: Active</span>
 <div class="flex gap-md">
 <a class="text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" href="#">Support</a>
 <a class="text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" href="#">Privacy</a>
 <a class="text-on-surface-variant hover:text-on-surface font-body-md text-body-md transition-colors" href="#">Terms</a>
-</div>
+    </div>
 </footer>
+</div>
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>

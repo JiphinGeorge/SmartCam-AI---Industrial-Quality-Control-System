@@ -1,7 +1,18 @@
 {% set active_page = active_page|default('dashboard') %}
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html lang="en">
+<head>
+    <script>
+        // Prevent FOUC (Flash of Unstyled Content) by setting theme immediately
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            // Default to dark mode
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{% block title %}SmartCam AI{% endblock %}</title>
@@ -223,6 +234,12 @@
         <p class="text-xs mt-4" id="splash-step">Loading TensorFlow...</p>
     </div>
 </div>
+<script>
+    if (sessionStorage.getItem('splashShown') === 'true') {
+        const splash = document.getElementById('splash-screen');
+        if (splash) splash.style.display = 'none';
+    }
+</script>
 
 {% if current_user.is_authenticated %}
 {% include 'components/sidebar.html' %}
@@ -233,13 +250,14 @@
 <script>
     // Splash Screen Logic
     document.addEventListener("DOMContentLoaded", function() {
-        const steps = ["Loading TensorFlow...", "Loading Model...", "Connecting Database...", "Initializing Dashboard...", "System Ready"];
-        let currentStep = 0;
-        const splashProgress = document.getElementById('splash-progress');
-        const splashStep = document.getElementById('splash-step');
         const splashScreen = document.getElementById('splash-screen');
+        
+        if (splashScreen && sessionStorage.getItem('splashShown') !== 'true') {
+            const steps = ["Loading TensorFlow...", "Loading Model...", "Connecting Database...", "Initializing Dashboard...", "System Ready"];
+            let currentStep = 0;
+            const splashProgress = document.getElementById('splash-progress');
+            const splashStep = document.getElementById('splash-step');
 
-        if (splashScreen) {
             const interval = setInterval(() => {
                 currentStep++;
                 if (splashProgress) splashProgress.style.width = (currentStep / steps.length) * 100 + '%';
@@ -249,12 +267,16 @@
                     clearInterval(interval);
                     setTimeout(() => {
                         splashScreen.style.opacity = '0';
+                        sessionStorage.setItem('splashShown', 'true');
                         setTimeout(() => splashScreen.remove(), 500);
                     }, 300);
                 }
             }, 250);
+        } else if (splashScreen) {
+            splashScreen.remove();
         }
     });
 </script>
+<script src="{{ url_for('static', filename='js/global.js') }}"></script>
 </body>
 </html>
