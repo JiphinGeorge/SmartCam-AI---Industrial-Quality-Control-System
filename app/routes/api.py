@@ -104,7 +104,7 @@ def predict():
     time_gradcam = int((time.time() - start_gradcam) * 1000)
     
     # Inspection ID
-    inspection_id = f"QC-{now.strftime('%Y%m%d-%H%M%S')}"
+    inspection_id = f"QC-{now.strftime('%Y%m%d-%H%M%S')}-{unique_id[:4]}"
     result['inspection_id'] = inspection_id
     
     # Log to DB

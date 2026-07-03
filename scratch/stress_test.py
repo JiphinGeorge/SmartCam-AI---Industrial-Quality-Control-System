@@ -117,9 +117,9 @@ def validate_gradcam(data):
         if not img_url or not hm_url:
             return False
             
-        # Extract path relative to inspection_history
-        img_path = img_url.lstrip('/')
-        hm_path = hm_url.lstrip('/')
+        # Extract path relative to app/inspection_history
+        img_path = "app/" + img_url.lstrip('/')
+        hm_path = "app/" + hm_url.lstrip('/')
         
         if not os.path.exists(img_path) or not os.path.exists(hm_path):
             return False
@@ -277,7 +277,7 @@ def main():
 - **Max Inference Time**: {np.max(test_results['times']):.2f} ms
 
 ## 4. Validation Checks
-- **Inspection ID Uniqueness**: {'PASS' if id_duplicates == 0 else f'FAIL ({{id_duplicates}} duplicates)'}
+- **Inspection ID Uniqueness**: {'PASS' if id_duplicates == 0 else f'FAIL ({id_duplicates} duplicates)'}
 - **Unknown/Edge-Case Images Handled Gracefully**: {test_results['unknown_handled']} detected
 """
 
