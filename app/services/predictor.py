@@ -39,8 +39,12 @@ class PredictorService:
         time_inference = int((time.time() - start_inference) * 1000)
         
         # Format results
-        rotten_prob = float(prediction_scores[0][0])
-        fresh_prob = 1.0 - rotten_prob
+        if len(prediction_scores[0]) > 1:
+            fresh_prob = float(prediction_scores[0][0])
+            rotten_prob = float(prediction_scores[0][1])
+        else:
+            rotten_prob = float(prediction_scores[0][0])
+            fresh_prob = 1.0 - rotten_prob
         
         if fresh_prob >= 0.85 and fresh_prob > rotten_prob:
             prediction = "Fresh"

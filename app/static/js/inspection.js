@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateUI(data) {
         // Gauge
-        const conf = data.confidence * 100;
+        const conf = data.confidence;
         document.getElementById('gauge-text').textContent = conf.toFixed(1) + "%";
         document.getElementById('gauge-label').textContent = data.prediction.toUpperCase();
         document.getElementById('gauge-path').setAttribute('stroke-dasharray', `${conf}, 100`);

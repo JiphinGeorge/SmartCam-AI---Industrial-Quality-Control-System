@@ -128,7 +128,7 @@ class DatabaseService:
             conn.close()
 
     @staticmethod
-    def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC'):
+    def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC', search_query=None):
         """Fetches paginated and filtered inspection history."""
         conn = DatabaseService.get_connection()
         cursor = conn.cursor()
@@ -139,6 +139,11 @@ class DatabaseService:
         if status:
             query += " AND status = ?"
             params.append(status)
+            
+        if search_query:
+            query += " AND (inspection_id LIKE ? OR prediction LIKE ? OR status LIKE ? OR batch_id LIKE ? OR notes LIKE ? OR operator LIKE ? OR machine_id LIKE ?)"
+            like_query = f"%{search_query}%"
+            params.extend([like_query] * 7)
             
         safe_sort = sort_by if sort_by in ['timestamp DESC', 'timestamp ASC', 'confidence DESC', 'confidence ASC'] else 'timestamp DESC'
         
@@ -153,6 +158,12 @@ class DatabaseService:
         if status:
             count_query += " AND status = ?"
             count_params.append(status)
+            
+        if search_query:
+            count_query += " AND (inspection_id LIKE ? OR prediction LIKE ? OR status LIKE ? OR batch_id LIKE ? OR notes LIKE ? OR operator LIKE ? OR machine_id LIKE ?)"
+            like_query = f"%{search_query}%"
+            count_params.extend([like_query] * 7)
+            
         cursor.execute(count_query, count_params)
         total = cursor.fetchone()[0]
         
