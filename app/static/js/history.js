@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusIcon = 'help';
             }
 
-            const imgHtml = row.image_path 
-                ? `<img class="w-full h-full object-cover" src="/${row.image_path.split('app/')[1] || 'static/images/placeholder.jpg'}" />` 
+            const imgHtml = row.image_url 
+                ? `<img class="w-full h-full object-cover" src="${row.image_url}" />` 
                 : `<div class="w-full h-full bg-surface-container flex items-center justify-center"><span class="material-symbols-outlined text-outline-variant text-[24px]">image_not_supported</span></div>`;
 
             return `

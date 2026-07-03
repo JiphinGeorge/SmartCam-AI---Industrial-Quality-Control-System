@@ -184,4 +184,17 @@ def get_history():
     sort_by = request.args.get('sort_by', 'timestamp DESC')
     
     data = DatabaseService.get_history(page, limit, status, sort_by)
+    
+    # Map image paths to web URLs
+    for row in data['data']:
+        if row.get('image_path'):
+            # On windows, it might have backslashes. Convert to web-safe URL.
+            path_str = row['image_path'].replace('\\', '/')
+            if 'app/' in path_str:
+                row['image_url'] = '/' + path_str.split('app/')[1]
+            elif 'app/static/' in path_str:
+                row['image_url'] = path_str.split('app/')[1]
+            else:
+                row['image_url'] = '/static/images/placeholder.jpg'
+                
     return jsonify(data)
