@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% set active_page = 'models' %}
-{% block title %}Model Management Console - SmartCam AI{% endblock %}
-{% block body_class %}bg-background text-on-background min-h-screen font-body-md overflow-x-hidden antialiased{% endblock %}
+{% block title %}Model Management Console - SmartCam AI{% block scripts %}
+<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% endblock %}
+{% endblock %}
+{% block body_class %}bg-background text-on-background min-h-screen font-body-md overflow-x-hidden antialiased{% block scripts %}
+<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% endblock %}
+{% endblock %}
 
 {% block content %}
 <!-- Main Content Area -->
@@ -57,7 +63,7 @@
 </div>
 </div>
 <div class="flex flex-col items-end">
-<span class="font-mono-data text-[12px] text-primary bg-primary-container px-2 py-1 rounded border border-primary/20">TF v2.15</span>
+<span class="font-mono-data text-[12px] text-primary bg-primary-container px-2 py-1 rounded border border-primary/20" id="model-tf">TF v--</span>
 </div>
 </div>
 <div class="p-md grid grid-cols-3 gap-md relative z-10 flex-1">
@@ -66,7 +72,7 @@
 <span class="material-symbols-outlined text-[16px]">check_circle</span> Accuracy
                             </span>
 <div class="flex items-end gap-sm">
-<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">98.4<span class="text-[20px] text-outline-variant">%</span></span>
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold" id="model-acc">--<span class="text-[20px] text-outline-variant">%</span></span>
 <span class="font-label-sm text-[#4ade80] flex items-center mb-1">
 <span class="material-symbols-outlined text-[14px]">arrow_upward</span> 0.2%
                                 </span>
@@ -77,7 +83,7 @@
 <span class="material-symbols-outlined text-[16px]">speed</span> Inference Time
                             </span>
 <div class="flex items-end gap-sm">
-<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">12<span class="text-[20px] text-outline-variant">ms</span></span>
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold" id="model-inf">--<span class="text-[20px] text-outline-variant">ms</span></span>
 </div>
 </div>
 <div class="bg-surface-container-highest/30 rounded-xl p-md border border-white/5 flex flex-col justify-center">
@@ -85,7 +91,7 @@
 <span class="material-symbols-outlined text-[16px]">folder_zip</span> Size
                             </span>
 <div class="flex items-end gap-sm">
-<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold">45<span class="text-[20px] text-outline-variant">MB</span></span>
+<span class="font-display-lg text-[36px] leading-none text-on-surface font-bold" id="model-size">--<span class="text-[20px] text-outline-variant">MB</span></span>
 <span class="font-label-sm text-[#4ade80] flex items-center mb-1">
 <span class="material-symbols-outlined text-[14px]">arrow_downward</span> 12%
                                 </span>
@@ -263,4 +269,7 @@
 </div>
 </footer>
 </div>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/models.js') }}"></script>
+{% endblock %}
 {% endblock %}
