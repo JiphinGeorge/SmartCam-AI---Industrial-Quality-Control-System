@@ -5,11 +5,11 @@
         <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="QualiVision Logo" class="h-6 w-6 rounded object-cover">
         <h2 class="font-headline-md text-headline-md font-black text-on-surface">QualiVision</h2>
     </div>
-<!-- Search Bar -->
-<div class="hidden md:flex items-center bg-surface-container-highest/50 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-primary focus-within:glow-primary transition-all w-64 max-w-sm">
+<!-- Global Search -->
+<form action="{{ url_for('history_bp.index') }}" method="GET" class="hidden md:flex items-center bg-surface-container-highest/50 border border-white/10 rounded-full px-4 py-1.5 focus-within:border-primary focus-within:glow-primary transition-all w-64 max-w-sm">
 <span class="material-symbols-outlined text-outline-variant mr-2 text-sm">search</span>
-<input class="bg-transparent border-none text-label-sm font-label-sm text-on-surface focus:outline-none focus:ring-0 w-full placeholder:text-on-surface-variant" placeholder="Search telemetry..." type="text"/>
-</div>
+<input name="q" value="{{ q if q is defined else '' }}" class="bg-transparent border-none text-label-sm font-label-sm text-on-surface focus:outline-none focus:ring-0 w-full placeholder:text-on-surface-variant" placeholder="Search telemetry..." type="text"/>
+</form>
 </div>
 <!-- Trailing Actions -->
 <div class="flex items-center gap-md">

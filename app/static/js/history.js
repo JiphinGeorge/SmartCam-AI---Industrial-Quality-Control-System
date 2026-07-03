@@ -6,10 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLimit = 10;
     let currentStatus = 'All';
     let currentSort = 'timestamp DESC';
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentSearchQuery = urlParams.get('q') || '';
 
     async function loadHistory() {
         try {
-            const res = await fetch(`/api/history?page=${currentPage}&limit=${currentLimit}&status=${currentStatus}&sort_by=${currentSort}`);
+            const res = await fetch(`/api/history?page=${currentPage}&limit=${currentLimit}&status=${currentStatus}&sort_by=${currentSort}&q=${encodeURIComponent(currentSearchQuery)}`);
             const data = await res.json();
             
             renderRows(data.data);
