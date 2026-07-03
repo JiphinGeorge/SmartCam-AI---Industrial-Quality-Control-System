@@ -115,7 +115,8 @@ def predict():
         status=result['status'],
         inference_time_ms=result['time_inference'],
         image_path=img_path,
-        camera_source=source
+        camera_source=source,
+        gradcam_path=heatmap_path
     )
     time_db = int((time.time() - start_db) * 1000)
     

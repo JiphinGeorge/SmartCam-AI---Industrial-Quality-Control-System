@@ -82,3 +82,41 @@ class DatabaseService:
         conn.commit()
         conn.close()
 
+    @staticmethod
+    def get_history(page=1, limit=50, status=None, sort_by='timestamp DESC'):
+        """Fetches paginated and filtered inspection history."""
+        conn = DatabaseService.get_connection()
+        cursor = conn.cursor()
+        
+        query = "SELECT * FROM predictions WHERE 1=1"
+        params = []
+        
+        if status:
+            query += " AND status = ?"
+            params.append(status)
+            
+        safe_sort = sort_by if sort_by in ['timestamp DESC', 'timestamp ASC', 'confidence DESC', 'confidence ASC'] else 'timestamp DESC'
+        
+        query += f" ORDER BY {safe_sort} LIMIT ? OFFSET ?"
+        params.extend([limit, (page - 1) * limit])
+        
+        cursor.execute(query, params)
+        rows = cursor.fetchall()
+        
+        count_query = "SELECT COUNT(*) FROM predictions WHERE 1=1"
+        count_params = []
+        if status:
+            count_query += " AND status = ?"
+            count_params.append(status)
+        cursor.execute(count_query, count_params)
+        total = cursor.fetchone()[0]
+        
+        conn.close()
+        
+        return {
+            'data': [dict(row) for row in rows],
+            'total': total,
+            'page': page,
+            'pages': max(1, (total + limit - 1) // limit)
+        }
+
