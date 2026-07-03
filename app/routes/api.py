@@ -184,8 +184,9 @@ def get_history():
     if status == 'All':
         status = None
     sort_by = request.args.get('sort_by', 'timestamp DESC')
+    search_query = request.args.get('q', None)
     
-    data = DatabaseService.get_history(page, limit, status, sort_by)
+    data = DatabaseService.get_history(page, limit, status, sort_by, search_query)
     
     # Map image paths to web URLs
     for row in data['data']:
