@@ -53,11 +53,11 @@ Whether you are identifying defective machinery parts or sorting agricultural pr
 
 | Executive Dashboard | Live Monitoring |
 |---------------------|-----------------|
-| <img src="app/static/images/screenshots/2_dashboard_populated.png" width="400"/> | <img src="app/static/images/screenshots/3_live_monitoring.png" width="400"/> |
+| ![Executive Dashboard](app/static/images/screenshots/2_dashboard_populated.png) | ![Live Monitoring](app/static/images/screenshots/3_live_monitoring.png) |
 
 | Grad-CAM Inspection | Dark Mode Dashboard |
 |---------------------|---------------------|
-| <img src="app/static/images/screenshots/4_inspection_module.png" width="400"/> | <img src="app/static/images/screenshots/2_dashboard_dark.png" width="400"/> |
+| ![Grad-CAM Inspection](app/static/images/screenshots/4_inspection_module.png) | ![Dark Mode Dashboard](app/static/images/screenshots/2_dashboard_dark.png) |
 
 <details>
 <summary>Click to view more screenshots...</summary>
@@ -89,7 +89,7 @@ graph TD
     TFEngine --> GradCAM[Heatmap Generator]
     TFEngine --> DB[(SQLite /inspection_history)]
 ```
-> *For more detailed diagrams including Authentication Flows and DB Schemas, see [PROJECT_ARCHITECTURE.md](PROJECT_ARCHITECTURE.md).*
+> *For more detailed diagrams including Authentication Flows and DB Schemas, see [PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md).*
 
 ---
 
@@ -132,7 +132,7 @@ When a frame is captured from the camera or uploaded manually:
 3. **Thresholding**: If the highest probability is below **65%**, the system rejects the prediction and flags it for `REVIEW REQUIRED`. This prevents misclassification of foreign objects on the conveyor belt.
 4. **Grad-CAM**: A gradient-weighted class activation map is generated from the final convolutional layer, highlighting the exact pixels that drove the model's decision.
 
-> *For full training metrics and optimizer configurations, see [AI_MODEL_DOCUMENTATION.md](AI_MODEL_DOCUMENTATION.md).*
+> *For full training metrics and optimizer configurations, see [AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md).*
 
 ---
 
@@ -194,12 +194,12 @@ During rigorous QA and stress testing with 20 concurrent worker threads:
 
 To explore the exact specifications of the system, please refer to the following generated documents:
 
-- [API_REFERENCE.md](API_REFERENCE.md): Full HTTP endpoint specifications.
-- [DATABASE_SCHEMA.md](DATABASE_SCHEMA.md): SQLite table definitions and ER diagram.
-- [PROJECT_ARCHITECTURE.md](PROJECT_ARCHITECTURE.md): Detailed Mermaid diagrams.
-- [AI_MODEL_DOCUMENTATION.md](AI_MODEL_DOCUMENTATION.md): Training parameters and Grad-CAM logic.
-- [QA_REPORT.md](QA_REPORT.md): Audit results and test coverage matrix.
-- [BUG_LIST.md](BUG_LIST.md): Known issues and technical debt.
+- [API_REFERENCE.md](docs/API_REFERENCE.md): Full HTTP endpoint specifications.
+- [DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md): SQLite table definitions and ER diagram.
+- [PROJECT_ARCHITECTURE.md](docs/PROJECT_ARCHITECTURE.md): Detailed Mermaid diagrams.
+- [AI_MODEL_DOCUMENTATION.md](docs/AI_MODEL_DOCUMENTATION.md): Training parameters and Grad-CAM logic.
+- [QA_REPORT.md](docs/QA_REPORT.md): Audit results and test coverage matrix.
+- [BUG_LIST.md](docs/BUG_LIST.md): Known issues and technical debt.
 
 ---
 
