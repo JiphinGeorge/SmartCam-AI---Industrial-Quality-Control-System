@@ -1,184 +1,183 @@
 {% extends 'base.html' %}
 {% set active_page = 'inspection' %}
-{% block title %}Inspection Module - QualiVision AI{% endblock %}
-{% block body_class %}bg-background text-on-background font-body-md min-h-screen selection:bg-primary selection:text-on-primary{% endblock %}
+{% block title %}Inspection Studio - QualiVision AI{% endblock %}
+{% block body_class %}bg-background text-on-background font-body-sm min-h-screen overflow-x-hidden{% endblock %}
 
 {% block content %}
 <!-- TopAppBar -->
 {% include 'components/topbar.html' %}
-<!-- Main Content -->
-<main class="p-sm md:p-xl md:ml-[280px] w-full md:w-[calc(100%-280px)] max-w-7xl mx-auto space-y-gutter">
-<!-- Header -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-sm border-b border-white/10 pb-sm">
-<div>
-<h2 class="font-headline-lg text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Inspection Studio</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Real-time defect detection and quality assurance.</p>
-</div>
-<div class="flex gap-sm">
+<!-- Main Canvas -->
+<main class="ml-0 md:ml-64 p-sm md:p-margin-desktop min-h-screen">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-sm">
+        <div>
+            <div class="flex items-center gap-sm mb-xs">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-error opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-error"></span>
+                </span>
+                <span class="font-label-caps text-label-caps text-error">LIVE INFERENCE</span>
+            </div>
+            <h2 class="font-display-lg text-[32px] md:text-display-lg text-on-surface leading-tight">Inspection Studio</h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-xs">Real-time defect detection and quality assurance.</p>
+        </div>
+        <div class="flex flex-wrap gap-md">
+            <input type="file" id="file-upload" accept="image/*" class="hidden">
+            <input type="file" id="batch-upload" accept="image/*" multiple class="hidden">
+            
+            <button id="btn-upload" class="px-md py-sm border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center gap-sm">
+                <span class="material-symbols-outlined text-[18px]">upload</span>
+                Upload Image
+            </button>
+            <button id="btn-batch" class="px-md py-sm border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center gap-sm">
+                <span class="material-symbols-outlined text-[18px]">drive_folder_upload</span>
+                Batch Upload
+            </button>
+            <button id="btn-camera" class="px-md py-sm border border-outline-variant rounded-lg bg-surface-container-lowest text-on-surface font-label-caps text-label-caps hover:bg-surface-container transition-colors flex items-center gap-sm">
+                <span class="material-symbols-outlined text-[18px]">videocam</span>
+                Live Camera
+            </button>
+            <button id="btn-capture" class="hidden px-md py-sm border border-primary rounded-lg bg-primary text-on-primary font-label-caps text-label-caps hover:opacity-90 transition-opacity flex items-center gap-sm shadow-[0_0_15px_rgba(0,105,72,0.3)]">
+                <span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                Capture Frame
+            </button>
+        </div>
+    </header>
 
-<input type="file" id="file-upload" accept="image/*" class="hidden">
-<input type="file" id="batch-upload" accept="image/*" multiple class="hidden">
-<button id="btn-upload" class="flex items-center justify-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md">
-    <span class="material-symbols-outlined text-[18px]">upload</span> Upload Image
-</button>
-<button id="btn-batch" class="flex items-center justify-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md">
-    <span class="material-symbols-outlined text-[18px]">drive_folder_upload</span> Batch Upload
-</button>
-<button id="btn-camera" class="flex items-center justify-center gap-xs px-md py-sm bg-surface-container border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md">
-    <span class="material-symbols-outlined text-[18px]">videocam</span> Live Camera
-</button>
-<button id="btn-capture" class="flex items-center justify-center gap-xs px-md py-sm bg-secondary-container border border-secondary-container rounded-lg text-on-secondary-container hover:opacity-90 transition-opacity shadow-[0_0_15px_rgba(5,102,217,0.3)] font-label-md text-label-md font-bold hidden">
-    <span class="material-symbols-outlined text-[18px]">photo_camera</span> Capture Frame
-</button>
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Main Video Feed Area (Col Span 8) -->
+        <section class="lg:col-span-8 flex flex-col gap-gutter">
+            <!-- Video Container -->
+            <div class="relative w-full h-[600px] bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex items-center justify-center">
+                <!-- Background / Default State -->
+                <div class="absolute inset-0 bg-cover bg-center grayscale-[0.2] opacity-30" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO7W3LiIptTTUttRpZ8MzeuoMq99SDR8BRsx62QwtbYNXIWMPvAM7EpjlE__7amnIfRIi-oBcH7-iqFWE7nw7SGGshViQKGu99fL794ZM-_mA83B0bOu1NsjsmfVJmlZQeR_F5lWzRowlFr8MUnYmmlXu8ctJCNAw3I4PsR5z26UlUrEq10nymtsBfSRd6Ag2hpSvRuOofafybdIN6tinTliAc_DRxR0NCO1IK5XaAOyJS7k4F6bU2FA')"></div>
+                <!-- Grid Overlay (Aesthetic) -->
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA0MCAwIEwgMCAwIDAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSg5MiwgMTAwLCAxMjIsIDAuMTUpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-50"></div>
+                
+                <!-- Actual Video/Image Elements -->
+                <video id="webcam-video" autoplay playsinline class="w-full h-full object-cover absolute inset-0 hidden z-10"></video>
+                <img id="preview-image" class="w-full h-full object-contain absolute inset-0 z-10 opacity-90 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmGJK6Nsad0FxMuC_1s8yw_RTudZI5Wxj97mJev4k_eUkhPd4zljOUnAJ46Zo39icDiST65NjPqO7jO6F0DA_6HbTkYRckDYCjnn0bfx_U5iBMrO8a8pi6TJ55p0y67wiwvIJ725o6rX5iY-o42IQ4I-tCn9YsyPefRBZf5hAPC3skBbNxkmm9v-3MBqznuPdmPH4nfifOh0Fy6yNI1RHt8g3C_MumHB8_05C53EFTLxRwrGj95MZQ3A" />
 
-</div>
-</div>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Main Input Area (Left/Top) -->
-<div class="lg:col-span-8 flex flex-col gap-gutter">
-<!-- Drag & Drop Upload / Active Preview -->
-<div class="bg-surface-container-low rounded-[20px] border border-white/10 overflow-hidden flex flex-col relative h-[500px]">
-<div class="px-md py-sm border-b border-white/5 flex justify-between items-center bg-surface/50 backdrop-blur-md absolute top-0 w-full z-10">
-<span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[18px] text-primary">upload_file</span> Input Source</span>
-<div class="flex items-center gap-xs">
-<span class="bg-surface-container px-xs py-base rounded text-on-surface-variant font-mono-data text-mono-data text-[10px]">1920x1080</span>
-<span class="bg-surface-container px-xs py-base rounded text-on-surface-variant font-mono-data text-mono-data text-[10px]">2.4MB</span>
-</div>
-</div>
-<!-- The Canvas -->
-<div class="relative w-full h-full bg-surface-dim flex items-center justify-center overflow-hidden">
-<!-- Image Preview -->
-<video id="webcam-video" autoplay playsinline class="w-full h-full object-cover absolute inset-0 hidden"></video>
-<img id="preview-image" class="w-full h-full object-cover absolute inset-0 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmGJK6Nsad0FxMuC_1s8yw_RTudZI5Wxj97mJev4k_eUkhPd4zljOUnAJ46Zo39icDiST65NjPqO7jO6F0DA_6HbTkYRckDYCjnn0bfx_U5iBMrO8a8pi6TJ55p0y67wiwvIJ725o6rX5iY-o42IQ4I-tCn9YsyPefRBZf5hAPC3skBbNxkmm9v-3MBqznuPdmPH4nfifOh0Fy6yNI1RHt8g3C_MumHB8_05C53EFTLxRwrGj95MZQ3A" />
-<!-- Scanning Overlay -->
-<div class="absolute inset-0 bg-primary/5 mix-blend-overlay"></div>
-<div class="absolute w-full h-[2px] bg-secondary shadow-[0_0_10px_rgba(173,198,255,0.8)] scan-line top-0 z-20"></div>
+                <!-- Input Source Label -->
+                <div class="absolute top-lg left-lg bg-surface/80 backdrop-blur-md border border-outline-variant px-sm py-xs rounded text-on-surface font-label-caps text-label-caps text-[10px] flex items-center gap-xs z-20">
+                    <span class="material-symbols-outlined text-[14px] text-primary">description</span>
+                    <span id="info-source">Input Source</span>
+                </div>
 
-</div>
-<div class="px-md py-sm border-t border-white/5 bg-surface-container-low flex justify-between items-center z-10 absolute bottom-0 w-full">
-<span class="font-mono-data text-mono-data text-on-surface-variant text-[12px]"><span id="info-source">Source: Local Upload</span></span>
-<span class="font-mono-data text-mono-data text-on-surface-variant text-[12px]"><span id="info-time">Processing Time: --</span></span>
-</div>
-</div>
-<!-- Industrial Alerts (Conditional/Rotten) -->
-<div id="alert-box" class="bg-surface-container/20 border border-white/10 rounded-[20px] p-md flex items-start gap-md relative overflow-hidden hidden">
-<div class="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent pointer-events-none"></div>
-<div id="alert-icon-container" class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-white/10">
-<span id="alert-icon" class="material-symbols-outlined text-on-surface text-[24px]">info</span>
-</div>
-<div>
-<h3 id="alert-title" class="font-headline-md text-headline-md font-bold text-on-surface">No Alert</h3>
-<p id="alert-desc" class="font-body-md text-body-md text-on-surface mt-xs opacity-90">System functioning normally.</p>
-<div class="mt-sm flex gap-sm">
-<button class="px-sm py-xs bg-error text-on-error rounded font-label-sm text-label-sm font-bold hover:bg-error/80 transition-colors">Acknowledge</button>
-<button class="px-sm py-xs bg-transparent border border-error/50 text-error rounded font-label-sm text-label-sm hover:bg-error/10 transition-colors">View Routing</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Analysis Sidebar (Right) -->
-<div class="lg:col-span-4 flex flex-col gap-gutter">
-<!-- Prediction Card (Gauge) -->
-<div class="bg-surface-container-low rounded-[20px] border border-white/10 p-md flex flex-col items-center justify-center text-center relative overflow-hidden shadow-lg">
-<div class="absolute inset-0 bg-gradient-to-b from-error/5 to-transparent pointer-events-none"></div>
-<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mb-md self-start w-full text-left border-b border-white/5 pb-xs">Primary Classification</h3>
-<div class="relative w-full py-md flex flex-col items-center gap-sm">
-<svg class="w-full max-w-[220px] mx-auto block drop-shadow-lg" viewbox="0 0 36 36">
-<path d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2.5" class="text-surface-container-highest"></path>
-<path id="gauge-path" class="transition-all duration-1000 ease-out" d="M18 2.0845
-                                a 15.9155 15.9155 0 0 1 0 31.831
-                                a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#ffb4ab" stroke-width="2.5" stroke-dasharray="0, 100" stroke-linecap="round"></path>
-<text id="gauge-text" fill="currentColor" class="text-[9px] font-mono-data text-error" x="18" y="21.5" text-anchor="middle">0%</text>
-</svg>
-<div class="w-full text-center mt-2">
-<span id="gauge-label" class="font-headline-md text-[20px] font-bold text-error uppercase tracking-wide drop-shadow-sm">WAITING</span>
-</div>
-</div>
-</div>
-<!-- Analysis Bars & Insights -->
-<div class="bg-surface-container-low rounded-[20px] border border-white/10 flex flex-col flex-1">
-<div class="px-md py-sm border-b border-white/5">
-<h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">psychology</span> Inference Details</h3>
-</div>
-<div class="p-md flex flex-col gap-md">
-<!-- Insight -->
-<div class="bg-tertiary-container/30 border border-tertiary/20 rounded-lg p-sm flex items-start gap-sm">
-<div class="w-2 h-2 rounded-full bg-tertiary mt-1.5 insight-dot shrink-0"></div>
-<p id="insight-text" class="font-body-md text-body-md text-on-surface-variant text-[14px]">Awaiting prediction...</p>
-</div>
-<!-- Class probabilities -->
-<div class="space-y-sm mt-sm">
-<h4 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Confidence Matrix</h4>
-<!-- Bar 1 -->
-<div>
-<div class="flex justify-between font-mono-data text-[12px] mb-1">
-<span id="label-class-1" class="text-error">Class 1</span>
-<span id="prob-class-1" class="text-error">0.0</span>
-</div>
-<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-<div id="bar-class-1" class="bg-error h-1.5 rounded-full shadow-[0_0_8px_rgba(255,180,171,0.6)] transition-all" style="width: 0%"></div>
-</div>
-</div>
-<!-- Bar 2 -->
-<div>
-<div class="flex justify-between font-mono-data text-[12px] mb-1">
-<span id="label-class-2" class="text-on-surface-variant">Class 2</span>
-<span id="prob-class-2" class="text-on-surface-variant">0.0</span>
-</div>
-<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-<div id="bar-class-2" class="bg-primary h-1.5 rounded-full transition-all" style="width: 0%"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+                <div class="absolute top-lg right-lg flex gap-2 z-20">
+                    <span class="bg-surface/80 backdrop-blur-md border border-outline-variant px-sm py-xs rounded text-on-surface font-label-caps text-label-caps text-[10px]">1920x1080</span>
+                    <span class="bg-surface/80 backdrop-blur-md border border-outline-variant px-sm py-xs rounded text-on-surface font-label-caps text-label-caps text-[10px]">2.4MB</span>
+                </div>
 
-<!-- AI Focus Area (Grad-CAM) -->
-<div class="bg-surface-container-low rounded-[20px] border border-white/10 flex flex-col flex-1 mt-gutter">
-    <div class="px-md py-sm border-b border-white/5">
-        <h3 class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[18px] text-tertiary">center_focus_strong</span> AI Focus Area (Grad-CAM)</h3>
-    </div>
-    <div class="p-md flex flex-col gap-md items-center">
-        <img id="gradcam-image" class="w-full max-h-[200px] object-contain rounded-lg border border-white/10 mix-blend-screen" src="" style="display: none;" />
-        <p id="gradcam-placeholder" class="text-on-surface-variant font-label-sm">Awaiting prediction...</p>
-    </div>
-</div>
+                <!-- Footer details inside canvas -->
+                <div class="absolute bottom-lg left-lg bg-surface/80 backdrop-blur-md border border-outline-variant px-sm py-xs rounded text-on-surface-variant font-label-caps text-label-caps text-[10px] flex items-center gap-xs z-20">
+                    <span id="info-time">Source: Local Upload &nbsp;&nbsp;&nbsp; Processing Time: -- ms</span>
+                </div>
+            </div>
 
-<!-- Bar 2 -->
-<div>
-<div class="flex justify-between font-mono-data text-[12px] mb-1">
-<span class="text-on-surface-variant">Bruised Tomato</span>
-<span class="text-on-surface-variant">0.045</span>
-</div>
-<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-<div class="bg-outline h-1.5 rounded-full" style="width: 4.5%"></div>
-</div>
-</div>
-<!-- Bar 3 -->
-<div>
-<div class="flex justify-between font-mono-data text-[12px] mb-1">
-<span class="text-on-surface-variant">Fresh Tomato</span>
-<span class="text-on-surface-variant">0.013</span>
-</div>
-<div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-<div class="bg-outline h-1.5 rounded-full" style="width: 1.3%"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Dev Info Metadata -->
-<div class="bg-surface-container-low rounded-[20px] border border-white/10 flex flex-col">
-<div class="px-md py-sm border-b border-white/5 flex justify-between items-center">
-<h3 class="font-label-sm text-label-sm text-outline-variant font-semibold flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">terminal</span> Tensor Data</h3>
-<button class="text-[10px] text-primary hover:underline font-mono-data">COPY</button>
-</div>
-<div class="p-sm bg-background/50 rounded-b-[20px] overflow-x-auto">
-<pre class="font-mono-data text-mono-data text-[10px] text-on-surface-variant opacity-80 leading-relaxed">{
-  "model_version": "v2.15.4-efficientdet",
+            <!-- Industrial Alerts (Conditional/Rotten) -->
+            <div id="alert-box" class="bg-error-container/20 border border-error-container rounded-xl p-md flex items-start gap-md relative overflow-hidden hidden shadow-sm mt-sm">
+                <div class="absolute inset-0 bg-gradient-to-r from-error/5 to-transparent pointer-events-none"></div>
+                <div id="alert-icon-container" class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center shrink-0 border border-error/20 text-error">
+                    <span id="alert-icon" class="material-symbols-outlined icon-fill text-[24px]">info</span>
+                </div>
+                <div>
+                    <h3 id="alert-title" class="font-headline-md text-headline-md font-bold text-error">No Alert</h3>
+                    <p id="alert-desc" class="font-body-md text-body-md text-on-surface mt-xs opacity-90">System functioning normally.</p>
+                    <div class="mt-sm flex gap-sm">
+                        <button class="px-sm py-xs bg-error text-on-error rounded font-label-sm text-label-sm font-bold hover:bg-error/80 transition-colors">Acknowledge</button>
+                        <button class="px-sm py-xs bg-transparent border border-error/50 text-error rounded font-label-sm text-label-sm hover:bg-error/10 transition-colors">View Routing</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Side Metrics & Data Panel (Col Span 4) -->
+        <section class="lg:col-span-4 flex flex-col gap-gutter">
+            <!-- Inference Score Card (Circular Gauge) -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg flex flex-col items-center shadow-sm">
+                <h3 class="font-label-caps text-label-caps text-on-surface-variant w-full text-left mb-md">Primary Classification</h3>
+                <!-- Circular Gauge -->
+                <div class="relative w-48 h-48 flex items-center justify-center">
+                    <svg class="transform -rotate-90 w-full h-full drop-shadow-md" viewBox="0 0 100 100">
+                        <!-- Background Circle -->
+                        <circle cx="50" cy="50" fill="none" r="42" stroke="currentColor" stroke-width="8" class="text-surface-container-highest"></circle>
+                        <!-- Foreground Circle (Animated) -->
+                        <path id="gauge-path" class="transition-all duration-1000 ease-out" 
+                              d="M50 8 a 42 42 0 0 1 0 84 a 42 42 0 0 1 0 -84" 
+                              fill="none" stroke="#ba1a1a" stroke-width="8" 
+                              stroke-dasharray="0, 264" stroke-linecap="round"></path>
+                    </svg>
+                    <div class="absolute flex flex-col items-center pt-2">
+                        <span id="gauge-text" class="font-display-lg text-[42px] font-bold text-error leading-none -tracking-widest">0%</span>
+                    </div>
+                </div>
+                <div class="w-full text-center mt-6">
+                    <span id="gauge-label" class="font-headline-lg text-[24px] font-bold text-error uppercase tracking-widest drop-shadow-sm">WAITING</span>
+                </div>
+            </div>
+
+            <!-- Inference Details -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+                <h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-[18px] text-tertiary">psychology</span>
+                    Inference Details
+                </h3>
+                <div class="flex flex-col gap-md">
+                    <!-- Insight -->
+                    <div class="bg-surface-container/50 border border-outline-variant/50 rounded-lg p-sm flex items-start gap-sm">
+                        <div class="w-2 h-2 rounded-full bg-tertiary mt-1.5 shrink-0"></div>
+                        <p id="insight-text" class="font-body-sm text-[13px] leading-relaxed text-on-surface-variant">Awaiting prediction...</p>
+                    </div>
+
+                    <!-- Class probabilities -->
+                    <div class="space-y-sm mt-xs">
+                        <!-- Bar 1 -->
+                        <div>
+                            <div class="flex justify-between font-code-sm text-[12px] mb-1">
+                                <span id="label-class-1" class="text-error font-medium">Class 1</span>
+                                <span id="prob-class-1" class="text-error font-medium">0.0</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                <div id="bar-class-1" class="bg-error h-1.5 rounded-full shadow-sm transition-all" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <!-- Bar 2 -->
+                        <div>
+                            <div class="flex justify-between font-code-sm text-[12px] mb-1">
+                                <span id="label-class-2" class="text-primary font-medium">Class 2</span>
+                                <span id="prob-class-2" class="text-primary font-medium">0.0</span>
+                            </div>
+                            <div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
+                                <div id="bar-class-2" class="bg-primary h-1.5 rounded-full shadow-sm transition-all" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Focus Area (Grad-CAM) / Tensor Data Block -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl flex flex-col overflow-hidden shadow-sm">
+                <div class="bg-surface-container border-b border-outline-variant px-md py-sm flex justify-between items-center">
+                    <h3 class="font-label-caps text-label-caps text-on-surface flex items-center gap-sm">
+                        <span class="material-symbols-outlined text-[16px] text-tertiary">data_object</span>
+                        AI Focus & Tensor
+                    </h3>
+                    <button class="text-on-surface-variant hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined text-[16px]">content_copy</span>
+                    </button>
+                </div>
+                
+                <div class="flex flex-col">
+                    <div class="p-sm flex flex-col items-center justify-center border-b border-outline-variant/30 bg-surface-dim/30 min-h-[120px]">
+                        <img id="gradcam-image" class="w-full max-h-[160px] object-contain rounded-lg shadow-sm mix-blend-multiply dark:mix-blend-screen" src="" style="display: none;" />
+                        <p id="gradcam-placeholder" class="text-on-surface-variant font-label-caps text-[10px]">AWAITING PREDICTION...</p>
+                    </div>
+
+                    <div class="p-md overflow-y-auto max-h-[180px] bg-[#f1f5f9] dark:bg-[#0b1c30]">
+                        <pre><code class="font-code-sm text-[11px] leading-relaxed text-[#334155] dark:text-[#bccac0]">{
+  "model_version": "v2.4.1-rc",
   "tensor_shape": [1, 224, 224, 3],
   "latency_ms": 42.8,
   "raw_logits": [
@@ -187,21 +186,21 @@
     -1.102
   ],
   "activations": "softmax"
-}
-                        </pre>
-</div>
-</div>
-</div>
-</div>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </main>
 <!-- Footer -->
-<footer class="flex justify-between items-center w-full px-lg py-sm mt-xl bg-surface-container-low border-t border-white/5 md:ml-[280px] md:w-[calc(100%-280px)] z-30 relative">
-<p class="font-label-sm text-label-sm font-bold text-outline-variant">2024 QualiVision AI. TF v2.15 | Engine: Active</p>
-<div class="flex gap-md">
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors text-[14px]" href="#">Support</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors text-[14px]" href="#">Privacy</a>
-<a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors text-[14px]" href="#">Terms</a>
-</div>
+<footer class="flex justify-between items-center w-full px-lg py-sm mt-xl bg-surface-container-low border-t border-outline-variant md:ml-[280px] md:w-[calc(100%-280px)] z-30 relative">
+    <p class="font-label-caps text-[10px] font-bold text-outline-variant">2024 QualiVision AI. TF v2.15 | Engine: Active</p>
+    <div class="flex gap-md">
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-on-surface transition-colors" href="#">Support</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a>
+        <a class="font-label-caps text-[10px] text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a>
+    </div>
 </footer>
 
 {% block scripts %}

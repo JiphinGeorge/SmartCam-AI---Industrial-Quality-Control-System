@@ -128,9 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateUI(data) {
         // Gauge
         const conf = data.confidence;
+        const dashValue = (conf / 100) * 264;
         document.getElementById('gauge-text').textContent = conf.toFixed(1) + "%";
         document.getElementById('gauge-label').textContent = data.prediction.toUpperCase();
-        document.getElementById('gauge-path').setAttribute('stroke-dasharray', `${conf}, 100`);
+        document.getElementById('gauge-path').setAttribute('stroke-dasharray', `${dashValue}, 264`);
         
         // Colors based on pass/fail
         const color = data.status === 'PASS' ? '#adc6ff' : (data.status === 'FAIL' ? '#ffb4ab' : '#fb8c00');
