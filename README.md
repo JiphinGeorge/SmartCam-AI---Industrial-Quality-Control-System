@@ -1,148 +1,187 @@
 # SmartCam AI — Industrial Quality Control System
 
-![SmartCam AI Banner](https://via.placeholder.com/1200x300.png?text=SmartCam+AI+-+Industrial+Quality+Control)
+<p align="center">
+  <img src="https://via.placeholder.com/1200x300.png?text=SmartCam+AI+-+Industrial+Quality+Control" alt="SmartCam AI Banner">
+</p>
 
-> AI-powered tomato freshness inspection using deep learning for food manufacturing quality control.
-
-## Overview
-
-SmartCam AI is an enterprise-grade industrial quality control system that uses computer vision to classify tomatoes as **Fresh**, **Rotten**, or **Unknown** on a production conveyor belt. 
-
-Built with TensorFlow (EfficientNetV2B0) and deployed via a robust Flask backend with a premium Glassmorphism UI, this system is designed for high-throughput factory environments.
+> **AI-powered automated inspection system** utilizing deep learning (EfficientNetV2B0) and computer vision for high-throughput food manufacturing quality control.
 
 ---
 
-## 🌟 Key Features
+## 🌟 Overview & Key Features
 
-- **Triple-Class Probability Logic**: Accurately flags items as PASS (Fresh > 85%), FAIL (Rotten > 85%), or UNKNOWN to prevent false classifications.
-- **Explainable AI (Grad-CAM)**: Visualizes the exact regions of the image that influenced the model's decision.
-- **Industrial Dashboard**: Real-time circular confidence gauges, dynamic AI explanations, and granular processing timelines.
-- **Batch Processing Mode**: Drag-and-drop entire folders of images for high-speed batch inspection with progress tracking.
-- **Automated PDF Reporting**: Generate professional industrial shift reports using `reportlab`.
-- **Admin & Settings Panels**: Password-protected routes for database management and system configuration.
-- **Responsive Corporate Theme**: Built-in Dark and Light mode toggles tailored for factory displays.
+SmartCam AI is an enterprise-grade industrial quality control dashboard that captures live feed imagery from production line cameras and classifies tomatoes as **Fresh**, **Rotten**, or **Unknown**. Built on a highly-optimized Flask backend with a beautiful, responsive Google Stitch UI (Glassmorphism design language).
+
+- **Triple-Class Probability Logic**: Avoids binary pitfalls. Items are flagged as PASS (Fresh > 85%), FAIL (Rotten > 85%), or REVIEW REQUIRED to prevent false classifications.
+- **Explainable AI (Grad-CAM)**: Generates real-time heatmaps outlining the exact regions of the image that influenced the neural network's decision.
+- **Role-Based Access Control (RBAC)**: Secure multi-tenant architecture locking sensitive panes (Settings, Models, Reports) to Managers and Administrators.
+- **Real-Time Telemetry**: Seamless WebSocket (Socket.IO) streaming of inference times, CPU/RAM utilization, and model confidence scores.
+- **Advanced Export Pipelines**: Generates dynamic CSV, JSON, Excel, and beautifully formatted PDF shift reports using `reportlab`.
 
 ---
 
-## 🏗 System Architecture
+## 🏗️ System Architecture
 
+### Component Architecture
 ```mermaid
 graph TD
     %% Frontend Layer
-    subgraph Frontend [Web Interface]
-        UI[Glassmorphism Dashboard]
-        WS[Socket.IO Client]
+    subgraph Frontend [Web Dashboard - Glassmorphism UI]
+        Dashboard[Live Hub]
+        Analytics[Performance Analytics]
+        History[Inspection History]
+        Reports[Reporting Engine]
+    end
+
+    %% Security & Network
+    subgraph Network [Security & Proxy]
+        Nginx[Nginx Reverse Proxy]
+        Talisman[Flask-Talisman CSP]
+        Limiter[Flask-Limiter API Limits]
     end
 
     %% Backend Layer
-    subgraph Backend [Flask Application Server]
-        API[REST & WS API]
-        Predictor[Prediction Service]
-        GradCAM[Grad-CAM Generator]
-        DB_Serv[Database Logging]
-        PDF_Gen[PDF Report Engine]
+    subgraph Backend [Flask / Gunicorn Application]
+        Auth[Flask-Login Auth]
+        API[REST Endpoints]
+        WS[Socket.IO Server]
+        Predictor[TensorFlow Inference]
+        GradCAM[Activation Maps]
     end
 
     %% Storage Layer
-    subgraph Storage [Data Persistence]
-        SQLite[(SQLite DB)]
-        ModelStore[(Model .keras)]
-        ImageStore[(Image History)]
+    subgraph Persistence [Data Persistence]
+        SQLite[(SQLite Database)]
+        Models[(.keras Models)]
+        FS[(Local File System)]
     end
 
-    %% Data Flow
-    UI -- "POST /api/predict" --> API
+    Frontend --> Nginx
+    Nginx --> Talisman
+    Talisman --> Limiter
+    Limiter --> Auth
+    Auth --> API
+    Auth --> WS
+    
     API --> Predictor
-    Predictor -- "Load Weights" --> ModelStore
+    Predictor --> Models
     API --> GradCAM
-    API --> DB_Serv
-    DB_Serv --> SQLite
-    GradCAM --> ImageStore
-    API -. "WebSocket (timeline, status)" .-> WS
-    API -- "GET /api/report/pdf" --> PDF_Gen
+    
+    API --> SQLite
+    GradCAM --> FS
 ```
 
----
+### Authentication & RBAC Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant Router
+    participant Auth
+    participant DB
 
-## 🚀 Quick Start (Production Deployment)
-
-We highly recommend deploying SmartCam AI using our provided Docker containerization setup. This ensures the application runs within a robust Gunicorn WSGI server behind an Nginx reverse proxy.
-
-### 1. Requirements
-Ensure you have installed:
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-
-### 2. Deploy the Stack
-```bash
-docker-compose up --build -d
+    User->>Router: GET /settings
+    Router->>Auth: Check session token
+    Auth->>DB: Fetch user role
+    DB-->>Auth: Role = Operator
+    Auth-->>Router: HTTP 403 Forbidden
+    Router-->>User: Renders Custom 403 Error Page
 ```
-
-*This command will build the image, start a Redis instance (for background tasks), Nginx (on port 80/443), and the Flask application itself. Wait approximately 1-2 minutes for the initial build.*
-
-### 3. Access the Dashboard
-Navigate to `http://localhost` (or the IP address of your server).
-
-### Local Development Setup
-If you are developing or modifying the UI:
-```bash
-python -m venv venv310
-venv310\Scripts\activate
-pip install -r requirements.txt
-python app.py
-```
-*The local development server will start on `http://127.0.0.1:5000`.*
 
 ---
 
 ## 🔌 API Documentation
 
-### `POST /api/predict`
-Inspect a single image or batch of images.
-- **Payload (`multipart/form-data`)**: `image` (File), `source` (String: 'upload', 'batch', 'webcam')
+### 1. Predict Image
+**Endpoint:** `POST /api/predict`
+Inspects a single image or batch of images from the factory line.
+
+- **Content-Type**: `multipart/form-data`
+- **Parameters**: 
+  - `image` (File)
+  - `source` (String: 'upload', 'batch', 'camera_feed')
 - **Response**:
-  ```json
-  {
-    "inspection_id": "QC-20260703-142205",
-    "prediction": "Rotten",
-    "confidence": 98.2,
-    "confidence_level": "Very High",
-    "status": "FAIL",
-    "explanation": "The AI model classified this tomato as Rotten with high confidence...",
-    "timeline": {
-      "Image Loaded": "5 ms",
-      "Preprocessing": "3 ms",
-      "AI Inference": "28 ms",
-      "Grad-CAM": "18 ms",
-      "Database": "4 ms",
-      "Total": "58 ms"
-    }
+```json
+{
+  "inspection_id": "QC-20260703-142205",
+  "prediction": "Rotten",
+  "confidence": 98.2,
+  "status": "FAIL",
+  "timeline": {
+    "Image Loaded": "5 ms",
+    "Preprocessing": "3 ms",
+    "AI Inference": "28 ms",
+    "Total": "36 ms"
   }
-  ```
+}
+```
 
-### `GET /api/stats`
-Retrieve today's production statistics.
-- **Response**: JSON object with `total_today`, `fresh_count`, `rotten_count`, `unknown_count`, `avg_confidence`, `avg_time`.
+### 2. Download Shift Reports
+**Endpoint:** `GET /api/reports/download`
+Downloads the historical DB metrics compiled into a flat file. Protected by `@login_required`.
 
-### `GET /api/report/pdf`
-Downloads a generated PDF report summarizing the current day's inspections.
+- **Parameters**:
+  - `timeframe` (String: 'daily', 'weekly', 'monthly')
+  - `format` (String: 'pdf', 'csv', 'excel', 'json')
+- **Response**: `application/pdf` or corresponding binary file attachment.
 
 ---
 
-## 🛠 Project Structure
+## 🚀 Production Deployment (Docker)
 
+SmartCam AI is containerized for simple and scalable deployments using **Docker** and **Docker Compose**. It operates on a robust Gunicorn WSGI server behind an Nginx reverse proxy.
+
+### Prerequisites
+- [Docker Engine](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Deploying the Stack
+1. Clone the repository and navigate into the folder:
+   ```bash
+   git clone https://github.com/JiphinGeorge/SmartCam-AI---Industrial-Quality-Control-System.git
+   cd SmartCam-AI
+   ```
+2. Build and spin up the multi-container stack:
+   ```bash
+   docker-compose up --build -d
+   ```
+   *This initializes the web application (Gunicorn/Flask), Nginx on ports 80/443, and persistent volumes for the SQLite database and image uploads.*
+3. Access the dashboard at `http://localhost` or your server's IP address.
+4. Default Logins:
+   - **Admin**: `admin` / `admin123`
+   - **Manager**: `manager` / `manager123`
+   - **Operator**: `operator` / `operator123`
+
+---
+
+## 💻 Local Development Setup
+
+If you wish to modify the AI models or the UI frontend, you can run the system locally:
+
+```bash
+# 1. Create and activate a virtual environment
+python -m venv venv310
+venv310\Scripts\activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Start the Flask dev server
+python app.py
 ```
-SmartCam-AI/
-├── app/
-│   ├── routes/              # Flask Blueprints (api.py, dashboard.py)
-│   ├── services/            # Core Logic (predictor, gradcam, pdf_generator, database)
-│   ├── templates/           # HTML templates (index, admin, settings, about)
-│   └── static/              # CSS/JS Assets
-├── database/                # SQLite Storage
-├── models/                  # Trained EfficientNetV2B0 (.keras)
-├── requirements.txt         # Dependencies
-└── app.py                   # Main entry point
-```
+*The server will be available at `http://127.0.0.1:5000`.*
+
+---
+
+## 🛠 Technology Stack
+
+- **Deep Learning**: TensorFlow 2.10, Keras (EfficientNetV2B0), OpenCV
+- **Backend Framework**: Flask 3.0, Flask-SocketIO, Gunicorn (Production)
+- **Security**: Flask-Login (RBAC), Flask-Talisman, Flask-Limiter, Werkzeug Security
+- **Frontend UI**: Google Stitch (Glassmorphism), TailwindCSS, Chart.js
+- **Persistence**: SQLite (with performance indexing)
+- **Data Export**: ReportLab (PDF), OpenPyXL (Excel), Python CSV/JSON
+
+---
 
 ## ⚖️ License
-Internal Industrial Use Only.
+Internal Industrial Use Only. Not authorized for external distribution.
