@@ -6,4 +6,5 @@ history_bp = Blueprint('history', __name__)
 @history_bp.route('/history')
 @login_required
 def index():
-    return render_template('history.html')
+    q = request.args.get('q', '')
+    return render_template('history.html', q=q)
