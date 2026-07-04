@@ -1,0 +1,24 @@
+erDiagram
+    users {
+        int id PK
+        string username
+        string password_hash
+        string role
+    }
+    predictions {
+        int id PK
+        datetime timestamp
+        string filename
+        string prediction
+        float confidence
+        string status
+        float inference_time_ms
+        string image_path
+        string camera_source
+        string inspection_id
+    }
+    settings {
+        string key PK
+        string value
+    }
+    users ||--o{ predictions : "audits"

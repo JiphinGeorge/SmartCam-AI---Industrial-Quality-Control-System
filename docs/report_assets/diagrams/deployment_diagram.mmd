@@ -1,0 +1,21 @@
+graph TD
+    subgraph Client
+        Browser[Web Browser]
+        Camera[Live Webcam]
+    end
+    subgraph Server [Production Server]
+        Nginx[Nginx Proxy]
+        subgraph Docker [Docker Container]
+            Gunicorn[Gunicorn WSGI]
+            Flask[Flask App]
+            TF[TensorFlow Runtime]
+            OpenCV_Svc[OpenCV Video Capture]
+        end
+        SQLite[(SQLite db)]
+    end
+    Client -->|HTTPS / WSS| Nginx
+    Nginx -->|Reverse Proxy| Gunicorn
+    Gunicorn --> Flask
+    Flask --> TF
+    Flask --> OpenCV_Svc
+    Flask --> SQLite

@@ -1,0 +1,8 @@
+graph LR
+    Input[Image 224x224] --> Preprocess[Normalize & Scale]
+    Preprocess --> Backbone[EfficientNetV2B0]
+    Backbone --> Pool[Global Average Pooling]
+    Pool --> Dense[Dense Layer / Softmax]
+    Dense --> Output[Fresh 98% / Rotten 2%]
+    Dense -.-> GradCAM[Extract feature maps]
+    GradCAM --> Heatmap[Visual Explanation]

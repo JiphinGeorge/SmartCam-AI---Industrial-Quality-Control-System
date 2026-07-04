@@ -1,0 +1,11 @@
+graph TD
+    User((Industrial Operator)) -->|HTTPS| WebBrowser[Dashboard UI]
+    WebBrowser -->|WSS| WebSocket[Flask-SocketIO]
+    WebBrowser -->|HTTPS| FlaskAPI[Flask Routes]
+    
+    FlaskAPI --> Security[Flask-Login / Limiter]
+    Security --> TFEngine[TensorFlow Inference]
+    WebSocket --> OpenCV[Camera Service]
+    
+    TFEngine --> GradCAM[Heatmap Generator]
+    TFEngine --> DB[(SQLite Database)]
