@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderWeeklyTrend(data.weekly);
         renderQualityPie(data.quality);
         renderHourlyVolume(data.hourly);
+        renderConfidenceDist(data.confidence_dist);
         
         if (data.stats) {
             updateKPIs(data.stats, data.quality);
@@ -196,6 +197,43 @@ function renderInferenceSpeed(stats) {
             scales: {
                 y: { display: false, min: avg * 0.5, max: avg * 1.5 },
                 x: { display: false }
+            }
+        }
+    });
+}
+
+let confidenceChartInstance = null;
+function renderConfidenceDist(confData) {
+    const ctx = document.getElementById('confidenceDistChart');
+    if (!ctx || !confData) return;
+    
+    const labels = ['<70%', '70-80%', '80-90%', '90-100%'];
+    const data = labels.map(l => confData[l] || 0);
+    
+    if (confidenceChartInstance) {
+        confidenceChartInstance.destroy();
+    }
+    
+    confidenceChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Inspections',
+                data: data,
+                backgroundColor: '#3B82F6',
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                x: { grid: { display: false } }
             }
         }
     });

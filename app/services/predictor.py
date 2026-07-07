@@ -45,8 +45,30 @@ class PredictorService:
         else:
             rotten_prob = float(prediction_scores[0][0])
             fresh_prob = 1.0 - rotten_prob
+            
+        # OOD Heuristic: Use OpenCV to check if image has tomato-like colors (Red, Green, Yellow/Orange)
+        import cv2
+        import numpy as np
+        img_rgb = input_tensor[0].astype(np.uint8)
+        img_bgr = img_rgb[:, :, ::-1]
+        hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+        mask_red1 = cv2.inRange(hsv, np.array([0, 50, 50]), np.array([10, 255, 255]))
+        mask_red2 = cv2.inRange(hsv, np.array([170, 50, 50]), np.array([180, 255, 255]))
+        mask_red = cv2.bitwise_or(mask_red1, mask_red2)
+        mask_green = cv2.inRange(hsv, np.array([35, 40, 40]), np.array([85, 255, 255]))
+        mask_yellow = cv2.inRange(hsv, np.array([11, 50, 50]), np.array([34, 255, 255]))
+        combined = cv2.bitwise_or(mask_red, mask_green)
+        combined = cv2.bitwise_or(combined, mask_yellow)
+        ratio = cv2.countNonZero(combined) / (img_bgr.shape[0] * img_bgr.shape[1])
         
-        if fresh_prob >= 0.85 and fresh_prob > rotten_prob:
+        is_ood = ratio < 0.02 # If less than 2% of the image is tomato-colored, flag as Unknown.
+
+        if is_ood:
+            prediction = "Unknown"
+            confidence = max(fresh_prob, rotten_prob) * 100
+            status = "REVIEW"
+            explanation = "Out-of-Distribution Detected. The object does not match the visual color profile of a tomato. Flagged for manual review."
+        elif fresh_prob >= 0.85 and fresh_prob > rotten_prob:
             prediction = "Fresh"
             confidence = fresh_prob * 100
             status = "PASS"

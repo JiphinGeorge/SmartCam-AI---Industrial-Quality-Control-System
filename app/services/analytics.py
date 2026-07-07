@@ -55,10 +55,33 @@ class AnalyticsService:
         cursor.execute("SELECT date(timestamp) as dt, COUNT(*) FROM predictions WHERE date(timestamp) >= date('now', '-7 days', 'localtime') GROUP BY dt ORDER BY dt ASC")
         weekly_trend = [{"date": row[0], "count": row[1]} for row in cursor.fetchall()]
         
+        # Confidence Distribution (Today)
+        cursor.execute("""
+            SELECT 
+                CASE 
+                    WHEN confidence < 70 THEN '<70%'
+                    WHEN confidence >= 70 AND confidence < 80 THEN '70-80%'
+                    WHEN confidence >= 80 AND confidence < 90 THEN '80-90%'
+                    WHEN confidence >= 90 AND confidence <= 100 THEN '90-100%'
+                END as bucket,
+                COUNT(*) 
+            FROM predictions 
+            WHERE date(timestamp) = date('now', 'localtime') 
+            GROUP BY bucket
+        """)
+        conf_data = {row[0]: row[1] for row in cursor.fetchall() if row[0] is not None}
+        confidence_dist = {
+            '<70%': conf_data.get('<70%', 0),
+            '70-80%': conf_data.get('70-80%', 0),
+            '80-90%': conf_data.get('80-90%', 0),
+            '90-100%': conf_data.get('90-100%', 0)
+        }
+        
         conn.close()
         
         return {
             "quality": quality_dist,
             "hourly": hourly_data,
-            "weekly": weekly_trend
+            "weekly": weekly_trend,
+            "confidence_dist": confidence_dist
         }
