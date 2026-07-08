@@ -4,12 +4,40 @@ document.addEventListener("DOMContentLoaded", function() {
     if (clockEl) {
         function updateClock() {
             const now = new Date();
-            // Format to local time string like "HH:MM"
             const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            clockEl.textContent = "Local " + timeString;
+            clockEl.textContent = (window.timezoneLabel || "Local") + " " + timeString;
         }
         updateClock();
         setInterval(updateClock, 1000 * 60); // Update every minute
+    }
+    
+    // Topbar Factory Name Injection
+    const factoryEl = document.getElementById("topbar-factory-name");
+    
+    function applySettings(data) {
+        if (data.factory_name && factoryEl) {
+            factoryEl.textContent = data.factory_name;
+        }
+        if (data.timezone) {
+            // e.g. "UTC+01:00 (Europe/Berlin)" -> "UTC+01:00"
+            window.timezoneLabel = data.timezone.split(" ")[0];
+            if (clockEl) updateClock();
+        }
+    }
+
+    // Listen for real-time changes from the Settings page
+    window.addEventListener('settingsLoaded', (e) => {
+        applySettings(e.detail);
+    });
+
+    // On normal pages, fetch settings once
+    if (factoryEl) {
+        fetch('/api/settings')
+            .then(res => res.json())
+            .then(data => {
+                if (!data.error) applySettings(data);
+            })
+            .catch(err => console.error("Could not fetch global settings", err));
     }
 
     // Topbar Theme Toggle

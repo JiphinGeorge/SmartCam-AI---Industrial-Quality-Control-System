@@ -32,7 +32,7 @@
 <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Daily Summary</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-lg">Last 24 hours of inspection data, shift performance, and immediate defect alerts.</p>
 <div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
-<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 2.4 MB</span>
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: {{ daily_size }} MB</span>
 <a href="{{ url_for('api.download_report', timeframe='daily', format='pdf') }}" class="flex items-center gap-1 text-primary font-label-md text-label-md hover:text-on-surface transition-colors">
     Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </a>
@@ -51,7 +51,7 @@
 <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Weekly Rollup</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-lg">7-day trend analysis, zone efficiency comparisons, and calibration logs.</p>
 <div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
-<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 14.8 MB</span>
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: {{ weekly_size }} MB</span>
 <a href="{{ url_for('api.download_report', timeframe='weekly', format='pdf') }}" class="flex items-center gap-1 text-secondary font-label-md text-label-md hover:text-on-surface transition-colors">
     Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </a>
@@ -70,7 +70,7 @@
 <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Monthly Deep Dive</h3>
 <p class="font-body-md text-body-md text-on-surface-variant mb-lg">Comprehensive historical data, ML model drift metrics, and long-term yield analysis.</p>
 <div class="mt-auto pt-md border-t border-white/10 flex justify-between items-center">
-<span class="font-mono-data text-mono-data text-outline-variant">Est. size: 56.2 MB</span>
+<span class="font-mono-data text-mono-data text-outline-variant">Est. size: {{ monthly_size }} MB</span>
 <a href="{{ url_for('api.download_report', timeframe='monthly', format='pdf') }}" class="flex items-center gap-1 text-tertiary font-label-md text-label-md hover:text-on-surface transition-colors">
     Generate <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </a>

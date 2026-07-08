@@ -40,24 +40,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Fetch settings
-    try {
-        const res = await fetch('/api/settings');
-        const data = await res.json();
-        
-        if (data && !data.error) {
-            if (elFact && data.factory_name) elFact.value = data.factory_name;
-            if (elTime && data.timezone) elTime.value = data.timezone;
-            if (elCrit) elCrit.checked = (data.critical_alerts === 'true');
-            if (elEmail) elEmail.checked = (data.email_digest === 'true');
-            if (elVol) {
-                elVol.value = data.alarm_volume || 85;
-                document.getElementById('label-volume').innerText = elVol.value + '%';
+    async function loadSettings() {
+        try {
+            const res = await fetch('/api/settings');
+            const data = await res.json();
+            
+            if (data && !data.error) {
+                if (elFact && data.factory_name) elFact.value = data.factory_name;
+                if (elTime && data.timezone) elTime.value = data.timezone;
+                if (elCrit) elCrit.checked = (data.critical_alerts === 'true');
+                if (elEmail) elEmail.checked = (data.email_digest === 'true');
+                if (elVol) {
+                    elVol.value = data.alarm_volume || 85;
+                    document.getElementById('label-volume').innerText = elVol.value + '%';
+                }
+                if (elTone && data.alert_tone) elTone.value = data.alert_tone;
+                
+                // Dispatch event so topbar can update factory name if needed
+                window.dispatchEvent(new CustomEvent('settingsLoaded', { detail: data }));
             }
-            if (elTone && data.alert_tone) elTone.value = data.alert_tone;
+        } catch (e) {
+            console.error("Failed to load settings:", e);
         }
-    } catch (e) {
-        console.error("Failed to load settings:", e);
     }
+    
+    // Fetch on page load
+    loadSettings();
     
     // Save settings
     const btnSave = document.getElementById('btn-save-settings');
@@ -93,6 +101,71 @@ document.addEventListener('DOMContentLoaded', async () => {
                 btnSave.textContent = 'Error';
                 setTimeout(() => btnSave.textContent = originalText, 2000);
             }
+        });
+    }
+
+    // Discard Changes
+    const btnDiscard = document.getElementById('btn-discard');
+    if (btnDiscard) {
+        btnDiscard.addEventListener('click', () => {
+            loadSettings(); // Reload from API without refresh
+            const originalText = btnDiscard.textContent;
+            btnDiscard.textContent = 'Reverted';
+            setTimeout(() => btnDiscard.textContent = originalText, 1500);
+        });
+    }
+
+    // Check Updates
+    const btnUpdates = document.getElementById('btn-check-updates');
+    if (btnUpdates) {
+        btnUpdates.addEventListener('click', () => {
+            const originalText = btnUpdates.innerHTML;
+            btnUpdates.disabled = true;
+            btnUpdates.innerHTML = `<span class="material-symbols-outlined animate-spin text-sm">sync</span> Checking...`;
+            
+            // Mock delay
+            setTimeout(() => {
+                btnUpdates.innerHTML = `<span class="material-symbols-outlined text-green-400 text-sm">check_circle</span> Up to date`;
+                setTimeout(() => {
+                    btnUpdates.innerHTML = originalText;
+                    btnUpdates.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    }
+
+    // Audio Test via Web Audio API
+    if (elVol) {
+        elVol.addEventListener('change', () => {
+            const volume = parseInt(elVol.value, 10) / 100;
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContext) return;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const gainNode = ctx.createGain();
+            
+            // Tone logic
+            const toneType = elTone ? elTone.value : "Beep (Standard)";
+            if (toneType === "Klaxon (Industrial)") {
+                osc.type = "sawtooth";
+                osc.frequency.setValueAtTime(150, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 0.5);
+            } else if (toneType === "Chime (Subtle)") {
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(800, ctx.currentTime);
+            } else {
+                osc.type = "square";
+                osc.frequency.setValueAtTime(440, ctx.currentTime);
+            }
+            
+            gainNode.gain.setValueAtTime(volume, ctx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+            
+            osc.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            
+            osc.start();
+            osc.stop(ctx.currentTime + 0.5);
         });
     }
 });
