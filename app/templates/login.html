@@ -1,78 +1,91 @@
 {% extends 'base.html' %}
 {% set active_page = 'login' %}
-{% block title %}Login - QualiVision AI{% endblock %}
-{% block body_class %}bg-background text-on-background min-h-screen flex items-center justify-center font-body-md selection:bg-primary selection:text-on-primary{% endblock %}
+{% block title %}Secure Authentication - QualiVision AI{% endblock %}
+{% block body_class %}bg-[#0b1326] text-[#dae2fd] min-h-screen flex items-center justify-center font-body-md selection:bg-[#16c784] selection:text-[#002112] bg-[url('/static/images/grid-bg.svg')] bg-center bg-cover{% endblock %}
 
 {% block content %}
-<div class="w-full max-w-md p-md">
-    <!-- Logo & Header -->
-    <div class="text-center mb-xl">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-surface-container border border-white/10 shadow-lg glow-primary mb-md overflow-hidden">
-            <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="QualiVision Logo" class="w-full h-full object-cover">
+<div class="w-full max-w-lg p-md relative z-10">
+    <!-- Header / Branding -->
+    <div class="text-center mb-xl flex flex-col items-center">
+        <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-[#171f33] border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] mb-md overflow-hidden relative group">
+            <div class="absolute inset-0 bg-[#16c784]/20 opacity-0 group-hover:opacity-100 transition-opacity blur-xl"></div>
+            <img src="{{ url_for('static', filename='images/avatar.png') }}" alt="QualiVision AI" class="w-12 h-12 relative z-10 filter drop-shadow-[0_0_8px_rgba(22,199,132,0.6)]">
         </div>
-        <h1 class="font-display-lg text-[32px] font-bold text-on-surface mb-xs tracking-tight">QualiVision</h1>
-        <p class="font-body-md text-on-surface-variant">Industrial Quality Control System</p>
+        <h1 class="font-headline-lg text-[32px] font-bold text-white mb-xs tracking-[-0.02em] uppercase">QualiVision AI</h1>
+        <p class="font-mono-data text-[13px] text-[#bbcabe] uppercase tracking-[0.05em] flex items-center gap-xs">
+            <span class="w-2 h-2 rounded-full bg-[#16c784] shadow-[0_0_8px_rgba(22,199,132,0.8)] animate-pulse"></span>
+            Industrial Telemetry Link
+        </p>
     </div>
 
-    <!-- Login Card -->
-    <div class="glass-panel rounded-xl p-xl shadow-2xl relative overflow-hidden group">
-        <!-- Accent Line -->
-        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-tertiary"></div>
-        
-        <h2 class="font-headline-md text-[20px] font-semibold text-on-surface mb-lg">Secure Login</h2>
+    <!-- Login Module -->
+    <div class="bg-[#1e293b]/80 backdrop-blur-[12px] border-t border-l border-white/10 border-r border-b border-black/20 rounded-2xl p-xl shadow-[0_10px_40px_rgba(0,0,0,0.6)] relative overflow-hidden">
+        <!-- Accent Glow -->
+        <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#16c784]/20 blur-3xl rounded-full pointer-events-none"></div>
+
+        <div class="flex items-center gap-sm mb-lg pb-sm border-b border-white/10">
+            <span class="material-symbols-outlined text-[#16c784] text-[24px]">admin_panel_settings</span>
+            <h2 class="font-headline-md text-[20px] font-semibold text-white">Secure Authorization</h2>
+        </div>
 
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="mb-md p-sm rounded-lg flex items-center gap-sm text-label-sm font-label-sm uppercase tracking-wider
-                        {% if category == 'error' %}bg-error/10 text-error border border-error/20
-                        {% else %}bg-primary/10 text-primary border border-primary/20{% endif %}">
-                        <span class="material-symbols-outlined text-[16px]">
-                            {% if category == 'error' %}error{% else %}info{% endif %}
+                    <div class="mb-md p-sm rounded-lg flex items-start gap-sm text-[13px] font-mono-data
+                        {% if category == 'error' %}bg-[#93000a]/20 text-[#ffb4ab] border border-[#93000a]
+                        {% else %}bg-[#004c30]/20 text-[#47e49e] border border-[#004c30]{% endif %} shadow-inner">
+                        <span class="material-symbols-outlined text-[16px] mt-0.5">
+                            {% if category == 'error' %}warning{% else %}info{% endif %}
                         </span>
-                        {{ message }}
+                        <div class="flex-1">{{ message }}</div>
                     </div>
                 {% endfor %}
             {% endif %}
         {% endwith %}
 
-        <form method="POST" action="{{ url_for('auth_bp.login') }}" class="space-y-md">
-            <div>
-                <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Username</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant">person</span>
-                    <input type="text" name="username" required class="w-full bg-surface-container border border-white/10 rounded-lg py-sm pl-[40px] pr-sm font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+        <form method="POST" action="{{ url_for('auth_bp.login') }}" class="space-y-lg relative z-10">
+            <div class="space-y-xs">
+                <label class="block font-label-sm text-[12px] text-[#bbcabe] uppercase tracking-[0.05em] font-semibold">Operator ID</label>
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-[#859489] group-focus-within:text-[#16c784] transition-colors">badge</span>
+                    <input type="text" name="username" required 
+                           class="w-full bg-[#0b1326] border border-white/5 rounded-lg py-sm pl-[40px] pr-sm font-body-md text-white focus:outline-none focus:border-[#16c784] focus:shadow-[0_0_10px_rgba(22,199,132,0.2)] transition-all placeholder-[#3c4a41]"
+                           placeholder="Enter your clearance ID">
                 </div>
             </div>
             
-            <div>
-                <label class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Password</label>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline-variant">lock</span>
-                    <input type="password" name="password" required class="w-full bg-surface-container border border-white/10 rounded-lg py-sm pl-[40px] pr-sm font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+            <div class="space-y-xs">
+                <label class="block font-label-sm text-[12px] text-[#bbcabe] uppercase tracking-[0.05em] font-semibold">Access Cipher</label>
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-[#859489] group-focus-within:text-[#16c784] transition-colors">password</span>
+                    <input type="password" name="password" required 
+                           class="w-full bg-[#0b1326] border border-white/5 rounded-lg py-sm pl-[40px] pr-sm font-body-md text-white focus:outline-none focus:border-[#16c784] focus:shadow-[0_0_10px_rgba(22,199,132,0.2)] transition-all placeholder-[#3c4a41]"
+                           placeholder="••••••••••••">
                 </div>
             </div>
 
             <div class="flex items-center justify-between pt-xs">
-                <label class="flex items-center gap-2 cursor-pointer group/chk">
+                <label class="flex items-center gap-sm cursor-pointer group/chk">
                     <div class="relative flex items-center justify-center">
                         <input type="checkbox" name="remember" class="peer sr-only">
-                        <div class="w-5 h-5 rounded border border-outline-variant bg-surface-container peer-checked:bg-primary peer-checked:border-primary transition-colors flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[14px] text-on-primary opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                        <div class="w-4 h-4 rounded-sm border border-[#3c4a41] bg-[#0b1326] peer-checked:bg-[#16c784] peer-checked:border-[#16c784] transition-colors flex items-center justify-center">
+                            <span class="material-symbols-outlined text-[12px] text-[#002112] opacity-0 peer-checked:opacity-100 transition-opacity font-bold">check</span>
                         </div>
                     </div>
-                    <span class="font-body-sm text-[14px] text-on-surface-variant group-hover/chk:text-on-surface transition-colors">Remember Me</span>
+                    <span class="font-body-sm text-[13px] text-[#bbcabe] group-hover/chk:text-white transition-colors">Maintain Session</span>
                 </label>
             </div>
 
-            <button type="submit" class="w-full bg-primary text-on-primary font-label-md font-bold text-label-md py-sm rounded-lg hover:bg-blue-600 transition-all glow-primary mt-sm flex items-center justify-center gap-2">
-                Authenticate <span class="material-symbols-outlined text-[18px]">login</span>
+            <button type="submit" class="w-full bg-[#16c784] text-[#003822] font-label-md font-bold text-[14px] py-md rounded-lg hover:bg-[#47e49e] transition-all shadow-[0_0_15px_rgba(22,199,132,0.3)] hover:shadow-[0_0_25px_rgba(22,199,132,0.5)] mt-md flex items-center justify-center gap-sm">
+                <span class="material-symbols-outlined text-[20px]">fingerprint</span>
+                INITIALIZE LINK
             </button>
         </form>
     </div>
     
-    <div class="text-center mt-xl">
-        <p class="font-mono-data text-[12px] text-outline-variant">v2.15.4-prod | TF backend</p>
+    <div class="text-center mt-xl flex flex-col gap-1">
+        <p class="font-mono-data text-[11px] text-[#3c4a41] tracking-widest">QUALIVISION AI v2.15.4-PROD</p>
+        <p class="font-mono-data text-[11px] text-[#3c4a41] tracking-widest">SECURE INDUSTRIAL PROTOCOL</p>
     </div>
 </div>
 {% endblock %}
